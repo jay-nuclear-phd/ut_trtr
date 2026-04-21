@@ -675,12 +675,16 @@ section { padding: 88px 28px; }
 .hub-category-label {
   font-family: 'Roboto Mono', monospace;
   font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
+  color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.hub-category-label::before {
+  content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07);
 }
 .hub-category-label::after {
   content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07);
 }
-.hub-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 18px; align-items: stretch; }
+.hub-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; align-items: stretch; }
+.hub-card { flex: 0 1 300px; max-width: 380px; }
 .hub-card {
   background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
   border-radius: var(--radius); padding: 26px 28px;
@@ -970,6 +974,7 @@ footer {
   <div class="hero-content">
     <div class="hero-eyebrow">National Organization of Test, Research &amp; Training Reactors</div>
     <h1>TRTR Annual<br>Conference <em>2026</em></h1>
+    <p class="hero-sub" style="font-weight: bold; font-size: 1.5em;">September 21-25</p>
     <p class="hero-sub">Advancing the science and application of U.S. research and test reactors in service to science, industry, and the nation.</p>
     <p class="hero-location">📍 <strong>The University of Texas at Austin</strong> &nbsp;·&nbsp; Austin, Texas &nbsp;·&nbsp; Fall 2026</p>
     <div class="hero-ctas">
@@ -1025,7 +1030,7 @@ footer {
             <div class="stat-desc">U.S. Research Reactors</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">100+</div>
+            <div class="stat-num">80+</div>
             <div class="stat-desc">Expected Attendees</div>
           </div>
           <div class="stat-card">
@@ -1376,12 +1381,13 @@ footer {
             <div class="timeline-title">Full Manuscript Due</div>
             <div class="timeline-desc">Camera-ready papers due for inclusion in conference proceedings.</div>
           </div>
-        </div>
+        </div
+<!-- Intent to submit -->		
         <div style="margin-top:36px;">
           <p style="font-size:14px; color:var(--mid); margin-bottom:12px;">To register your intent to submit a paper later, press <strong>Submit Abstract</strong> and select the <strong>Intent to Submit</strong> tab.</p>
           <button class="btn btn-primary" id="sub-toggle-btn" onclick="(function(){var p=document.getElementById('isf');var b=document.getElementById('sub-toggle-btn');if(p.style.display==='none'||p.style.display===''){p.style.display='block';b.textContent='✕ Close Form';}else{p.style.display='none';b.textContent='Submit Abstract';}})()">Submit Abstract</button>
         </div>
-
+<!--  -->
         <div id="isf" style="display:none;margin-top:28px;background:var(--light);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);">
           <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;">Abstract Submission</h3>
           <p style="font-size:13px;color:var(--mid);margin-bottom:24px;">Fill in your details and choose a submission method below.</p>
@@ -1430,8 +1436,7 @@ footer {
             <div style="background:rgba(191,87,0,0.07);border-left:3px solid #BF5700;border-radius:4px;padding:16px 18px;margin-bottom:14px;">
               <div style="font-weight:700;margin-bottom:4px;color:#2E2E2E;">Register Your Intent to Submit</div>
               <p style="font-size:14px;color:#555;margin:0;">Not ready yet? Let us know you plan to submit — helps the program committee plan sessions. No abstract text required.</p>
-              <p style="font-size:13px;color:#555;margin-top:8px;margin-bottom:0;">Fill in your name and email below, then click <strong>Submit Abstract</strong> to record your intent.</p>
-              <p style="font-size:13px;color:#555;margin-top:8px;margin-bottom:0;">Fill in your name and email below, then click <strong>Submit Abstract</strong> to record your intent.</p>
+              <p style="font-size:13px;color:#555;margin-top:8px;margin-bottom:0;">Fill in your name and email above, then click <strong>Submit Abstract</strong> to record your intent.</p>
             </div>
             <label style="display:block;font-size:13px;font-weight:700;margin-bottom:5px;">Anticipated Format</label>
             <select id="sf-format" style="width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:4px;font-size:15px;background:white;margin-bottom:14px;font-family:inherit;"><option value="">— Select if known —</option><option>Oral Presentation</option><option>Poster Presentation</option><option>Either / No Preference</option></select>
@@ -1440,11 +1445,70 @@ footer {
           </div>
           <div style="margin-bottom:16px;"><label style="display:block;font-size:13px;font-weight:700;margin-bottom:5px;">Additional Comments <span style="font-weight:400;color:#555;">(optional)</span></label>
           <textarea id="sf-comments" rows="3" style="width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:4px;font-size:15px;background:white;resize:vertical;font-family:inherit;" placeholder="Anything else for the program committee..."></textarea></div>
-          <button type="button" style="width:100%;padding:14px;background:#BF5700;color:white;border:none;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;" onmouseover="this.style.background='#D6711A'" onmouseout="this.style.background='#BF5700'"
-            onclick="(function(){var fname=document.getElementById('sf-fname').value.trim();var email=document.getElementById('sf-email').value.trim();var title=document.getElementById('sf-title').value.trim();var isIntent=document.getElementById('sfTab-intent').style.background.indexOf('191')>-1||document.getElementById('sfTab-intent').style.background==='#BF5700';if(!fname||!email){alert('Please fill in your name and email.');return;}if(!isIntent&&!title){alert('Please fill in your abstract title.');return;}document.getElementById('isf').style.display='none';document.getElementById('sub-toggle-btn').textContent='Submit Abstract';if(isIntent){alert('Thank you, '+fname+'! Your intent to submit has been recorded. Reminders will be sent to '+email+' as the deadline approaches.');}else{alert('Thank you, '+fname+'! Your abstract has been received. A confirmation will be sent to '+email+'.');}})()">Submit Abstract</button>
+          <button type="button" id="sf-submit-btn" style="width:100%;padding:14px;background:#BF5700;color:white;border:none;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;" onmouseover="this.style.background='#D6711A'" onmouseout="this.style.background='#BF5700'" onclick="sfSubmit()">Submit Abstract</button>
         </div>
         <script>
         function sfSwitch(tab){var tabs=['paste','upload','intent'];tabs.forEach(function(t){var btn=document.getElementById('sfTab-'+t);var panel=document.getElementById('sfPanel-'+t);var active=t===tab;btn.style.background=active?'#BF5700':'white';btn.style.color=active?'white':'#2E2E2E';btn.style.borderColor=active?'#BF5700':'#ddd';btn.style.fontWeight=active?'700':'400';panel.style.display=active?'block':'none';});var tr=document.getElementById('sf-title-req');if(tr)tr.textContent=tab==='intent'?'(optional)':'*';}
+
+        function sfSubmit() {
+          var fname    = document.getElementById('sf-fname').value.trim();
+          var email    = document.getElementById('sf-email').value.trim();
+          var title    = document.getElementById('sf-title').value.trim();
+          var isIntent = document.getElementById('sfTab-intent').style.background === '#BF5700' ||
+                         document.getElementById('sfTab-intent').style.background.indexOf('191') > -1;
+          if (!fname || !email) { alert('Please fill in your name and email.'); return; }
+          if (!isIntent && !title) { alert('Please fill in your abstract title.'); return; }
+
+          var btn = document.getElementById('sf-submit-btn');
+          btn.textContent = 'Sending…';
+          btn.disabled = true;
+
+          var org            = document.getElementById('sf-org').value.trim();
+          var topic          = document.getElementById('sf-topic').value.trim();
+          var ptype          = document.getElementById('sf-ptype').value.trim();
+          var text           = document.getElementById('sf-text').value.trim();
+          var submissionType = isIntent ? 'Intent to Submit' : 'Full Abstract';
+
+          var _sfd = new FormData();
+          _sfd.append('fname', fname);
+          _sfd.append('email', email);
+          _sfd.append('title', title);
+          _sfd.append('topic', topic);
+          _sfd.append('presenterType', ptype);
+          _sfd.append('submissionType', submissionType);
+          _sfd.append('abstractText', text);
+
+          fetch('https://script.google.com/macros/s/AKfycbwCsso0-ZGBVa2fjmq5aTlc15ic9pLYs99fTKP2Dxb4Gv-m-N4wjpQgrYJSg5ikCEXX/exec', {
+            method: 'POST', mode: 'no-cors',
+            body: _sfd
+          }).then(function() {
+            btn.textContent = '✓ Submitted';
+            btn.style.background = '#2e7d32';
+            setTimeout(function() {
+              document.getElementById('isf').style.display = 'none';
+              document.getElementById('sub-toggle-btn').textContent = 'Submit Abstract';
+              btn.textContent = 'Submit Abstract';
+              btn.style.background = '#BF5700';
+              btn.disabled = false;
+              var msg = document.createElement('div');
+              msg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#2e7d32;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+              msg.innerHTML = isIntent
+                ? '✓ Intent recorded, ' + fname + '!<br><span style="font-weight:400;font-size:14px;">We\'ll send reminders to ' + email + ' as the deadline approaches.</span>'
+                : '✓ Abstract received, ' + fname + '!<br><span style="font-weight:400;font-size:14px;">A confirmation will be sent to ' + email + '.</span>';
+              document.body.appendChild(msg);
+              setTimeout(function() { msg.remove(); }, 7000);
+            }, 800);
+          }).catch(function() {
+            btn.textContent = 'Submit Abstract';
+            btn.style.background = '#BF5700';
+            btn.disabled = false;
+            var errMsg = document.createElement('div');
+            errMsg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#c62828;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+            errMsg.innerHTML = '⚠ Submission failed — please check your connection and try again.<br><span style="font-weight:400;font-size:14px;">Or email your abstract to trtr2026@utexas.edu</span>';
+            document.body.appendChild(errMsg);
+            setTimeout(function() { errMsg.remove(); }, 8000);
+          });
+        }
         </script>
       </div>
       <div class="fade-up" style="transition-delay:0.15s">
@@ -1455,7 +1519,7 @@ footer {
             <li><span class="g-icon">🔤</span><span>Title limited to 20 words. Include all author names and affiliations.</span></li>
             <li><span class="g-icon">🏷️</span><span>Select up to <strong>3 topic areas</strong> from the conference topic list.</span></li>
             <li><span class="g-icon">📁</span><span>Submission format: plain text or PDF via the online submission portal.</span></li>
-            <li><span class="g-icon">🌐</span><span>Submissions accepted from <strong>presenting author only</strong>. Co-author registration required separately.</span></li>
+            <li><span class="g-icon">🌐</span><span>Submissions accepted from <strong>presenting author only</strong>. Co-author details may be added in the submission form.</span></li>
             <li><span class="g-icon">📄</span><span>Full manuscripts due 4 weeks after acceptance notification.</span></li>
             <li><span class="g-icon">⚡</span><span>Student submissions are encouraged</span></li>
           </ul>
@@ -1475,21 +1539,65 @@ footer {
     <h2 class="section-title">Conference Hotel</h2>
     <div class="divider"></div>
     <div class="hotel-placeholder fade-up">
-      <div class="hotel-icon">🏨</div>
+      <!-- Image -->
+      <div style="margin-bottom:28px; text-align:center;">
+        <img src="images/Courtyard_Marriott.png"
+             alt="Courtyard Marriott Austin"
+             style="width:100%; height:auto; display:block; border-radius:calc(var(--radius) - 2px);">
+      </div>
       <h3>Hotel Partnership Coming Soon</h3>
-      <p>We are finalizing a room-block agreement with a hotel near the UT Austin campus. A discounted conference rate and direct reservation link will be provided here once confirmed.</p>
+      <p>We are negotiating a room-block agreement with Residence Inn by Marriott Austin Downtown/Convention Center. A discounted conference rate and direct reservation link will be provided here once confirmed.</p>
       <a href="#contact" class="btn btn-primary">Notify Me When Available</a>
     </div>
-    <div style="margin-top:56px;">
-      <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin-bottom:24px;">Nearby Hotel Options</h3>
-      <div class="topics-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px,1fr))">
-        <div class="topic-card" style="background:white; border-color:var(--border); color:var(--dark);">
-          <div class="topic-title" style="color:var(--dark)">TBD</div>
-          <div class="topic-desc" style="color:var(--mid)">TBD
+    <div style="margin-top:56px; text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin-bottom:8px;">Nearby Hotel Options</h3>
+      <p style="color:var(--mid); font-size:14px; margin-bottom:28px;">The following hotels are within walking distance and participate in <strong>U.S. Government / GSA per diem rate programs</strong>. Present your government ID at check-in.</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:24px; text-align:left;">
+
+        <!-- Hotel 1: Residence Inn -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.2s, box-shadow 0.2s; width:300px; flex-shrink:0;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="background:linear-gradient(135deg,#1a3a5c 0%,#0d2137 100%); padding:28px 24px 20px;">
+            <div style="font-family:'Roboto Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px;">Marriott · Extended Stay</div>
+            <div style="font-family:'Playfair Display',serif; font-size:17px; color:white; font-weight:700; line-height:1.2;">Residence Inn Austin<br>Downtown / Convention Ctr</div>
+          </div>
+          <div style="padding:20px 24px; flex:1; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:13px; color:var(--mid);">300 E 4th St, Austin, TX 78701</div>
+            <div style="font-size:13px; color:var(--mid);"><em style="color:var(--burnt-orange);">(same building as conference hotel)</em></div>
+          </div>
         </div>
-       </div>
+
+        <!-- Hotel 2: Hilton Austin -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.2s, box-shadow 0.2s; width:300px; flex-shrink:0;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="background:linear-gradient(135deg,#002855 0%,#001833 100%); padding:28px 24px 20px;">
+            <div style="font-family:'Roboto Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px;">Hilton · Full Service</div>
+            <div style="font-family:'Playfair Display',serif; font-size:17px; color:white; font-weight:700; line-height:1.2;">Hilton Austin</div>
+          </div>
+          <img src="images/Hilton_Austin.png"
+               alt="Hilton Austin"
+               style="width:100%; height:160px; object-fit:cover; display:block;">
+          <div style="padding:20px 24px; flex:1; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:13px; color:var(--mid);">500 E 4th St, Austin, TX 78701</div>
+            <div style="font-size:13px; color:var(--mid);"><em style="color:var(--burnt-orange);">(~2 blocks east)</em></div>
+          </div>
+        </div>
+
+        <!-- Hotel 3: Holiday Inn Express -->
+        <div style="background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.2s, box-shadow 0.2s; width:300px; flex-shrink:0;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="background:linear-gradient(135deg,#1d4a1d 0%,#0e2e0e 100%); padding:28px 24px 20px;">
+            <div style="font-family:'Roboto Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:4px;">IHG · Budget Friendly</div>
+            <div style="font-family:'Playfair Display',serif; font-size:17px; color:white; font-weight:700; line-height:1.2;">Holiday Inn Express &amp; Suites<br>Austin Downtown – University</div>
+          </div>
+          <img src="images/Holiday_Inn_Express.png"
+               alt="Holiday Inn Express &amp; Suites Austin Downtown"
+               style="width:100%; height:160px; object-fit:cover; display:block;">
+          <div style="padding:20px 24px; flex:1; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:13px; color:var(--mid);">805 Neches St, Austin, TX 78701</div>
+            <div style="font-size:13px; color:var(--mid);"><em style="color:var(--burnt-orange);">(~0.5 mi north)</em></div>
+          </div>
+        </div>
+
+      </div><!-- end hotel grid -->
     </div>
-  </div>
 </section>
 
 <!-- NUCLEAR HUB -->
@@ -1523,15 +1631,16 @@ footer {
       </div>
     </div>
 
-    <!-- ADVOCACY & POLICY -->
+<!-- ADVOCACY & POLICY -->
     <div class="hub-category">
       <div class="hub-category-label">Advocacy &amp; Policy</div>
       <div class="hub-cards">
+<!-- HUB CARD 1, texas nucler summit -->
         <div class="hub-card fade-up">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
             <div class="hub-card-eyebrow" style="margin-bottom:0;">Industry Association</div>
           </div>
-<!-- image -->
+	<!-- image -->
           <img src="images/Texas_Nuclear_Summit.png"
              alt="Texas Nuclear Summit 2025" 
              style="width:100%; height:90px; object-fit:contain; object-position:left; margin-bottom:12px; border-radius:3px; background:#0a0a14; padding:4px;">
@@ -1540,124 +1649,175 @@ footer {
           <span class="hub-card-badge">Austin HQ</span>
         </div>
 
+<!-- HUB CARD 2, TANE -->
         <div class="hub-card fade-up" style="transition-delay:0.08s">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
             <div class="hub-card-eyebrow" style="margin-bottom:0;">State Government Office</div>
           </div>
-<!-- image -->
-    <img src="images/TANE2.jpg"
+	<!-- image -->
+         <img src="images/TANE2.jpg"
          alt="HB 14 - Texas Advanced Nuclear Energy Office"
          style="width:100%; height:auto; display:block; border-radius:3px; margin-bottom:12px;">
 
           <h4><a href="https://gov.texas.gov/organization/taneo/about" target="_blank" style="color:inherit; text-decoration:none;">Texas Advanced Nuclear Energy Office</a></h4>
-          <p>Established by <strong style="color:rgba(255,255,255,0.78)">House Bill 14</strong>, TANEO is charged with leading Texas toward a balanced energy future through innovative nuclear generation. It administers the <strong style="color:rgba(255,255,255,0.75)">$350 million Texas Advanced Nuclear Development Fund</strong> — one of the largest state-level nuclear investment programs in the country.</p>
+          <p><strong style="color:rgba(255,255,255,0.78)">House Bill 14</strong> directs TANEO lead Texas to a balanced energy future with innovative nuclear generation. It administers the <strong style="color:rgba(255,255,255,0.75)">$350 million Texas Advanced Nuclear Development Fund</strong> — one of the largest state-level nuclear investment programs in the country.</p>
           <span class="hub-card-badge">HB 14 — $350M Fund</span>
         </div>
 
+<!-- HUB CARD 3 - PUCT -->
         <div class="hub-card fade-up" style="transition-delay:0.16s">
-          <div class="hub-card-eyebrow">Education &amp; Outreach</div>
-          <h4><a href="https://utexasnuclearengineering.zendesk.com/hc/en-us" target="_blank" style="color:inherit; text-decoration:none;">TACO Desk — Texas Atomic Community Outreach</a></h4>
-          <p>Based at UT Austin, the TACO Desk empowers legislators, legislative staffers, and private citizens to make well-informed nuclear energy policy decisions for Texas — bridging the gap between technical expertise and state government.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <div class="hub-card-eyebrow" style="margin-bottom:0;">State Regulatory Agency</div>
+          </div>
+          <!-- image -->
+          <img src="images/PUCT_Report.png"
+               alt="Public Utility Commission of Texas (PUCT) — state electricity regulator"
+               style="width:100%; height:90px; object-fit:contain; object-position:left; margin-bottom:12px; border-radius:3px; background:#0a0a14; padding:6px;">
+          <h4><a href="https://www.puc.texas.gov" target="_blank" style="color:inherit; text-decoration:none;">Public Utility Commission of Texas</a></h4>
+          <p>The PUCT regulates the state's electric, telecommunication, and water utilities, with growing oversight responsibilities as nuclear energy re-enters Texas's generation mix. Its decisions shape the policy and market framework for new reactor deployment statewide.</p>
+          <span class="hub-card-badge">Texas Electricity Regulator</span>
+        </div>
+
+<!-- HUB CARD 4 - UT Energy Institute -->
+        <div class="hub-card fade-up" style="transition-delay:0.24s">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <div class="hub-card-eyebrow" style="margin-bottom:0;">University Research Institute</div>
+          </div>
+          <!-- image -->
+          <img src="images/RGB_formal_Energy_Institute.png"
+               alt="University of Texas Energy Institute — interdisciplinary energy research and policy"
+               style="width:100%; height:90px; object-fit:contain; object-position:center; margin-bottom:12px; border-radius:3px; background:#0a0a14; padding:6px;">
+          <h4><a href="https://energy.utexas.edu" target="_blank" style="color:inherit; text-decoration:none;">UT Energy Institute</a></h4>
+          <p>The University of Texas Energy Institute coordinates interdisciplinary energy research, education, and policy engagement across UT Austin. It bridges academia, industry, and government to advance solutions across the full energy landscape — including nuclear.</p>
           <span class="hub-card-badge">UT Austin</span>
         </div>
+
+<!-- HUB CARD 6 - Energy Week 2026 -->
+        <div class="hub-card fade-up" style="transition-delay:0.40s">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <div class="hub-card-eyebrow" style="margin-bottom:0;">Energy Institue Event</div>
+          </div>
+          <!-- image -->
+          <img src="images/energy_week_2026.png"
+               alt="Energy Week 2026 — Austin, Texas energy industry conference"
+               style="width:100%; height:90px; object-fit:contain; object-position:center; margin-bottom:12px; border-radius:3px; background:#0a0a14; padding:6px;">
+          <h4>Energy Week 2026</h4>
+          <p>TRTR 2026 is timed to align with Austin's Energy Week — a convergence of energy industry events, policy forums, and networking across the city. Attendees gain access to a broader ecosystem of energy stakeholders at one of the sector's most active annual gatherings.</p>
+          <span class="hub-card-badge">Austin · 2026</span>
+        </div>
+
       </div>      </div>
     </div>
 
-    <!-- REACTOR DEVELOPERS -->
+<!-- HUB CATEGORY -- REACTOR DEVELOPERS -->
     <div class="hub-category">
       <div class="hub-category-label">Reactor Developers with Austin Manufacturing</div>
+
+<!-- HUB CARD 1 - Aaolo -->
       <div class="hub-cards">
         <div class="hub-card fade-up">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
             <div class="hub-card-eyebrow" style="margin-bottom:0;">Sodium-Cooled Fast Reactor</div>
-<!-- image -->
+	<!-- image -->
          <img src="images/Aalologo.png"
           alt="Aalo Atomics logo" style="height:22px; width:auto; opacity:0.85;  filter:brightness(2);">
           </div>
-          <h4><a href="https://www.aalo.com" target="_blank" style="color:inherit; text-decoration:none;">Aalo Atomics</a></h4>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0; border-radius:3px; overflow:hidden;">
-<!-- image -->
+		 <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0; border-radius:3px; overflow:hidden;">
+	<!-- image -->
             <img src="images/Aalo1.jpg" alt="Aalo Atomics manufacturing facility" style="width:100%; height:120px; object-fit:cover; display:block;">
-<!-- image -->
+	<!-- image -->
            <img src="images/Aalo2.jpg" alt="Aalo-X microreactor unit" style="width:100%; height:120px; object-fit:cover; display:block;">
           </div>
+	<!-- title & text block -->
+		   <h4><a href="https://www.aalo.com" target="_blank" style="color:inherit; text-decoration:none;">Aalo Atomics</a></h4>
           <p>Aalo opened a <strong style="color:rgba(255,255,255,0.75)">40,000-square-foot headquarters and manufacturing facility</strong> in Austin — midway between downtown and the airport — where it is building its experimental Aalo-X microreactor and plans to manufacture its Aalo-1 sodium-cooled fast reactor on a factory production line.</p>
           <span class="hub-card-badge">40,000 sq ft Austin Facility</span>
         </div>
+
+<!-- HUB CARD 2 - Lastenergy -->
         <div class="hub-card fade-up" style="transition-delay:0.08s">
           <div class="hub-card-eyebrow">Pressurized Water Reactor</div>
           <div style="margin:14px 0 14px 0; border-radius:3px; overflow:hidden;">
-<!-- image -->
-<img src="images/LastEnergy.jpg" alt="Last Energy microreactor module" style="width:100%; height:130px; object-fit:cover; display:block;">
+	<!-- image -->
+        <img src="images/LastEnergy.jpg" alt="Last Energy microreactor module" style="width:100%; height:130px; object-fit:cover; display:block;">
           </div>
+	<!-- title & text block -->
           <h4><a href="https://www.lastenergy.com" target="_blank" style="color:inherit; text-decoration:none;">Last Energy</a></h4>
           <p>Last Energy, headquartered in Austin, Texas, is developing factory-built microreactors designed for rapid deployment to industrial customers. The company focuses on modular, repeatable nuclear plants to accelerate clean energy deployment worldwide.</p>
           <span class="hub-card-badge">Texas Deployment Planned</span>
-        </div>
-        <div class="hub-card fade-up" style="transition-delay:0.16s">
+        </div>'
+
+<!-- HUB CARD 3 - Nutura-->
+         <div class="hub-card fade-up" style="transition-delay:0.16s">
           <div class="hub-card-eyebrow">Molten Salt Reactor</div>
           <div style="margin:14px 0 14px 0; border-radius:3px; overflow:hidden;">
-<!-- image -->
-<img src="images/Natura-Molten_Salt_Reactor.jpg"
-     alt="Natura Resources molten salt reactor facility"
-     style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
+	<!-- image -->
+	   <img src="images/Natura-Molten_Salt_Reactor.jpg"
+       alt="Natura Resources molten salt reactor facility"
+       style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
           </div>
+	<!-- title & text block -->
           <h4><a href="https://www.naturaresources.com" target="_blank" style="color:inherit; text-decoration:none;">Natura Resources</a></h4>
-          <p>An Abilene, Texas-based molten salt SMR developer. Natura selected <strong style="color:rgba(255,255,255,0.75)">Abilene Christian University</strong> to lead the Natura Resources Research Alliance — a four-university consortium including Texas A&amp;M, UT Austin, and Georgia Tech — to design, license, and build a molten salt research reactor on ACU's campus in Abilene. The NRC construction permit was issued to ACU, making it the <strong style="color:rgba(255,255,255,0.75)">only NRC construction permit for a liquid-fueled reactor design</strong> in U.S. history.</p>
+          <p>Natura selected <strong style="color:rgba(255,255,255,0.75)">Abilene Christian University</strong> to lead the Natura Resources Research Alliance (4-university consortium of Texas A&amp;M, UT Austin & Georgia Tech) to design, license, and build a molten salt research reactor on ACU's campus. The construction permit is the <strong style="color:rgba(255,255,255,0.75)">only NRC construction permit for a liquid-fueled reactor design</strong> in U.S. history.</p>
           <span class="hub-card-badge">Only NRC Liquid-Fuel Permit · ACU Lead</span>
         </div>
 
+<!-- HUB CARD 3 - Subcritical Systems -->
         <div class="hub-card fade-up" style="transition-delay:0.24s">
           <div class="hub-card-eyebrow">Accelerator-Driven Subcritical Fission</div>
           <div style="margin:14px 0 14px 0; border-radius:3px; overflow:hidden; background:#000;">
-<!-- image -->
+	<!-- image -->
           <img src="images/Subcritical_Systems.png" alt="Subcritical Systems energy amplifier concept" style="width:100%; aspect-ratio:16/9; object-fit:contain; display:block; background:#000;">
           </div>
-          <h4>Subcritical Systems</h4>
+	<!-- title & text block -->    
+ 	     <h4>Subcritical Systems</h4>
           <p>Subcritical Systems is bringing the energy amplifier concept to the US to safely generate electrical power with a particle accelerator to sustain fission of nuclear fuel in a subcritical core generating power.</p>
           <span class="hub-card-badge">Accelerator-Driven Energy Amplifier</span>
         </div>
       </div>
     </div>
 
-    <!-- ISOTOPE PRODUCTION -->
+<!-- HUB CATEGORY - ISOTOPE PRODUCTION -->
     <div class="hub-category">
       <div class="hub-category-label">Isotope Production — Active Facility in the Austin Metro</div>
-      <div class="hub-cards" style="grid-template-columns: 1fr;">
-        <div class="hub-card fade-up">
+<!-- HUB CARD - Atomic Alchemy -->
+      <div class="hub-cards" style="display:block;">
+        <div class="hub-card fade-up" style="max-width:100%; flex:1 1 100%;">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
             <div class="hub-card-eyebrow" style="margin-bottom:0;">Radioisotope Production · Oklo Subsidiary</div>
-<!-- image -->            
-          <img src="images/OKLO.png" alt="Atomic Alchemy logo" style="height:28px; width:auto; opacity:0.85;">
+	<!-- image -->            
+          <img src="images/AtomicAlchemyLogo.png" alt="Atomic Alchemy logo" style="height:28px; width:auto; opacity:0.85;">
           </div>
-          <h4><a href="https://www.atomicalchemy.us" target="_blank" style="color:inherit; text-decoration:none;">Atomic Alchemy — Groves Isotopes Test Reactor</a></h4>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0; border-radius:3px; overflow:hidden;">
-<!-- image -->
-           <img src="images/Oklo_AA.jpg" alt="Oklo / Atomic Alchemy facility render" style="width:100%; height:130px; object-fit:cover; display:block;">
-<!-- image -->
-          <img src="images/OKLO.jpg" style="width:100%; height:130px; object-fit:cover; display:block;">
+	<!-- image -->
+           <img src="images/Oklo.png" alt="Oklo / Atomic Alchemy facility render" style="width:100%; height:130px; object-fit:cover; display:block;">
+	<!-- image -->
+          <img src="images/OKLO.png" style="width:100%; height:130px; object-fit:cover; display:block;">
           </div>
+    <!-- title -->
+     <h4><a href="https://www.atomicalchemy.us" target="_blank" style="color:inherit; text-decoration:none;">Atomic Alchemy — Groves Isotopes Test Reactor</a></h4>
+	<!-- text block -->
           <p>A wholly owned subsidiary of Oklo (NYSE: OKLO), Atomic Alchemy is building the <strong style="color:rgba(255,255,255,0.75)">Groves Isotopes Test Reactor</strong> — a light-water-cooled, pool-type Versatile Isotope Production Reactor (VIPR) — in Caldwell County, Texas, as part of the planned Proto-Town Innovation Hub. The DOE approved their Nuclear Safety Design Agreement under the Reactor Pilot Program in March 2026, and the company is targeting <strong style="color:rgba(255,255,255,0.75)">criticality by July 4, 2026</strong> — potentially making it operational before the TRTR conference. The facility is designed to produce isotopes for cancer diagnosis and treatment, advanced manufacturing, scientific research, space exploration, and national security, and will serve as a pilot for a planned multi-reactor isotope foundry.</p>
           <span class="hub-card-badge">DOE NSDA Approved · Criticality Target July 2026</span>
         </div>
       </div>
     </div>
 
-    <!-- UT TRIGA -->
+<!-- HUB CARD - DIGITAL TWIN -->
     <div class="hub-category">
       <div class="hub-category-label">Reactor Digital Twin Research</div>
-      <div class="hub-cards" style="grid-template-columns: 1fr;">
-<div class="hub-card fade-up">
-
-  <div style="margin:0 0 18px 0; border-radius:10px; overflow:hidden;">
-    <img src="images/Digital_Twin2.png"
-         alt="NETL TRIGA Digital Twin"
-         style="width:100%; height:130px; object-fit:contain; display:block;">
-  </div>
-
-  <div class="hub-card-eyebrow">UT Austin · Nuclear Engineering Teaching Laboratory</div>
-  <h4>Digital Twin Protoype for the TRIGA Mark II Research Reactor</h4>
-  <p>UT Nuclear and Radiation Engineering Program researchers developed a protoype digital twin of the NETL TRIGA reactor, collecting data to calibrate faster than real-time performance predictor to support developing control methodolgy. The TRIGA reactor simulator, historical data, reactor core configuration, real-time data streaming, a first-of-a-kind web-based simulator, a state-of-the-art data-driven reactor controller and the physics-informed Shadowcaster engine are on disply at https://nuclear-twins.tacc.utexas.edu.</p>
+      <div class="hub-cards" style="display:block;">
+	<!-- image --> 
+        <div class="hub-card fade-up" style="max-width:100%; flex:1 1 100%;">
+          <div class="hub-card-eyebrow">UT Austin · Nuclear Engineering Teaching Laboratory</div>
+        <div style="margin:0 0 18px 0; border-radius:10px; overflow:hidden;">
+        <img src="images/Digital_Twin2.png"
+           alt="NETL TRIGA Digital Twin"
+           style="width:100%; height:130px; object-fit:contain; display:block;">
+        </div>
+	<!-- title & tex -->
+      <h4>Digital Twin Protoype for the TRIGA Mark II Research Reactor</h4>
+      <p>UT Nuclear and Radiation Engineering Program researchers developed a protoype digital twin of the NETL TRIGA reactor, collecting data to calibrate faster than real-time performance predictor to support developing control methodolgy. The TRIGA reactor simulator, historical data, reactor core configuration, real-time data streaming, a first-of-a-kind web-based simulator, a state-of-the-art data-driven reactor controller and the physics-informed Shadowcaster engine are on disply at https://nuclear-twins.tacc.utexas.edu.</p>
           </div>
         </div>
       </div>
@@ -1737,7 +1897,7 @@ footer {
       <div class="soc-card fade-up" style="transition-delay:0.08s">
         <div class="soc-img-wrap">
 <!-- image -->
-<img src="images/acl3.jpg" alt="Austin City Limits Festival" loading="lazy">
+<img src="images/ACL3.jpg" alt="Austin City Limits Festival" loading="lazy">
           <div class="soc-badge">Festival</div>
         </div>
         <div class="soc-body">
@@ -1751,7 +1911,7 @@ footer {
       <div class="soc-card fade-up" style="transition-delay:0.04s">
         <div class="soc-img-wrap">
 <!-- image -->
-<img src="images/BROKEN_SPOKE.jpg" loading="lazy">
+<img src="images/Broken_Spoke.jpg" loading="lazy">
           <div class="soc-badge">Texas Tradition</div>
         </div>
         <div class="soc-body">
@@ -1826,7 +1986,7 @@ footer {
     </div>
 
     <!-- MEETING SPONSORSHIP LEVELS -->
-    <div class="activity-section-title fade-up">⬡ Meeting Sponsorship Levels</div>
+    <div class="activity-section-title fade-up">⬡ General Meeting Sponsorship Levels</div>
     <div class="sponsor-levels">
 
       <div class="sponsor-level-card slc-uranium fade-up">
@@ -1898,7 +2058,7 @@ footer {
 
     <!-- ACTIVITY SPONSORSHIPS -->
     <div class="activity-section-title fade-up" style="margin-top:16px;">☕ Activity Sponsorship Opportunities</div>
-    <p style="font-size:14px; color:rgba(255,255,255,0.45); margin-bottom:24px;">Activity sponsorships are awarded on a first-come, first-served basis. You will be contacted if your initial preference has already been reserved.</p>
+    <p style="font-size:14px; color:rgba(255,255,255,0.45); margin-bottom:24px;">Activity sponsorships are awarded on a first-come, first-served basis and avaialabilty will be periodcally updated. You will be contacted if your initial preference has already been completely committed.</p>
     <div class="activity-grid">
       <div class="activity-card fade-up" onclick="openSponsorModal('','0','Breakfast')">
         <div class="activity-name">🍳 Breakfast</div>
@@ -2081,12 +2241,15 @@ footer {
       <!-- PAYMENT -->
       <div class="payment-section">
         <div class="payment-title">💳 Preferred Payment Method</div>
-        <p style="font-size:13px; color:var(--mid); margin-bottom:16px;">Payment will be arranged through UT Austin. Please note: for security, emailed forms containing credit card information will not be processed.</p>
-        <div class="payment-methods">
-          <div class="pay-method active" onclick="selectPayment(this)">Check (payable to TRTR)</div>
-          <div class="pay-method" onclick="selectPayment(this)">Credit Card</div>
+        <p style="font-size:13px; color:var(--mid); margin-bottom:16px;">Payment will be arranged through UT Austin. Our credit card payment option is currently being established and will be wired into the same UT Austin financial accounts as registration. <strong>Indicating a preference for credit card now helps us plan — you will be contacted to complete payment once the credit card portal is live.</strong></p>
+        <div class="payment-methods" style="justify-content:center;">
+          <div class="pay-method active" onclick="selectPayment(this)">Check (payable to The University of Texas at Austin)</div>
           <div class="pay-method" onclick="selectPayment(this)">Purchase Order</div>
           <div class="pay-method" onclick="selectPayment(this)">Wire Transfer</div>
+          <div class="pay-method" onclick="selectPayment(this)" style="position:relative;">
+            Credit / Debit Card
+            <span style="display:inline-block; margin-left:7px; font-size:10px; font-weight:700; background:#C9A227; color:#fff; border-radius:3px; padding:1px 5px; vertical-align:middle; letter-spacing:0.5px;">PENDING</span>
+          </div>
         </div>
       </div>
 
@@ -2108,21 +2271,21 @@ footer {
           <div class="contact-icon">📧</div>
           <div class="contact-info-text">
             <h4>General Inquiries</h4>
-            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="552127212767656763152021302d34267b303120">[email&#160;protected]</a><br><em>(placeholder — to be updated)</em></p>
+            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="552127212767656763152021302d34267b303120">[email&#160;protected]</a><br><em>whaley@mail.utexas.edu</em></p>
           </div>
         </div>
         <div class="contact-info-item">
           <div class="contact-icon">📄</div>
           <div class="contact-info-text">
             <h4>Paper Submissions</h4>
-            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb8f898f89c9cbc9cdd68b9a8b9e8988bb8e8f9e839a88d59e9f8e">[email&#160;protected]</a><br><em>(placeholder — to be updated)</em></p>
+            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb8f898f89c9cbc9cdd68b9a8b9e8988bb8e8f9e839a88d59e9f8e">[email&#160;protected]</a><br><em>TBD</em></p>
           </div>
         </div>
         <div class="contact-info-item">
           <div class="contact-icon">💼</div>
           <div class="contact-info-text">
             <h4>Sponsorship</h4>
-            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bbcfc9cfc9898b898d96c8cbd4d5c8d4c9c8fbcecfdec3dac895dedfce">[email&#160;protected]</a><br><em>(placeholder — to be updated)</em></p>
+            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bbcfc9cfc9898b898d96c8cbd4d5c8d4c9c8fbcecfdec3dac895dedfce">[email&#160;protected]</a><br><em>hcook@austin.utexas.edu</em></p>
           </div>
         </div>
         <div class="contact-info-item">
@@ -2153,24 +2316,24 @@ footer {
         <div class="form-row">
           <div class="form-group">
             <label>First Name *</label>
-            <input type="text" placeholder="Jane">
+            <input type="text" id="cont-fname" placeholder="Jane">
           </div>
           <div class="form-group">
             <label>Last Name *</label>
-            <input type="text" placeholder="Smith">
+            <input type="text" id="cont-lname" placeholder="Smith">
           </div>
         </div>
         <div class="form-group">
           <label>Email Address *</label>
-          <input type="email" placeholder="jane.smith@university.edu">
+          <input type="email" id="cont-email" placeholder="jane.smith@university.edu">
         </div>
         <div class="form-group">
           <label>Organization</label>
-          <input type="text" placeholder="University / Organization / Company">
+          <input type="text" id="cont-org" placeholder="University / Organization / Company">
         </div>
         <div class="form-group">
           <label>Subject</label>
-          <select>
+          <select id="cont-topic">
             <option>General Inquiry</option>
             <option>Registration Question</option>
             <option>Abstract Submission</option>
@@ -2181,7 +2344,7 @@ footer {
         </div>
         <div class="form-group">
           <label>Message *</label>
-          <textarea placeholder="How can we help you?"></textarea>
+          <textarea id="cont-message" placeholder="How can we help you?"></textarea>
         </div>
         <button class="btn btn-primary form-submit" onclick="handleContactSubmit(this)">Send Message</button>
       </div>
@@ -2242,9 +2405,9 @@ footer {
     </div>
     <div class="modal-body">
       <div class="form-notice">
-        ℹ️ Select a registration category to open the corresponding form.
+        🕐 Registration is opening soon. A direct link to our registration platform will be posted here once available. Check back shortly or contact us at <a href="mailto:trtr2026@utexas.edu" style="color:var(--burnt-orange);">trtr2026@utexas.edu</a> to be notified.
       </div>
-      <div class="chooser-grid">
+      <div class="chooser-grid" style="display:none;">
         <button class="chooser-card" type="button" onclick="launchRegistrationType('professional')">
           <h4>Professional</h4>
           <p>Standard full conference registration for professional attendees.</p>
@@ -2270,10 +2433,12 @@ footer {
       <button class="modal-close" onclick="closeModal()">×</button>
     </div>
     <div class="modal-body">
-      <div class="form-notice">
-        ℹ️ This form collects your information for conference registration. Payment processing through The University of Texas at Austin will be integrated. All prices are TBD — you will not be charged until the payment system is finalized.
+      <div class="form-notice" style="text-align:center; padding:32px 24px;">
+        🕐 <strong>Registration Coming Soon</strong><br><br>
+        Our registration platform is being finalized. A direct link will appear here and on the conference website once it is ready.<br><br>
+        To be notified when registration opens, contact us at <a href="mailto:trtr2026@utexas.edu" style="color:var(--burnt-orange);">trtr2026@utexas.edu</a>.
       </div>
-      <div class="form-row">
+      <div style="display:none;">
         <div class="form-group">
           <label>First Name *</label>
           <input type="text" placeholder="Jane" id="reg-fname">
@@ -2347,7 +2512,8 @@ footer {
           <div class="pay-method" onclick="selectPayment(this)">Check</div>
         </div>
       </div>
-      <button class="btn btn-primary form-submit" onclick="submitRegistration()">Complete Registration</button>
+      </div><!-- end hidden form fields -->
+      <button class="btn btn-primary form-submit" disabled style="opacity:0.4; cursor:not-allowed; width:100%;">Registration Not Yet Open</button>
     </div>
   </div>
 </div>
@@ -2552,9 +2718,11 @@ function addSponRep() {
 }
 
 function submitSponsorForm() {
-  const org = document.getElementById('spon-org').value.trim();
+  const org     = document.getElementById('spon-org').value.trim();
   const contact = document.getElementById('spon-contact').value.trim();
-  const email = document.getElementById('spon-email').value.trim();
+  const email   = document.getElementById('spon-email').value.trim();
+  const phone   = document.getElementById('spon-phone').value.trim();
+
   if (!org || !contact || !email) {
     alert('Please fill in Organization Name, Contact Name, and Email before submitting.');
     return;
@@ -2564,8 +2732,69 @@ function submitSponsorForm() {
     alert('Please select at least one meeting sponsorship level or activity sponsorship before submitting.');
     return;
   }
-  closeSponsorModal();
-  alert(`Thank you, ${contact}!\n\nYour sponsorship commitment of ${totalEl} for ${org} has been received. A member of the TRTR 2026 organizing committee will contact you at ${email} to finalize payment arrangements through The University of Texas at Austin.`);
+
+  // Collect tier
+  const tierEl = document.querySelector('.spon-tier-opt.selected');
+  const tier = tierEl ? tierEl.getAttribute('data-tier') : '';
+
+  // Collect checked activities
+  const activities = [];
+  document.querySelectorAll('#spon-activity-checks input[type=checkbox]:checked').forEach(cb => {
+    activities.push(cb.getAttribute('data-name'));
+  });
+
+  // Collect payment method
+  const payEl = document.querySelector('#spon-modal .pay-method.active');
+  const payment = payEl ? payEl.textContent.trim() : '';
+
+  // Collect notes
+  const notesEl = document.getElementById('spon-notes');
+  const notes = notesEl ? notesEl.value.trim() : '';
+
+  // UI: disable button and show sending state
+  const btn = document.querySelector('#spon-modal .form-submit');
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+// THIS IS THE DEPLOYED URL FOR SPONSORSHIPS
+
+  const SPONSORSHIP_URL = 'https://script.google.com/macros/s/AKfycbxBfrY5OjkQjs8bxfsTV3cQ49koEqSuPbLu5QoylIiNDcn5TiPIEI5twxlNqg68s--E/exec';
+
+  fetch(SPONSORSHIP_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ org, contact, email, phone, tier, activities: activities.join(', '), payment, total: totalEl, notes }).toString()
+  })
+  .then(() => {
+    // no-cors means we can't read the response body, but if fetch resolves the request was sent
+    btn.textContent = '✓ Submitted';
+    btn.style.background = '#2e7d32';
+    setTimeout(() => {
+      closeSponsorModal();
+      // Reset button
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.disabled = false;
+      // Show confirmation
+      const msg = document.createElement('div');
+      msg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#2e7d32;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+      msg.innerHTML = `✓ Thank you, ${contact}!<br><span style="font-weight:400;font-size:14px;">Your sponsorship commitment of ${totalEl} for ${org} has been received.<br>We will contact you at ${email} to finalize arrangements.</span>`;
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 7000);
+    }, 800);
+  })
+  .catch(() => {
+    // Network or other error
+    btn.textContent = originalText;
+    btn.disabled = false;
+    const errMsg = document.createElement('div');
+    errMsg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#c62828;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+    errMsg.innerHTML = '⚠ Submission failed — please check your connection and try again.<br><span style="font-weight:400;font-size:14px;">If the problem persists, contact us directly at trtr2026@utexas.edu</span>';
+    document.body.appendChild(errMsg);
+    setTimeout(() => errMsg.remove(), 8000);
+  });
 }
 
 // ── BANQUET ENTREE TOGGLE
@@ -2582,9 +2811,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ── CONTACT FORM
 function handleContactSubmit(btn) {
-  btn.textContent = 'Message Sent!';
+  const fname   = document.getElementById('cont-fname').value.trim();
+  const lname   = document.getElementById('cont-lname').value.trim();
+  const email   = document.getElementById('cont-email').value.trim();
+  const org     = document.getElementById('cont-org').value.trim();
+  const topic   = document.getElementById('cont-topic').value.trim();
+  const message = document.getElementById('cont-message').value.trim();
+
+  if (!fname || !email || !message) {
+    alert('Please fill in your First Name, Email, and Message before sending.');
+    return;
+  }
+
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending…';
   btn.disabled = true;
-  setTimeout(() => { btn.textContent = 'Send Message'; btn.disabled = false; }, 3000);
+
+// THIS IS THE DEPLOYED URL FOR CONTACTS
+
+  const CONTACT_URL = 'https://script.google.com/macros/s/AKfycbyORfOFtMJWzjhzMPbhtnacQG8GrdlKthQZNg-bh1RWb8QUZbRkmH8f2dwHv8hlRDJY/exec';
+
+  fetch(CONTACT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ name: `${fname} ${lname}`.trim(), email, organization: org, topic, message }).toString()
+  })
+  .then(() => {
+    btn.textContent = '✓ Sent';
+    btn.style.background = '#2e7d32';
+    const successMsg = document.createElement('div');
+    successMsg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#2e7d32;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+    successMsg.innerHTML = `✓ Message received, ${fname}!<br><span style="font-weight:400;font-size:14px;">Thank you for reaching out. A member of the organizing committee will reply to ${email} shortly.</span>`;
+    document.body.appendChild(successMsg);
+    // Reset form
+    document.getElementById('cont-fname').value = '';
+    document.getElementById('cont-lname').value = '';
+    document.getElementById('cont-email').value = '';
+    document.getElementById('cont-org').value = '';
+    document.getElementById('cont-topic').selectedIndex = 0;
+    document.getElementById('cont-message').value = '';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.disabled = false;
+      successMsg.remove();
+    }, 7000);
+  })
+  .catch(() => {
+    btn.textContent = originalText;
+    btn.disabled = false;
+    const errMsg = document.createElement('div');
+    errMsg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#c62828;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+    errMsg.innerHTML = '⚠ Message could not be sent — please check your connection and try again.<br><span style="font-weight:400;font-size:14px;">Or contact us directly at trtr2026@utexas.edu</span>';
+    document.body.appendChild(errMsg);
+    setTimeout(() => errMsg.remove(), 8000);
+  });
 }
 </script>
 
@@ -2852,18 +3134,87 @@ function clearFile() {
 }
 
 function submitAbstract() {
-  const fname = document.getElementById('sub-fname').value.trim();
-  const email = document.getElementById('sub-email').value.trim();
-  const title = document.getElementById('sub-title').value.trim();
-  const isIntent = document.getElementById('tab-intent').classList.contains('active');
+  const fname         = document.getElementById('sub-fname').value.trim();
+  const email         = document.getElementById('sub-email').value.trim();
+  const title         = document.getElementById('sub-title').value.trim();
+  const topic         = document.getElementById('sub-topic').value.trim();
+  const presenterType = document.getElementById('sub-presenter-type').value.trim();
+  const abstractText  = document.getElementById('sub-abstract-text').value.trim();
+  const isIntent      = document.getElementById('tab-intent').classList.contains('active');
+  const isUpload      = document.getElementById('tab-upload').classList.contains('active');
+  const submissionType = isIntent ? 'Intent to Submit' : 'Full Abstract';
+
   if (!fname || !email) { alert('Please fill in your name and email.'); return; }
   if (!isIntent && !title) { alert('Please fill in your abstract title.'); return; }
-  closeSubmitModal();
-  if (isIntent) {
-    alert('Thank you, ' + fname + '! Your intent to submit has been recorded. We\'ll send reminders to ' + email + ' as the submission deadline approaches.');
-  } else {
-    alert('Thank you, ' + fname + '! Your abstract "' + title + '" has been received. A confirmation will be sent to ' + email + ' once the submission system is finalized.');
+
+  // Validate that a file was selected when Upload tab is active
+  const fileInput = document.getElementById('sub-file-input');
+  const hasFile = fileInput && fileInput.files && fileInput.files[0];
+  if (isUpload && !hasFile) { alert('Please select a file to upload (.pdf or .docx).'); return; }
+
+  // File size guard (5 MB)
+  if (hasFile && fileInput.files[0].size > 5 * 1024 * 1024) {
+    alert('File exceeds the 5 MB limit. Please compress or reduce the file size and try again.');
+    return;
   }
+
+  const btn = document.querySelector('#submit-modal .form-submit');
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+
+// THIS IS THE DEPLOYED URL FOR ABSTRACT SUBMISSIONS
+
+  const ABSTRACT_URL = 'hhttps://script.google.com/macros/s/AKfycbyCysYUvZ1cl4j0WElqcTRO1x1PQrE5SjAavw4hfYTi_mo6-b_L7FUlNJyc-ydG0km-/exec';
+
+  const _afd = new FormData();
+  _afd.append('fname', fname);
+  _afd.append('email', email);
+  _afd.append('title', title);
+  _afd.append('topic', topic);
+  _afd.append('presenterType', presenterType);
+  _afd.append('submissionType', submissionType);
+  _afd.append('abstractText', abstractText);
+
+  // Attach the file if the Upload tab is active
+  if (isUpload && hasFile) {
+    _afd.append('abstractFile', fileInput.files[0], fileInput.files[0].name);
+  }
+
+  fetch(ABSTRACT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: _afd
+  })
+  .then(() => {
+    btn.textContent = '✓ Submitted';
+    btn.style.background = '#2e7d32';
+    setTimeout(() => {
+      closeSubmitModal();
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.disabled = false;
+      const msg = document.createElement('div');
+      msg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#2e7d32;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+      if (isIntent) {
+        msg.innerHTML = `✓ Intent recorded, ${fname}!<br><span style="font-weight:400;font-size:14px;">We'll send reminders to ${email} as the submission deadline approaches.</span>`;
+      } else {
+        msg.innerHTML = `✓ Abstract received, ${fname}!<br><span style="font-weight:400;font-size:14px;">&#8220;${title}&#8221; has been logged. A confirmation will be sent to ${email}.</span>`;
+      }
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 7000);
+    }, 800);
+  })
+  .catch(() => {
+    btn.textContent = originalText;
+    btn.disabled = false;
+    const errMsg = document.createElement('div');
+    errMsg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#c62828;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:16px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+    errMsg.innerHTML = '⚠ Submission failed — please check your connection and try again.<br><span style="font-weight:400;font-size:14px;">Or email your abstract directly to trtr2026@utexas.edu</span>';
+    document.body.appendChild(errMsg);
+    setTimeout(() => errMsg.remove(), 8000);
+  });
 }
 </script>
 
