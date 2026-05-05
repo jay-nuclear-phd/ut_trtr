@@ -922,6 +922,252 @@ footer {
   .chooser-grid { grid-template-columns: 1fr; }
 }
 
+
+/* ── BREAKOUT SESSIONS ── */
+#breakout { background: var(--light); }
+.breakout-accepted-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 56px;
+}
+
+/* ── EACH TOPIC+OBJECTIVES UNIT — copy/paste this block to add more ── */
+.breakout-unit {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s;
+}
+.breakout-unit:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.11); }
+.breakout-unit-topic {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+.breakout-unit-objectives {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--burnt-orange);
+}
+.breakout-unit-objectives li {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--charcoal);
+  padding: 5px 0 5px 14px;
+  line-height: 1.5;
+  position: relative;
+}
+.breakout-unit-objectives li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--burnt-orange);
+  font-weight: 700;
+}
+.breakout-placeholder-badge {
+  display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,162,39,0.1);
+  border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 2px;
+  padding: 3px 8px;
+  margin-bottom: 10px;
+}
+.breakout-cta-strip {
+  background: var(--dark);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.breakout-cta-text h3 {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+.breakout-cta-text p {
+  color: rgba(255,255,255,0.55);
+  font-size: 14px;
+  margin: 0;
+}
+/* Breakout suggestion modal */
+#breakout-modal .modal { max-width: 600px; }
+.bk-char-count {
+  font-size: 11px;
+  color: var(--mid);
+  text-align: right;
+  margin-top: 3px;
+}
+.bk-obj-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.bk-obj-num {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+  color: var(--burnt-orange);
+  font-weight: 700;
+  padding-top: 11px;
+  flex-shrink: 0;
+  width: 18px;
+}
+.bk-obj-input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 44px;
+  transition: border-color 0.2s;
+}
+.bk-obj-input:focus { outline: none; border-color: var(--burnt-orange); }
+.bk-add-obj-btn {
+  background: none;
+  border: 1.5px dashed var(--burnt-orange);
+  color: var(--burnt-orange);
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 4px;
+  transition: background 0.2s;
+}
+.bk-add-obj-btn:hover { background: rgba(191,87,0,0.07); }
+
+/* ── BREAKOUT COUNTDOWN ── */
+.bk-deadline-strip {
+  background: var(--dark);
+  border-radius: var(--radius);
+  padding: 22px 32px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border: 1px solid rgba(191,87,0,0.3);
+}
+.bk-deadline-label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.bk-deadline-clock {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.bk-clock-unit {
+  text-align: center;
+}
+.bk-clock-num {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+.bk-clock-lbl {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.bk-clock-sep {
+  font-size: 22px;
+  color: var(--burnt-orange);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.bk-deadline-closed {
+  background: rgba(198,40,40,0.12);
+  border: 1px solid rgba(198,40,40,0.4);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  color: #ef9a9a;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 36px;
+}
+/* ── VOTING PHASE ── */
+.bk-voting-intro {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.vote-topic-card {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+.vote-topic-card:hover { border-color: var(--burnt-orange); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.vote-rank-select {
+  flex-shrink: 0;
+  width: 64px;
+  padding: 8px 6px;
+  border: 2px solid var(--burnt-orange);
+  border-radius: var(--radius);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--burnt-orange);
+  background: white;
+  text-align: center;
+  cursor: pointer;
+}
+.vote-rank-select:focus { outline: none; }
+.vote-topic-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  flex: 1;
+}
+.vote-topic-hint {
+  font-size: 12px;
+  color: var(--mid);
+  margin-top: 3px;
+}
+#vote-modal .modal { max-width: 640px; }
 </style>
 </head>
 <body>
@@ -932,6 +1178,9 @@ footer {
 <nav id="main-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="#hero">TRTR <span>2026</span></a>
+    <div id="payment-badge" style="display:none;align-items:center;gap:7px;background:linear-gradient(90deg,#1b4332,#2d6a4f);color:#a8e6c3;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:0.5px;border:1px solid #2d6a4f;white-space:nowrap;">
+      &#10003; <span id="payment-badge-name"></span>&nbsp;&mdash; Payment Complete
+    </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#schedule">Schedule</a></li>
@@ -942,6 +1191,7 @@ footer {
       <li><a href="#venue">Austin</a></li>
       <li><a href="#sponsors">Sponsors</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#breakout">Capability Clinics</a></li>
       <li><a href="#registration" class="nav-register">Register</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
@@ -1024,6 +1274,18 @@ footer {
         <div class="divider"></div>
         <p class="section-lead" style="margin-bottom:20px;">The TRTR Annual Conference is the preeminent gathering of professionals, researchers, and students working with test, research, and training reactors across the United States.<br><br>
         Hosted by the Nuclear Engineering Teaching Laboratory (NETL) at The University of Texas at Austin, the 2026 conference will feature technical sessions, facility tours, workshops, and networking opportunities spanning the full breadth of research reactor operations, science, and policy.</p>
+
+        <!-- Capability Clinics callout -->
+        <div style="background:linear-gradient(135deg,rgba(191,87,0,0.10) 0%,rgba(201,162,39,0.08) 100%);border:1px solid rgba(191,87,0,0.25);border-radius:var(--radius);padding:18px 22px;margin-bottom:8px;">
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="font-size:26px;line-height:1;margin-top:2px;">🔬</div>
+            <div>
+              <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--burnt-orange);margin-bottom:5px;">New for 2026 — If the Community Says Yes</div>
+              <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px;">Capability Clinics</div>
+              <div style="font-size:13px;color:var(--charcoal);line-height:1.65;">A proposed new format for TRTR: peer-led, implementation-focused sessions where facilities share what it actually takes to build a new capability — and where facilities that need it can ask. Whether this becomes part of the 2026 program depends entirely on community interest. <a href="#breakout" style="color:var(--burnt-orange);font-weight:600;">See the concept and weigh in →</a></div>
+            </div>
+          </div>
+        </div>
         <div class="about-stats">
           <div class="stat-card">
             <div class="stat-num">25+</div>
@@ -1181,30 +1443,35 @@ footer {
 			</div></div>
           </div>
 <!-- END SESSION REGISTRATION -->
+
 <!-- SESSION OPENING -->
           <div class="session">
-            <div class="session-time">MID</div>
+            <div class="session-time">AM</div>
             <div><div class="session-name">Opening Plenary</div><div class="session-detail">Welcome address, keynote speaker</div></div>
           </div>
 <!-- END SESSION OPENING -->
-<!-- TECHNCIAL SESSION IA -->
-          <div class="session">
-            <div class="session-time">PM</div>
-            <div><div class="session-name">Technical Sessions IA</div><div class="session-detail">Research, Experiments & Utilization</div></div>
-          </div>
-<!-- END TECHNCIAL SESSION IA -->	
-<!-- TECHNCIAL SESSION IB -->
-          <div class="session">
-            <div class="session-time">--</div>
-            <div><div class="session-name">Technical Sessions IB</div><div class="session-detail">Licensing &amp; Regulations</div></div>
-          </div>
-<!-- END TECHNCIAL SESSION IB -->
+
 <!-- MID SESSION -->
           <div class="session">
             <div class="session-time">MID</div>
             <div><div class="session-name">Lunch &amp; Exhibits</div><div class="session-detail"> exhibitor floor</div></div>
           </div>
 <!-- END MID SESSION -->
+
+<!-- TECHNCIAL SESSION IA -->
+          <div class="session">
+            <div class="session-time">PM</div>
+            <div><div class="session-name">Technical Sessions IA</div><div class="session-detail">Research, Experiments & Utilization</div></div>
+          </div>
+<!-- END TECHNCIAL SESSION IA -->
+	
+<!-- TECHNCIAL SESSION IB -->
+          <div class="session">
+            <div class="session-time">--</div>
+            <div><div class="session-name">Technical Sessions IB</div><div class="session-detail">Licensing &amp; Regulations</div></div>
+          </div>
+<!-- END TECHNCIAL SESSION IB -->
+
 <!-- SESSION RECEPTION -->
 <!-- END SESSION RECEPTION -->
         </div>
@@ -1233,7 +1500,8 @@ footer {
             <div><div class="session-name">Lunch &amp; Exhibits</div><div class="session-detail"> Exhibitor floor open</div></div>
           </div>
 <!-- END MID SESSION -->
-<!-- END SESSION - NRC DAY -->
+
+<!-- NRC DAY -->
 <!-- DAY 2 EVENINING FREE TIME -->
           <div class="session">
             <div class="session-time">EVE</div>
@@ -1478,6 +1746,7 @@ footer {
           _sfd.append('submissionType', submissionType);
           _sfd.append('abstractText', text);
 
+<!-- Abstract Submission URL -->
           fetch('https://script.google.com/macros/s/AKfycbwCsso0-ZGBVa2fjmq5aTlc15ic9pLYs99fTKP2Dxb4Gv-m-N4wjpQgrYJSg5ikCEXX/exec', {
             method: 'POST', mode: 'no-cors',
             body: _sfd
@@ -1546,8 +1815,8 @@ footer {
              style="width:100%; height:auto; display:block; border-radius:calc(var(--radius) - 2px);">
       </div>
       <h3>Hotel Partnership Coming Soon</h3>
-      <p>We are negotiating a room-block agreement with Residence Inn by Marriott Austin Downtown/Convention Center. A discounted conference rate and direct reservation link will be provided here once confirmed.</p>
-      <a href="#contact" class="btn btn-primary">Notify Me When Available</a>
+      <p>The conference will be held at the Residence Inn by Marriott Austin Downtown/Convention Center. The conference room rate is $199/night, valet parking $35/night or $20/day. A direct reservation link will be posted when available.</p>
+      
     </div>
     <div style="margin-top:56px; text-align:center;">
       <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin-bottom:8px;">Nearby Hotel Options</h3>
@@ -2258,6 +2527,371 @@ footer {
   </div>
 </div>
 
+
+<!-- CAPABILITY CLINICS -->
+<section id="breakout">
+  <div class="section-inner">
+    <span class="section-tag" style="color:var(--gold)">Parallel Sessions</span>
+    <h2 class="section-title">Capability Clinics</h2>
+    <div class="divider"></div>
+
+    <!-- ── INTRO ── -->
+    <div class="fade-up" style="max-width:780px;margin:0 auto 52px;">
+
+      <!-- Community-dependency notice -->
+      <div style="background:rgba(201,162,39,0.10);border:1px solid rgba(201,162,39,0.35);border-radius:var(--radius);padding:16px 20px;margin-bottom:28px;display:flex;gap:14px;align-items:flex-start;">
+        <div style="font-size:22px;line-height:1;margin-top:1px;">💬</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#8a6d00;margin-bottom:4px;">A Note on This Program</div>
+          <div style="font-size:13px;color:var(--charcoal);line-height:1.7;">
+            Capability Clinics are a new concept for TRTR — and whether they become part of the 2026 program depends entirely on whether the community wants them.
+            If we receive enough offers to lead and requests for topics, we'll build the program. If the interest isn't there, we won't.
+            <strong>Your submission — whether an offer or a request — is a vote for this format.</strong>
+            We'll announce by <em>late July 2026</em> whether the Clinic program will proceed.
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:18px;color:var(--charcoal);line-height:1.75;margin-bottom:10px;font-style:italic;">
+        From concept to implementation — peer-led sessions on what it actually takes to build, replicate, or launch a new capability at your facility.
+      </p>
+
+      <p style="font-size:16px;color:var(--charcoal);line-height:1.75;margin-bottom:28px;">
+        Research reactors today are being asked to do more — isotope production, radiation effects testing,
+        digital operations, advanced flux services, agency partnerships — yet that practical knowledge doesn't always find its way beyond the facility where it was earned.
+        <strong>Capability Clinics are designed to change that.</strong>
+      </p>
+
+      <p style="font-size:16px;color:var(--charcoal);line-height:1.75;margin-bottom:28px;">
+        These are not paper presentations. Each Clinic is designed to be a frank, structured conversation
+        built around a shared vision — that the collective experience of the research reactor community
+        is one of its greatest untapped resources. Practitioners who have navigated the licensing, the
+        funding, the staffing, and the technical challenges walk peers through what it actually required,
+        what they would do differently, and what a similar program might look like at another facility.
+        Equally valuable are the voices in the room — attendees who have tried something, considered
+        something, or learned the hard way what a new capability actually demands. Sessions are held
+        after the main technical program concludes, giving every attendee the opportunity to participate
+        regardless of their conference schedule.
+      </p>
+
+      <!-- Two-column "what this is" cards -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:32px;">
+        <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+          <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--burnt-orange);margin-bottom:10px;">🔬 Lead a Clinic</div>
+          <p style="font-size:14px;color:var(--charcoal);line-height:1.7;margin:0;">
+            Has your facility built something that works — a service line, a research program, an operational
+            capability that could be replicated at other facilities? Share it. Not as a paper, but as a working session:
+            your resources, your lessons learned, your honest assessment of what it takes.
+          </p>
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+          <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--burnt-orange);margin-bottom:10px;">📋 Request a Topic</div>
+          <p style="font-size:14px;color:var(--charcoal);line-height:1.7;margin:0;">
+            Is there a capability you've seen at another facility that you want to understand — or would like
+            to build? Submit a topic request. When we see common needs across multiple facilities,
+            we will recruit a presenter who has done it and build a Clinic around that conversation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Example topics -->
+      <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:26px 30px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+        <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--burnt-orange);margin-bottom:14px;">Example Clinic Topics</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:700;background:rgba(191,87,0,0.1);color:var(--burnt-orange);border-radius:3px;padding:2px 7px;white-space:nowrap;margin-top:2px;">OFFERED</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;">Reactor Digital Twins — Architecture, Data Infrastructure &amp; Lessons Learned</div>
+              <div style="font-size:13px;color:var(--mid);line-height:1.6;">UT-NETL shares the development path for their TRIGA digital twin: required data streams, physics-informed modeling, real-time control integration, and a candid look at what they would do differently from day one.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:700;background:rgba(191,87,0,0.1);color:var(--burnt-orange);border-radius:3px;padding:2px 7px;white-space:nowrap;margin-top:2px;">OFFERED</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;">Isotope Production — What's Feasible for Most Research Reactors</div>
+              <div style="font-size:13px;color:var(--mid);line-height:1.6;">A frank assessment of the licensing pathway, target design, irradiation scheduling, customer acquisition, and DOE program engagement — with a realistic look at which reactor configurations can support which isotopes.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:700;background:rgba(191,87,0,0.1);color:var(--burnt-orange);border-radius:3px;padding:2px 7px;white-space:nowrap;margin-top:2px;">OFFERED</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;">Radiation Effects Testing as a Revenue Service — Meeting DoD &amp; NASA Customer Requirements</div>
+              <div style="font-size:13px;color:var(--mid);line-height:1.6;">What agency customers actually need: flux characterization, dosimetry protocols, test reporting standards, and how to get your facility on the approved vendor list. Includes perspective from agency representatives on effective utilization.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:700;background:rgba(201,162,39,0.15);color:var(--gold);border-radius:3px;padding:2px 7px;white-space:nowrap;margin-top:2px;filter:brightness(0.85);">REQUESTED</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;">Flux &amp; Dosimetry Services — Building the Metrology &amp; Reporting Infrastructure</div>
+              <div style="font-size:13px;color:var(--mid);line-height:1.6;">Facilities seeking to formalize neutron flux characterization and dosimetry services want to understand the calibration standards, documentation requirements, and staffing models that support a credible, customer-facing program.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:700;background:rgba(201,162,39,0.15);color:var(--gold);border-radius:3px;padding:2px 7px;white-space:nowrap;margin-top:2px;filter:brightness(0.85);">REQUESTED</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;">Modernizing Reactor Controls on a Constrained Budget</div>
+              <div style="font-size:13px;color:var(--mid);line-height:1.6;">Phased approaches to I&amp;C upgrades, the current vendor landscape, NRC licensing implications, and how facilities have sequenced modernization work without extended outages or budget spikes.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:700;background:rgba(201,162,39,0.15);color:var(--gold);border-radius:3px;padding:2px 7px;white-space:nowrap;margin-top:2px;filter:brightness(0.85);">REQUESTED</span>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;">University–National Lab Partnerships — MOUs, Shared Use &amp; Joint Staffing</div>
+              <div style="font-size:13px;color:var(--mid);line-height:1.6;">Structuring durable partnerships: how to negotiate shared-use agreements, manage IP, co-hire personnel across institutional boundaries, and maintain alignment when priorities diverge.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div style="background:rgba(191,87,0,0.06);border-left:4px solid var(--burnt-orange);border-radius:0 var(--radius) var(--radius) 0;padding:18px 22px;margin-bottom:28px;">
+        <strong style="font-size:14px;color:var(--burnt-orange);">How the program comes together</strong>
+        <ol style="margin:10px 0 0 0;padding-left:20px;font-size:14px;color:var(--charcoal);line-height:1.8;">
+          <li><strong>Submit an offer or a request</strong> — use the form below. Offers describe what your facility has built and can share. Requests describe what your facility needs to understand.</li>
+          <li><strong>Community vote</strong> — submitted requests are posted for attendees to vote on. Topics with the strongest community interest rise to the top.</li>
+          <li><strong>Program committee review</strong> — offers are matched with the community need and highest-voted requests become priority Clinics. You'll be notified of acceptance by email.</li>
+          <li><strong>Accepted Clinics appear below</strong> — confirmed sessions are listed here and included in the printed program. Multiple facilities may co-present where that strengthens the conversation.</li>
+          <li><strong>Attend what matters to you</strong> — sessions run in parallel after the main technical program. All registered attendees may attend any Clinic.</li>
+        </ol>
+        <p style="margin:12px 0 0 0;font-size:13px;color:var(--mid);">Questions? Contact the program committee at <a href="mailto:trtr2026@utexas.edu" style="color:var(--burnt-orange);font-weight:600;">trtr2026@utexas.edu</a>.</p>
+      </div>
+
+    </div><!-- /instructional text -->
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--dark);margin-bottom:6px;text-align:center;">Accepted Capability Clinics</h3>
+    <p style="text-align:center;font-size:14px;color:var(--mid);margin-bottom:32px;">Confirmed sessions appear below and will be included in the printed program. Additional Clinics will be added as the program is finalized.</p>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+    ACCEPTED BREAKOUT SESSIONS CONTAINER
+    ─────────────────────────────────────────────────────────────────────────
+    TO ADD AN ACCEPTED SESSION:
+      1. Copy the block between "COPY FROM HERE" and "TO HERE" below.
+      2. Paste it just before the closing </div> of breakout-accepted-container.
+      3. Replace the topic title and <li> objectives with the accepted content.
+      4. Delete the <div class="breakout-placeholder-badge"> line (real entries
+         do not show the "Pending Acceptance" badge).
+    ─────────────────────────────────────────────────────────────────────────
+    COPY FROM HERE ↓↓↓
+    ─────────────────────────────────────────────────────────────────────────
+    <div class="breakout-unit fade-up">
+      <div class="breakout-unit-topic">Session Topic Title Goes Here</div>
+      <ul class="breakout-unit-objectives">
+        <li>Objective one — what participants will accomplish or decide.</li>
+        <li>Objective two — a second outcome for this session.</li>
+        <li>Objective three — a third outcome (optional).</li>
+        <li>Objective four — a fourth outcome (optional, max 4).</li>
+      </ul>
+    </div>
+    ─────────────────────────────────────────────────────────────────────────
+    TO HERE ↑↑↑
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div class="breakout-accepted-container" id="breakout-accepted">
+
+      <!-- ── PLACEHOLDER UNIT — shows until first accepted session is added ── -->
+      <div class="breakout-unit fade-up">
+        <div class="breakout-placeholder-badge">Example — Pending Acceptance</div>
+        <div class="breakout-unit-topic">Reactor Digital Twins — Architecture, Data Infrastructure &amp; Lessons Learned</div>
+        <ul class="breakout-unit-objectives">
+          <li>Understand the sensor, data streaming, and computing infrastructure required to build a physics-informed reactor digital twin.</li>
+          <li>Assess realistic staffing, licensing, and budget requirements for initiating a similar program at your facility.</li>
+          <li>Review integration challenges with legacy control systems and how they were addressed at UT-NETL.</li>
+          <li>Identify agency and national laboratory partners that can accelerate digital twin development for research reactors.</li>
+        </ul>
+      </div>
+      <!-- ── END PLACEHOLDER UNIT ── -->
+
+      <!-- ── PASTE ADDITIONAL ACCEPTED .breakout-unit BLOCKS HERE ── -->
+
+    </div><!-- /breakout-accepted-container -->
+
+    <!-- ── DEADLINE COUNTDOWN + PHASE SWITCHER ── -->
+    <div id="bk-countdown-strip" class="bk-deadline-strip fade-up">
+      <div>
+        <div class="bk-deadline-label">Submission Deadline</div>
+        <div style="color:rgba(255,255,255,0.6);font-size:13px;" id="bk-deadline-datestr">Date to be announced</div>
+      </div>
+      <div class="bk-deadline-clock" id="bk-clock-display">
+        <div class="bk-clock-unit"><div class="bk-clock-num" id="bkcd-d">--</div><div class="bk-clock-lbl">Days</div></div>
+        <div class="bk-clock-sep">:</div>
+        <div class="bk-clock-unit"><div class="bk-clock-num" id="bkcd-h">--</div><div class="bk-clock-lbl">Hours</div></div>
+        <div class="bk-clock-sep">:</div>
+        <div class="bk-clock-unit"><div class="bk-clock-num" id="bkcd-m">--</div><div class="bk-clock-lbl">Mins</div></div>
+        <div class="bk-clock-sep">:</div>
+        <div class="bk-clock-unit"><div class="bk-clock-num" id="bkcd-s">--</div><div class="bk-clock-lbl">Secs</div></div>
+      </div>
+      <div id="bk-deadline-tbd" style="color:rgba(255,255,255,0.45);font-size:13px;font-style:italic;">Deadline TBD — check back soon</div>
+    </div>
+
+    <!-- Closed banner — hidden until deadline passes -->
+    <div id="bk-closed-banner" class="bk-deadline-closed" style="display:none;">
+      🔒 The Capability Clinic submission window has closed. Voting is now open — cast your rankings below.
+    </div>
+
+    <!-- ── SUBMISSION CTA (shown before deadline) ── -->
+    <div id="bk-submit-phase" class="breakout-cta-strip fade-up">
+      <div class="breakout-cta-text">
+        <h3>Offer to Lead a Clinic — or Request a Topic</h3>
+        <p>Share a capability your facility has built, or tell us what you need to understand. The program committee reviews all submissions and will contact you directly.</p>
+      </div>
+      <button class="btn btn-primary" onclick="openBreakoutModal()">Submit Now →</button>
+    </div>
+
+    <!-- ── VOTING PHASE (hidden until deadline passes) ── -->
+    <div id="bk-voting-phase" style="display:none;">
+      <div class="bk-voting-intro">
+        <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--burnt-orange);margin-bottom:10px;">Community Vote</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;margin-bottom:10px;">Rank the Capability Clinics</h3>
+        <p style="font-size:15px;color:var(--charcoal);line-height:1.6;margin-bottom:0;">
+          Submissions are now closed. Please rank the proposed Clinic topics by priority — <strong>1 = most important</strong> to your facility.
+          You may rank as many or as few as you like. Leave topics unranked if they are not relevant to your program.
+          Each response is stored once per email address. Results will inform the program committee's final selection.
+        </p>
+      </div>
+
+      <!-- Voter email entry -->
+      <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;">
+          <label style="display:block;font-size:13px;font-weight:700;margin-bottom:5px;">Your Email Address *</label>
+          <input type="email" id="vote-email" placeholder="jane@reactor.edu"
+                 style="width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:4px;font-size:15px;font-family:inherit;"
+                 oninput="voteEmailChanged()">
+          <div id="vote-email-msg" style="font-size:12px;margin-top:4px;color:var(--mid);"></div>
+        </div>
+        <div style="flex:1;min-width:180px;">
+          <label style="display:block;font-size:13px;font-weight:700;margin-bottom:5px;">Name <span style="font-weight:400;color:var(--mid);">(optional)</span></label>
+          <input type="text" id="vote-name" placeholder="Jane Smith"
+                 style="width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:4px;font-size:15px;font-family:inherit;">
+        </div>
+      </div>
+
+      <!-- Ranking cards — populated by JS from VOTE_TOPICS array -->
+      <div id="vote-topics-list" style="margin-bottom:28px;"></div>
+
+      <button type="button" id="vote-submit-btn" class="btn btn-primary" style="width:100%;font-size:16px;padding:14px;" onclick="submitVote()">
+        Submit My Rankings →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAPABILITY CLINIC SUBMISSION MODAL -->
+<div class="modal-overlay" id="breakout-modal">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-header">
+      <div class="modal-title">Capability Clinic Submission</div>
+      <button class="modal-close" onclick="closeBreakoutModal()">×</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Submission type toggle -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:10px;">I want to: *</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="bk-type-toggle">
+          <div id="bk-type-offer" onclick="bkSetType('offer')"
+               style="cursor:pointer;border:2px solid var(--burnt-orange);border-radius:var(--radius);padding:14px 16px;background:rgba(191,87,0,0.08);transition:all 0.2s;">
+            <div style="font-size:13px;font-weight:700;color:var(--burnt-orange);margin-bottom:4px;">🔬 Lead a Clinic</div>
+            <div style="font-size:12px;color:var(--charcoal);line-height:1.5;">My facility has built this capability and I can share how we did it</div>
+          </div>
+          <div id="bk-type-request" onclick="bkSetType('request')"
+               style="cursor:pointer;border:2px solid #ddd;border-radius:var(--radius);padding:14px 16px;background:white;transition:all 0.2s;">
+            <div style="font-size:13px;font-weight:700;color:var(--mid);margin-bottom:4px;">📋 Request a Topic</div>
+            <div style="font-size:12px;color:var(--charcoal);line-height:1.5;">I want a Clinic on something my facility needs to understand or build</div>
+          </div>
+        </div>
+        <input type="hidden" id="bk-type-val" value="offer">
+      </div>
+
+      <!-- Submitter info -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Your Name *</label>
+          <input type="text" id="bk-name" placeholder="Jane Smith" autocomplete="name">
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Email Address *</label>
+          <input type="email" id="bk-email" placeholder="jane@reactor.edu" autocomplete="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Institution / Facility *</label>
+        <input type="text" id="bk-org" placeholder="e.g. University of Texas at Austin — NETL" autocomplete="organization">
+      </div>
+
+      <!-- Topic -->
+      <div class="form-group">
+        <label id="bk-topic-label">Clinic Topic * <span style="font-weight:400;color:var(--mid);font-size:12px;">(concise title — appears in program)</span></label>
+        <input type="text" id="bk-topic"
+               placeholder="e.g. Reactor Digital Twins — Architecture, Data Infrastructure &amp; Lessons Learned"
+               maxlength="120"
+               oninput="document.getElementById('bk-topic-count').textContent=this.value.length">
+        <div class="bk-char-count"><span id="bk-topic-count">0</span> / 120</div>
+      </div>
+
+      <!-- Offer-specific fields -->
+      <div id="bk-offer-fields">
+        <div class="form-notice" style="background:rgba(191,87,0,0.07);border-left:3px solid var(--burnt-orange);padding:12px 16px;margin-bottom:14px;font-size:13px;color:var(--charcoal);">
+          Help the committee understand what attendees will take away. What did it take to build this? What would another facility need to replicate it?
+        </div>
+        <div class="form-group">
+          <label>What your facility built / operates <span style="font-weight:400;color:var(--mid);font-size:12px;">(brief description)</span></label>
+          <textarea id="bk-capability" rows="2"
+                    placeholder="e.g. A physics-informed digital twin of our TRIGA reactor with real-time data streaming and a web-based simulator..."
+                    style="width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:4px;font-size:14px;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Key takeaways for attendees <span style="font-weight:400;color:var(--mid);font-size:12px;">(up to 4 — what will they leave knowing or able to do?)</span></label>
+          <div id="bk-objectives-list">
+            <div class="bk-obj-row">
+              <span class="bk-obj-num">1.</span>
+              <textarea class="bk-obj-input" placeholder="e.g. Understand the data infrastructure and sensor requirements for a reactor digital twin" rows="2" maxlength="300"></textarea>
+            </div>
+            <div class="bk-obj-row">
+              <span class="bk-obj-num">2.</span>
+              <textarea class="bk-obj-input" placeholder="e.g. Assess the staffing, licensing, and budget requirements to initiate a similar program" rows="2" maxlength="300"></textarea>
+            </div>
+          </div>
+          <button type="button" class="bk-add-obj-btn" id="bk-add-btn" onclick="bkAddObjective()">+ Add takeaway</button>
+        </div>
+      </div>
+
+      <!-- Request-specific fields -->
+      <div id="bk-request-fields" style="display:none;">
+        <div class="form-notice" style="background:rgba(201,162,39,0.1);border-left:3px solid var(--gold);padding:12px 16px;margin-bottom:14px;font-size:13px;color:var(--charcoal);">
+          Tell us what your facility is trying to understand or build. If multiple facilities request the same topic, we'll recruit a presenter and make it a priority Clinic.
+        </div>
+        <div class="form-group">
+          <label>Why does your facility need this? <span style="font-weight:400;color:var(--mid);font-size:12px;">(what's driving the interest?)</span></label>
+          <textarea id="bk-need" rows="3"
+                    placeholder="e.g. Our user community is increasingly requesting radiation effects testing and we want to understand what it would take to stand up a formal service program..."
+                    style="width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:4px;font-size:14px;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Do you know of a facility that does this well? <span style="font-weight:400;color:var(--mid);font-size:12px;">(optional — helps us recruit)</span></label>
+          <input type="text" id="bk-known-facility" placeholder="e.g. We've heard MURR or Missouri S&amp;T has a strong program in this area...">
+        </div>
+      </div>
+
+      <!-- Shared notes field -->
+      <div class="form-group">
+        <label>Additional Notes <span style="font-weight:400;color:var(--mid);font-size:12px;">(optional)</span></label>
+        <textarea id="bk-notes" rows="2"
+                  placeholder="Anything else the program committee should know — co-presenters, scheduling constraints, agency contacts, etc."
+                  style="width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:4px;font-size:14px;font-family:inherit;resize:vertical;"></textarea>
+      </div>
+
+      <button type="button" id="bk-submit-btn" class="btn btn-primary form-submit" style="width:100%;" onclick="submitBreakout()">Submit →</button>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
@@ -2404,10 +3038,10 @@ footer {
       <button class="modal-close" onclick="closeRegistrationChooser()">×</button>
     </div>
     <div class="modal-body">
-      <div class="form-notice">
-        🕐 Registration is opening soon. A direct link to our registration platform will be posted here once available. Check back shortly or contact us at <a href="mailto:trtr2026@utexas.edu" style="color:var(--burnt-orange);">trtr2026@utexas.edu</a> to be notified.
+      <div class="form-notice" style="background:rgba(191,87,0,0.08);border-left:3px solid var(--burnt-orange);padding:12px 16px;margin-bottom:18px;font-size:14px;">
+        📋 <strong>Register now — pay later.</strong> Your information will be saved securely. You will be contacted at your email to complete payment once the UT Austin payment portal is live.
       </div>
-      <div class="chooser-grid" style="display:none;">
+      <div class="chooser-grid">
         <button class="chooser-card" type="button" onclick="launchRegistrationType('professional')">
           <h4>Professional</h4>
           <p>Standard full conference registration for professional attendees.</p>
@@ -2433,24 +3067,33 @@ footer {
       <button class="modal-close" onclick="closeModal()">×</button>
     </div>
     <div class="modal-body">
-      <div class="form-notice" style="text-align:center; padding:32px 24px;">
-        🕐 <strong>Registration Coming Soon</strong><br><br>
-        Our registration platform is being finalized. A direct link will appear here and on the conference website once it is ready.<br><br>
-        To be notified when registration opens, contact us at <a href="mailto:trtr2026@utexas.edu" style="color:var(--burnt-orange);">trtr2026@utexas.edu</a>.
+      <div class="form-notice" style="background:rgba(191,87,0,0.08);border-left:3px solid var(--burnt-orange);padding:12px 16px;margin-bottom:4px;font-size:14px;text-align:left;">
+        📋 <strong>Register now — pay later.</strong> Your registration will be saved to our secure system. You will receive a confirmation email and be contacted to complete payment once the UT Austin payment portal is live.
       </div>
-      <div style="display:none;">
-        <div class="form-group">
+      <div>
+        <div class="form-group" style="position:relative;">
           <label>First Name *</label>
-          <input type="text" placeholder="Jane" id="reg-fname">
+          <input type="text" placeholder="Jane" id="reg-fname" autocomplete="given-name" oninput="regAutofillLookup()">
         </div>
         <div class="form-group">
           <label>Last Name *</label>
-          <input type="text" placeholder="Smith" id="reg-lname">
+          <input type="text" placeholder="Smith" id="reg-lname" autocomplete="family-name" oninput="regAutofillLookup()">
+        </div>
+      </div>
+      <!-- Autofill suggestion card — shown when a returning registrant is found -->
+      <div id="reg-autofill-card" style="display:none;background:#fffbf5;border:1.5px solid var(--burnt-orange);border-radius:6px;padding:14px 16px;margin-bottom:12px;font-size:14px;">
+        <div style="font-weight:700;color:var(--burnt-orange);margin-bottom:6px;">🔍 Returning registrant found</div>
+        <div id="reg-autofill-summary" style="color:#333;margin-bottom:10px;line-height:1.5;"></div>
+        <div style="display:flex;gap:10px;">
+          <button type="button" onclick="regAutofillAccept()" style="flex:1;padding:8px;background:var(--burnt-orange);color:white;border:none;border-radius:4px;font-weight:700;cursor:pointer;font-family:inherit;font-size:13px;">✔ Yes, fill my details</button>
+          <button type="button" onclick="regAutofillDecline()" style="flex:1;padding:8px;background:white;color:#555;border:1.5px solid #ddd;border-radius:4px;font-weight:600;cursor:pointer;font-family:inherit;font-size:13px;">✖ No, start fresh</button>
         </div>
       </div>
       <div class="form-group">
         <label>Email Address *</label>
-        <input type="email" placeholder="jane.smith@university.edu" id="reg-email">
+        <input type="email" placeholder="jane.smith@university.edu" id="reg-email" autocomplete="email" oninput="regEmailLookup()">
+        <!-- Payment status indicator shown inline if email is found paid -->
+        <div id="reg-email-status" style="display:none;margin-top:6px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:12px;display:inline-block;"></div>
       </div>
       <div class="form-group">
         <label>Institution / Organization *</label>
@@ -2503,17 +3146,18 @@ footer {
         <input type="text" placeholder="Let us know if you need any accommodations">
       </div>
       <div class="payment-section">
-        <div class="payment-title">💳 Payment Method</div>
-        <p style="font-size:13px; color:var(--mid); margin-bottom:16px;">Payment integration with UT Austin financial systems is pending. Select your preferred method — you will be directed to the payment portal once finalized.</p>
+        <div class="payment-title">💳 Preferred Payment Method <span style="font-size:12px;font-weight:400;color:var(--mid);">(no payment collected now)</span></div>
+        <p style="font-size:13px; color:var(--mid); margin-bottom:16px;">No payment is collected at this time. Select your preferred payment method — when the UT Austin payment portal is live, you will be contacted at your email with a direct payment link using your method of choice.</p>
         <div class="payment-methods">
           <div class="pay-method active" onclick="selectPayment(this)">Credit / Debit Card</div>
           <div class="pay-method" onclick="selectPayment(this)">Purchase Order</div>
           <div class="pay-method" onclick="selectPayment(this)">Wire Transfer</div>
           <div class="pay-method" onclick="selectPayment(this)">Check</div>
         </div>
+        <p style="font-size:12px;color:var(--mid);margin-top:12px;">Your registration ID will be included in your confirmation email and used to link your record when payment is initiated.</p>
       </div>
-      </div><!-- end hidden form fields -->
-      <button class="btn btn-primary form-submit" disabled style="opacity:0.4; cursor:not-allowed; width:100%;">Registration Not Yet Open</button>
+      </div><!-- end form fields -->
+      <button class="btn btn-primary form-submit" id="reg-submit-btn" style="width:100%;" onclick="submitRegistration()">Complete Registration →</button>
     </div>
   </div>
 </div>
@@ -2616,13 +3260,215 @@ function selectPayment(el) {
   el.classList.add('active');
 }
 
-// ── FORM SUBMISSION (placeholder)
+// ── REGISTRATION LOOKUP (autofill + payment status)
+// Same Apps Script URL — the script handles GET requests for lookup and POST for submission
+// For GET lookup: ?action=lookup&q=<name_or_email>
+// Returns JSON: { found: true, data: { fname, lname, email, org, reg_type, banquet, banquet_entree, pay_method, payment_status, reg_token } }
+//   or          { found: false }
+// For payment check: ?action=check_payment&email=<email>
+// Returns JSON: { paid: true, fname: "..." } or { paid: false }
+
+let _regAutofillData = null;  // holds fetched record if found
+let _autofillDebounce = null;
+
+function regAutofillLookup() {
+  const fname = (document.getElementById('reg-fname') || {}).value?.trim() || '';
+  const lname = (document.getElementById('reg-lname') || {}).value?.trim() || '';
+  const q = (fname + ' ' + lname).trim();
+  clearTimeout(_autofillDebounce);
+  if (q.length < 3) { hideAutofillCard(); return; }
+  _autofillDebounce = setTimeout(() => _doRegLookup(q, 'name'), 500);
+}
+
+function regEmailLookup() {
+  const email = (document.getElementById('reg-email') || {}).value?.trim() || '';
+  clearTimeout(_autofillDebounce);
+  if (email.length < 5 || !email.includes('@')) {
+    document.getElementById('reg-email-status').style.display = 'none';
+    hideAutofillCard();
+    return;
+  }
+  _autofillDebounce = setTimeout(() => _doRegLookup(email, 'email'), 600);
+}
+
+function _doRegLookup(q, type) {
+  // Only attempt lookup if a real script URL is configured
+  if (REGISTRATION_URL.includes('YOUR_REGISTRATION_SCRIPT_ID')) return;
+  fetch(REGISTRATION_URL + '?action=lookup&q=' + encodeURIComponent(q) + '&type=' + type)
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.found && data.data) {
+        _regAutofillData = data.data;
+        const d = data.data;
+        // Show autofill suggestion card
+        document.getElementById('reg-autofill-summary').innerHTML =
+          '<strong>' + escHtml(d.fname) + ' ' + escHtml(d.lname) + '</strong> &bull; ' + escHtml(d.email) + '<br>' +
+          escHtml(d.org || '') + (d.reg_type ? ' &bull; ' + escHtml(d.reg_type) : '');
+        document.getElementById('reg-autofill-card').style.display = 'block';
+
+        // Check payment status via email
+        if (type === 'email' || d.email) {
+          _checkPaymentStatus(d.email || q, d.fname);
+        }
+      } else {
+        hideAutofillCard();
+        // If email lookup returned not found, clear payment badge
+        if (type === 'email') {
+          _clearPaymentBadge();
+          document.getElementById('reg-email-status').style.display = 'none';
+        }
+      }
+    })
+    .catch(() => { /* silent — lookup is best-effort */ });
+}
+
+function _checkPaymentStatus(email, fname) {
+  if (REGISTRATION_URL.includes('YOUR_REGISTRATION_SCRIPT_ID')) return;
+  fetch(REGISTRATION_URL + '?action=check_payment&email=' + encodeURIComponent(email))
+    .then(r => r.json())
+    .then(data => {
+      const statusEl = document.getElementById('reg-email-status');
+      if (data && data.paid) {
+        // Show inline status
+        statusEl.textContent = '✅ Payment complete';
+        statusEl.style.cssText = 'margin-top:6px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:12px;display:inline-block;background:#d4edda;color:#1b4332;';
+        // Show nav badge
+        _showPaymentBadge(data.fname || fname || email);
+      } else {
+        statusEl.textContent = '⏳ Payment pending';
+        statusEl.style.cssText = 'margin-top:6px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:12px;display:inline-block;background:#fff3cd;color:#856404;';
+        _clearPaymentBadge();
+      }
+    })
+    .catch(() => {});
+}
+
+function _showPaymentBadge(name) {
+  const badge = document.getElementById('payment-badge');
+  document.getElementById('payment-badge-name').textContent = name;
+  badge.style.display = 'flex';
+}
+function _clearPaymentBadge() {
+  document.getElementById('payment-badge').style.display = 'none';
+}
+
+function regAutofillAccept() {
+  if (!_regAutofillData) return;
+  const d = _regAutofillData;
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+  set('reg-fname', d.fname);
+  set('reg-lname', d.lname);
+  set('reg-email', d.email);
+  set('reg-org',   d.org);
+  set('reg-type-select', d.reg_type);
+  set('reg-banquet', d.banquet);
+  set('reg-entree', d.banquet_entree);
+  // Restore preferred payment method highlight
+  if (d.pay_method) {
+    document.querySelectorAll('.pay-method').forEach(m => {
+      m.classList.toggle('active', m.textContent.trim() === d.pay_method);
+    });
+  }
+  // Trigger student field visibility
+  const sel = document.getElementById('reg-type-select');
+  if (sel) { const ev = new Event('change'); sel.dispatchEvent(ev); }
+  hideAutofillCard();
+  // Check payment after filling email
+  if (d.email) _checkPaymentStatus(d.email, d.fname);
+}
+
+function regAutofillDecline() {
+  _regAutofillData = null;
+  hideAutofillCard();
+}
+
+function hideAutofillCard() {
+  const card = document.getElementById('reg-autofill-card');
+  if (card) card.style.display = 'none';
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── REGISTRATION SUBMISSION → GOOGLE SHEETS
+// Replace this URL with your deployed Google Apps Script web app URL for registration
+const REGISTRATION_URL = 'https://script.google.com/macros/s/AKfycbzW1sYH8aKJ5SZZc8dwzb-15FkIRNi9pAQhFWeEP22LKg5D45IRvXQzBMLIRo5jeJRc/exec';
+
 function submitRegistration() {
-  const fname = document.getElementById('reg-fname').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  if (!fname || !email) { alert('Please fill in your name and email.'); return; }
-  closeModal();
-  alert(`Thank you, ${fname}! Your registration interest has been recorded. Payment details will be sent to ${email} once the system is finalized.`);
+  const fname   = (document.getElementById('reg-fname')  || {}).value?.trim() || '';
+  const lname   = (document.getElementById('reg-lname')  || {}).value?.trim() || '';
+  const email   = (document.getElementById('reg-email')  || {}).value?.trim() || '';
+  const org     = (document.getElementById('reg-org')    || {}).value?.trim() || '';
+  const regType = (document.getElementById('reg-type-select') || {}).value || '';
+  const banquet = (document.getElementById('reg-banquet') || {}).value || '';
+  const entree  = (document.getElementById('reg-entree') || {}).value || '';
+
+  if (!fname) { alert('Please enter your first name.'); return; }
+  if (!lname) { alert('Please enter your last name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  if (!org)   { alert('Please enter your institution or organization.'); return; }
+
+  const prices = { professional: 800, student: 500, virtual: 300 };
+  const regPrice = prices[regType] || 0;
+
+  const payMethod = (document.querySelector('.pay-method.active') || {}).textContent?.trim() || '';
+
+  // Generate a unique registration token for future payment lookup
+  const regToken = 'TRTR26-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,4).toUpperCase();
+  const submittedAt = new Date().toISOString();
+
+  const btn = document.getElementById('reg-submit-btn');
+  const origText = btn.textContent;
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+  const fd = new FormData();
+  fd.append('reg_token',      regToken);
+  fd.append('submitted_at',   submittedAt);
+  fd.append('fname',          fname);
+  fd.append('lname',          lname);
+  fd.append('email',          email);
+  fd.append('org',            org);
+  fd.append('reg_type',       regType);
+  fd.append('reg_price',      regPrice);
+  fd.append('banquet',        banquet);
+  fd.append('banquet_entree', entree);
+  fd.append('payment_status', 'PENDING');  // ← payment system will update this
+  fd.append('pay_method',     payMethod);
+
+  fetch(REGISTRATION_URL, { method: 'POST', mode: 'no-cors', body: fd })
+    .then(() => {
+      btn.textContent = '✓ Registered';
+      btn.style.background = '#2e7d32';
+      setTimeout(() => {
+        closeModal();
+        btn.textContent = origText;
+        btn.style.background = '';
+        btn.disabled = false;
+
+        // Success banner
+        const msg = document.createElement('div');
+        msg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#1b4332;color:white;padding:24px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:15px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.3);z-index:9999;text-align:center;max-width:520px;line-height:1.6;border:1px solid #2d6a4f;';
+        msg.innerHTML = `✅ Registration recorded, ${fname}!<br>
+          <span style="font-weight:400;font-size:13px;opacity:0.88;">
+            Confirmation ID: <strong>${regToken}</strong><br>
+            A confirmation will be sent to <strong>${email}</strong>.<br>
+            You will be contacted to complete payment ($${regPrice}) once the UT Austin payment portal is live.
+          </span>`;
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 10000);
+      }, 900);
+    })
+    .catch(() => {
+      btn.textContent = origText;
+      btn.disabled = false;
+      const err = document.createElement('div');
+      err.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#c62828;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:15px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+      err.innerHTML = '⚠ Submission failed — please check your connection and try again.<br><span style="font-weight:400;font-size:13px;">Or email us directly at trtr2026@utexas.edu</span>';
+      document.body.appendChild(err);
+      setTimeout(() => err.remove(), 8000);
+    });
 }
 
 // ── SPONSOR MODAL
@@ -2876,7 +3722,8 @@ function handleContactSubmit(btn) {
     <span class="section-tag">Conference Registration</span>
     <h2 class="section-title">Register for TRTR 2026</h2>
     <div class="divider"></div>
-    <p class="section-lead" style="margin-bottom:48px;">Registration fees support conference operations.<br>Processing will be through The University of Texas at Austin.<br>If registering prior to activion, you will be noriifed when payment system is live.</p>
+    <p class="section-lead" style="margin-bottom:48px;">Registration fees support conference operations and are processed through The University of Texas at Austin.<br>
+    <strong>You may register now</strong> — your information is saved securely and you will be contacted to complete payment once the UT Austin payment portal is live.</p>
     <div class="reg-grid">
       <div class="reg-card fade-up visible">
         <div class="reg-card-header">
@@ -3166,7 +4013,7 @@ function submitAbstract() {
 
 // THIS IS THE DEPLOYED URL FOR ABSTRACT SUBMISSIONS
 
-  const ABSTRACT_URL = 'hhttps://script.google.com/macros/s/AKfycbyCysYUvZ1cl4j0WElqcTRO1x1PQrE5SjAavw4hfYTi_mo6-b_L7FUlNJyc-ydG0km-/exec';
+  const ABSTRACT_URL = 'https://script.google.com/macros/s/AKfycbyCysYUvZ1cl4j0WElqcTRO1x1PQrE5SjAavw4hfYTi_mo6-b_L7FUlNJyc-ydG0km-/exec';
 
   const _afd = new FormData();
   _afd.append('fname', fname);
@@ -3216,6 +4063,361 @@ function submitAbstract() {
     setTimeout(() => errMsg.remove(), 8000);
   });
 }
+// ── BREAKOUT SESSION SUGGESTION ─────────────────────────────
+// Replace with your deployed Google Apps Script URL for breakout submissions
+// ══════════════════════════════════════════════════════════════
+//  BREAKOUT SESSION — CONFIG
+//  Set BREAKOUT_DEADLINE to your submission close date/time (ISO).
+//  Leave as empty string '' to show "TBD" and keep submissions open.
+//  Set BREAKOUT_VOTING_URL to the voting Apps Script URL when ready.
+//  VOTE_TOPICS mirrors the accepted sessions in the container above.
+// ══════════════════════════════════════════════════════════════
+
+const BREAKOUT_URL          = 'https://script.google.com/macros/s/AKfycbxK0cHU0ORpsw1e2OA5XpVOE7YyfMFbTko8BVQ8bkaaI_6vbyTFrvkduLTxsRte_BthzQ/exec';
+const BREAKOUT_VOTING_URL   = 'https://script.google.com/macros/s/AKfycbxK0cHU0ORpsw1e2OA5XpVOE7YyfMFbTko8BVQ8bkaaI_6vbyTFrvkduLTxsRte_BthzQ/exec';  // same script, different action
+
+// Set to ISO date string when deadline is decided, e.g. '2026-08-01T23:59:00'
+// Leave '' to display TBD and keep submissions open indefinitely.
+const BREAKOUT_DEADLINE = '2026-07-15T23:59:00';
+
+// ── LIST OF ACCEPTED TOPICS TO VOTE ON ───────────────────────
+// Each entry: { id: 'unique-slug', title: 'Topic Title' }
+// Add entries here when you accept topics so they appear in the voting form.
+// IDs must be URL-safe, no spaces. They become column headers in the voting sheet.
+const VOTE_TOPICS = [
+  // { id: 'workforce-dev', title: 'Workforce Development & Knowledge Transfer' },
+  // { id: 'digital-twins', title: 'Digital Twins for Research Reactor Control Systems' },
+  // Add more as topics are accepted...
+];
+
+// ══════════════════════════════════════════════════════════════
+//  PHASE MANAGEMENT — countdown + submission/voting switch
+// ══════════════════════════════════════════════════════════════
+
+function bkInitPhase() {
+  const deadlineEl    = document.getElementById('bk-deadline-datestr');
+  const clockDisplay  = document.getElementById('bk-clock-display');
+  const tbdMsg        = document.getElementById('bk-deadline-tbd');
+  const closedBanner  = document.getElementById('bk-closed-banner');
+  const submitPhase   = document.getElementById('bk-submit-phase');
+  const votingPhase   = document.getElementById('bk-voting-phase');
+
+  if (!BREAKOUT_DEADLINE) {
+    // TBD — show submission form, hide clock, show TBD notice
+    if (tbdMsg)      tbdMsg.style.display    = 'block';
+    if (clockDisplay) clockDisplay.style.display = 'none';
+    if (submitPhase) submitPhase.style.display = '';
+    if (votingPhase) votingPhase.style.display = 'none';
+    return;
+  }
+
+  // Deadline is set
+  const deadline = new Date(BREAKOUT_DEADLINE);
+  if (deadlineEl) {
+    deadlineEl.textContent = deadline.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+      hour: '2-digit', minute: '2-digit', timeZoneName: 'short'
+    });
+  }
+  if (tbdMsg) tbdMsg.style.display = 'none';
+  if (clockDisplay) clockDisplay.style.display = 'flex';
+
+  function tick() {
+    const now  = new Date();
+    const diff = deadline - now;
+
+    if (diff <= 0) {
+      // VOTING PHASE
+      if (clockDisplay) clockDisplay.style.display = 'none';
+      if (closedBanner) closedBanner.style.display  = 'block';
+      if (submitPhase)  submitPhase.style.display   = 'none';
+      if (votingPhase)  votingPhase.style.display   = 'block';
+      bkBuildVotingCards();
+      return;
+    }
+
+    // SUBMISSION PHASE — update clock
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    const s = Math.floor((diff % 60000)    / 1000);
+    document.getElementById('bkcd-d').textContent = String(d).padStart(2,'0');
+    document.getElementById('bkcd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('bkcd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('bkcd-s').textContent = String(s).padStart(2,'0');
+
+    if (submitPhase) submitPhase.style.display = '';
+    if (votingPhase) votingPhase.style.display = 'none';
+  }
+
+  tick();
+  setInterval(tick, 1000);
+}
+
+// ══════════════════════════════════════════════════════════════
+//  SUBMISSION FORM
+// ══════════════════════════════════════════════════════════════
+
+let _bkObjCount = 2;
+
+function openBreakoutModal() {
+  // Block submissions after deadline
+  if (BREAKOUT_DEADLINE && new Date() >= new Date(BREAKOUT_DEADLINE)) {
+    alert('The submission window has closed. Please use the voting form below.');
+    return;
+  }
+  document.getElementById('breakout-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBreakoutModal() {
+  document.getElementById('breakout-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('breakout-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeBreakoutModal();
+});
+
+function bkAddObjective() {
+  if (_bkObjCount >= 4) return;
+  _bkObjCount++;
+  const list = document.getElementById('bk-objectives-list');
+  const row  = document.createElement('div');
+  row.className = 'bk-obj-row';
+  row.innerHTML =
+    '<span class="bk-obj-num">' + _bkObjCount + '.</span>' +
+    '<textarea class="bk-obj-input" placeholder="Objective ' + _bkObjCount + '..." rows="2" maxlength="300"></textarea>';
+  list.appendChild(row);
+  if (_bkObjCount >= 4) document.getElementById('bk-add-btn').style.display = 'none';
+  row.querySelector('textarea').focus();
+}
+
+function bkSetType(type) {
+  document.getElementById('bk-type-val').value = type;
+  const offerEl   = document.getElementById('bk-type-offer');
+  const requestEl = document.getElementById('bk-type-request');
+  const offerFields   = document.getElementById('bk-offer-fields');
+  const requestFields = document.getElementById('bk-request-fields');
+  if (type === 'offer') {
+    offerEl.style.border   = '2px solid var(--burnt-orange)';
+    offerEl.style.background = 'rgba(191,87,0,0.08)';
+    offerEl.querySelector('div').style.color = 'var(--burnt-orange)';
+    requestEl.style.border   = '2px solid #ddd';
+    requestEl.style.background = 'white';
+    requestEl.querySelector('div').style.color = 'var(--mid)';
+    offerFields.style.display   = '';
+    requestFields.style.display = 'none';
+  } else {
+    requestEl.style.border   = '2px solid var(--gold)';
+    requestEl.style.background = 'rgba(201,162,39,0.08)';
+    requestEl.querySelector('div').style.color = 'var(--gold)';
+    offerEl.style.border   = '2px solid #ddd';
+    offerEl.style.background = 'white';
+    offerEl.querySelector('div').style.color = 'var(--mid)';
+    offerFields.style.display   = 'none';
+    requestFields.style.display = '';
+  }
+}
+
+function submitBreakout() {
+  if (BREAKOUT_DEADLINE && new Date() >= new Date(BREAKOUT_DEADLINE)) {
+    alert('The submission window has closed.'); return;
+  }
+  const type  = (document.getElementById('bk-type-val') || {}).value || 'offer';
+  const name  = (document.getElementById('bk-name')  || {}).value?.trim() || '';
+  const email = (document.getElementById('bk-email') || {}).value?.trim() || '';
+  const org   = (document.getElementById('bk-org')   || {}).value?.trim() || '';
+  const topic = (document.getElementById('bk-topic') || {}).value?.trim() || '';
+  const notes = (document.getElementById('bk-notes') || {}).value?.trim() || '';
+
+  if (!name)  { alert('Please enter your name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Please enter a valid email address.'); return;
+  }
+  if (!topic) { alert('Please enter a Clinic topic.'); return; }
+
+  const fd = new FormData();
+  fd.append('action',       'submit');
+  fd.append('submitted_at', new Date().toISOString());
+  fd.append('submission_type', type);
+  fd.append('name',  name);
+  fd.append('email', email);
+  fd.append('org',   org);
+  fd.append('topic', topic);
+  fd.append('notes', notes);
+
+  if (type === 'offer') {
+    const capability = (document.getElementById('bk-capability') || {}).value?.trim() || '';
+    fd.append('capability', capability);
+    const objInputs = document.querySelectorAll('#bk-objectives-list .bk-obj-input');
+    const objectives = [];
+    objInputs.forEach(el => { const v = el.value.trim(); if (v) objectives.push(v); });
+    if (objectives.length === 0) { alert('Please add at least one takeaway for attendees.'); return; }
+    objectives.forEach((obj, i) => fd.append('obj' + (i + 1), obj));
+  } else {
+    const need = (document.getElementById('bk-need') || {}).value?.trim() || '';
+    const knownFacility = (document.getElementById('bk-known-facility') || {}).value?.trim() || '';
+    fd.append('need', need);
+    fd.append('known_facility', knownFacility);
+  }
+
+  const btn = document.getElementById('bk-submit-btn');
+  const origText = btn.textContent;
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+<!-- CLINIC URSL -->
+  fetch(BREAKOUT_URL, { method: 'POST', mode: 'no-cors', body: fd })
+    .then(() => {
+      btn.textContent = '✓ Submitted';
+      btn.style.background = '#2e7d32';
+      setTimeout(() => {
+        closeBreakoutModal();
+        btn.textContent = origText;
+        btn.style.background = '';
+        btn.disabled = false;
+        ['bk-name','bk-email','bk-org','bk-topic','bk-notes','bk-capability','bk-need','bk-known-facility'].forEach(id => {
+          const el = document.getElementById(id); if (el) el.value = '';
+        });
+        document.getElementById('bk-topic-count').textContent = '0';
+        const list = document.getElementById('bk-objectives-list');
+        if (list) {
+          list.innerHTML =
+            '<div class="bk-obj-row"><span class="bk-obj-num">1.</span><textarea class="bk-obj-input" placeholder="e.g. Understand the data infrastructure and sensor requirements for a reactor digital twin" rows="2" maxlength="300"></textarea></div>' +
+            '<div class="bk-obj-row"><span class="bk-obj-num">2.</span><textarea class="bk-obj-input" placeholder="e.g. Assess the staffing, licensing, and budget requirements to initiate a similar program" rows="2" maxlength="300"></textarea></div>';
+        }
+        _bkObjCount = 2;
+        const addBtn = document.getElementById('bk-add-btn');
+        if (addBtn) addBtn.style.display = '';
+        bkSetType('offer');
+        const typeLabel = type === 'offer' ? 'Clinic offer' : 'topic request';
+        const msg = document.createElement('div');
+        msg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#1b4332;color:white;padding:22px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:15px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.3);z-index:9999;text-align:center;max-width:500px;line-height:1.6;';
+        msg.innerHTML = '✅ Your ' + typeLabel + ' has been submitted, ' + escHtml(name) + '!<br>' +
+          '<span style="font-weight:400;font-size:13px;opacity:0.88;">The program committee will review <strong>' + escHtml(topic) + '</strong><br>and contact you at ' + escHtml(email) + '.</span>';
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 9000);
+      }, 900);
+    })
+    .catch(() => {
+      btn.textContent = origText; btn.disabled = false;
+      const err = document.createElement('div');
+      err.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#c62828;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:15px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+      err.innerHTML = '⚠ Submission failed — please try again.<br><span style="font-weight:400;font-size:13px;">Or email us at trtr2026@utexas.edu</span>';
+      document.body.appendChild(err);
+      setTimeout(() => err.remove(), 8000);
+    });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  VOTING FORM
+//  Score = sum of (number_of_topics + 1 - rank) across all voters
+//  e.g. 5 topics: rank 1 → 5 pts, rank 2 → 4 pts … rank 5 → 1 pt
+//  Unranked = 0 pts from that voter
+// ══════════════════════════════════════════════════════════════
+
+function bkBuildVotingCards() {
+  const container = document.getElementById('vote-topics-list');
+  if (!container || container.children.length > 0) return; // already built
+  if (VOTE_TOPICS.length === 0) {
+    container.innerHTML = '<p style="color:var(--mid);text-align:center;padding:24px 0;">Voting topics will appear here once submissions have been reviewed.</p>';
+    return;
+  }
+  const n = VOTE_TOPICS.length;
+  VOTE_TOPICS.forEach(function(topic) {
+    const card = document.createElement('div');
+    card.className = 'vote-topic-card';
+
+    // Build rank selector options: blank + 1..n
+    let opts = '<option value="">—</option>';
+    for (let r = 1; r <= n; r++) {
+      opts += '<option value="' + r + '">' + r + '</option>';
+    }
+
+    card.innerHTML =
+      '<select class="vote-rank-select" id="vrank-' + topic.id + '" title="Rank this topic">' + opts + '</select>' +
+      '<div>' +
+        '<div class="vote-topic-title">' + escHtml(topic.title) + '</div>' +
+        '<div class="vote-topic-hint">1 = highest priority · leave blank to skip</div>' +
+      '</div>';
+    container.appendChild(card);
+  });
+}
+
+function voteEmailChanged() {
+  const email = (document.getElementById('vote-email') || {}).value?.trim() || '';
+  const msg   = document.getElementById('vote-email-msg');
+  if (msg) msg.textContent = '';
+}
+
+function submitVote() {
+  const email = (document.getElementById('vote-email') || {}).value?.trim() || '';
+  const name  = (document.getElementById('vote-name')  || {}).value?.trim() || '';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Please enter a valid email address to submit your vote.'); return;
+  }
+  if (VOTE_TOPICS.length === 0) {
+    alert('No topics are available to rank yet.'); return;
+  }
+
+  // Collect ranks
+  const ranks = {};
+  let anyRanked = false;
+  const usedRanks = {};
+  let dupError = false;
+
+  VOTE_TOPICS.forEach(function(topic) {
+    const sel = document.getElementById('vrank-' + topic.id);
+    const val = sel ? sel.value : '';
+    ranks[topic.id] = val || '';
+    if (val) {
+      anyRanked = true;
+      if (usedRanks[val]) dupError = true;
+      usedRanks[val] = true;
+    }
+  });
+
+  if (!anyRanked) { alert('Please rank at least one topic before submitting.'); return; }
+  if (dupError)   { alert('Each rank number can only be used once. Please adjust your rankings.'); return; }
+
+  const btn = document.getElementById('vote-submit-btn');
+  const orig = btn.textContent;
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+  const fd = new FormData();
+  fd.append('action',       'vote');
+  fd.append('voted_at',     new Date().toISOString());
+  fd.append('email',        email);
+  fd.append('name',         name);
+  fd.append('topic_count',  String(VOTE_TOPICS.length));
+  VOTE_TOPICS.forEach(function(topic) {
+    fd.append('rank_' + topic.id, ranks[topic.id] || '');
+  });
+
+  fetch(BREAKOUT_VOTING_URL, { method: 'POST', mode: 'no-cors', body: fd })
+    .then(function() {
+      btn.textContent = '✓ Vote recorded';
+      btn.style.background = '#2e7d32';
+      const msg = document.createElement('div');
+      msg.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#1b4332;color:white;padding:22px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:15px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.3);z-index:9999;text-align:center;max-width:500px;line-height:1.6;';
+      msg.innerHTML = '✅ Your rankings have been recorded!<br>' +
+        '<span style="font-weight:400;font-size:13px;opacity:0.88;">Thank you' + (name ? ', ' + escHtml(name) : '') + '. A confirmation has been sent to ' + escHtml(email) + '.</span>';
+      document.body.appendChild(msg);
+      setTimeout(function() { msg.remove(); }, 9000);
+    })
+    .catch(function() {
+      btn.textContent = orig; btn.disabled = false;
+      const err = document.createElement('div');
+      err.style.cssText = 'position:fixed;top:32px;left:50%;transform:translateX(-50%);background:#c62828;color:white;padding:20px 36px;border-radius:10px;font-family:Arial,sans-serif;font-size:15px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;text-align:center;max-width:480px;';
+      err.innerHTML = '⚠ Vote submission failed — please try again.<br><span style="font-weight:400;font-size:13px;">Or email us at trtr2026@utexas.edu</span>';
+      document.body.appendChild(err);
+      setTimeout(function() { err.remove(); }, 8000);
+    });
+}
+
+// ── RUN ON LOAD
+document.addEventListener('DOMContentLoaded', function() { bkInitPhase(); });
 </script>
 
 </body>
