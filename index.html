@@ -248,8 +248,7 @@ section { padding: 88px 28px; }
 #topics .section-title { color: white; }
 #topics .section-lead { color: rgba(255,255,255,0.55); }
 .topics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex; flex-wrap: wrap; justify-content: center;
   gap: 20px; margin-top: 0;
 }
 .topic-card {
@@ -258,6 +257,7 @@ section { padding: 88px 28px; }
   border-radius: var(--radius); padding: 28px 26px;
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
   cursor: default;
+  flex: 1 1 280px; max-width: 360px;
 }
 .topic-card:hover {
   background: rgba(191,87,0,0.1);
@@ -270,6 +270,13 @@ section { padding: 88px 28px; }
 }
 .topic-title { font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px; }
 .topic-desc { font-size: 14px; color: rgba(255,255,255,0.45); }
+.topic-count { font-size: 12px; color: var(--gold); margin-bottom: 14px; font-family: 'Roboto Mono', monospace; letter-spacing: 1px; }
+.topic-titles-list { list-style: none; margin: 0; padding: 0; }
+.topic-titles-list li {
+  font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.55);
+  padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.topic-titles-list li:first-child { border-top: none; }
 
 /* ── REGISTRATION ── */
 #registration { background: var(--light); }
@@ -630,6 +637,53 @@ section { padding: 88px 28px; }
 }
 .session-name { font-size: 14px; font-weight: 600; }
 .session-detail { font-size: 13px; color: var(--mid); }
+
+/* ── FULL TECHNICAL PROGRAM (granular, talk-level) ── */
+.prog-intro { color: var(--mid); font-size: 14.5px; margin-bottom: 22px; max-width: 720px; }
+.prog-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.prog-tab-btn {
+  padding: 10px 20px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: white; font-size: 13px; font-weight: 700; cursor: pointer;
+  font-family: inherit; color: var(--charcoal); transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.prog-tab-btn:hover { border-color: var(--burnt-orange); }
+.prog-tab-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
+.prog-panel { display: none; }
+.prog-panel.active { display: block; }
+.prog-table-wrap {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; background: white;
+}
+.prog-legend {
+  display: flex; gap: 22px; padding: 12px 18px; background: var(--light);
+  border-bottom: 1px solid var(--border); font-size: 11.5px; color: var(--mid);
+  font-family: 'Roboto Mono', monospace; letter-spacing: 0.3px;
+}
+.prog-row { display: flex; gap: 16px; padding: 12px 18px; border-bottom: 1px solid rgba(0,0,0,0.06); align-items: flex-start; }
+.prog-row:last-child { border-bottom: none; }
+.prog-time {
+  font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--burnt-orange);
+  flex: 0 0 76px; padding-top: 2px; letter-spacing: 0.3px;
+}
+.prog-dual, .prog-single { }
+.prog-col { flex: 1 1 0; min-width: 0; }
+.prog-empty { color: #ccc; font-size: 13px; }
+.prog-body { flex: 1 1 0; }
+.prog-title { font-size: 13.5px; font-weight: 600; color: var(--charcoal); line-height: 1.42; }
+.prog-author { font-size: 12px; color: var(--mid); margin-top: 3px; }
+.prog-theme-tag {
+  font-family: 'Roboto Mono', monospace; font-size: 10px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--burnt-orange); margin-bottom: 6px; font-weight: 700;
+}
+.prog-break { background: var(--light); }
+.prog-break .prog-body { font-size: 13px; font-weight: 700; color: var(--mid); padding-top: 1px; }
+.prog-fullrow { background: rgba(191,87,0,0.045); }
+.prog-note { font-weight: 400; color: var(--mid); font-size: 12px; }
+@media (max-width: 640px) {
+  .prog-row { flex-direction: column; gap: 6px; }
+  .prog-time { flex: none; }
+  .prog-dual { display: flex; flex-direction: column; gap: 14px; }
+}
 
 /* ── VENUE / AUSTIN ── */
 #venue { background: var(--dark); position: relative; overflow: hidden; }
@@ -1359,50 +1413,135 @@ footer {
 <!-- TOPICS -->
 <section id="topics">
   <div class="section-inner">
-    <span class="section-tag" style="color:var(--gold)">Call for Papers</span>
+    <span class="section-tag" style="color:var(--gold)">Technical Program</span>
     <h2 class="section-title">Conference Topics</h2>
     <div class="divider"></div>
-    <p class="section-lead" style="margin-bottom:48px;">We invite submissions covering all aspects of research, test, and training reactor science and operations (see examples).</p>
+    <p class="section-lead" style="margin-bottom:48px;">This year's accepted presentations, organized by session theme.</p>
     <div class="topics-grid">
       <div class="topic-card fade-up">
         <div class="topic-num">01</div>
-        <div class="topic-title">Research, Experiments & Utilization</div>
-        <div class="topic-desc">Isotope production; Beam research; Instrumentation development or utilization; Testing & analysis (NAA, PGAA; Service irradiation or support; Radiation damage studies; Experiment facility design & management; Fuel material irradiation; Novel utilization concepts; New.</div>
+        <div class="topic-title">Dosimetry & Flux Characterization</div>
+        <div class="topic-count">8 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>A Parametric Physics Evaluation of Zirconium-Based Alloy In-Pile Tubes in the Advanced Test Reactor</li>
+          <li>Applications of Reactor Dosimetry Measurements at the Advanced Test Reactor Critical</li>
+          <li>Benchmarking the UML Research Reactor Fast Neutron Irradiator Using ASTM E1855 Silicon Displacement Damage Dosimetry</li>
+          <li>Experiment Modeling Validation of Advanced Test Reactor Critical Tests</li>
+          <li>Flux Determination at NETL&#x27;s tPNT Location via STAYSL PNNL&#x27;s Least-Squares Fit Spectral Adjustment Software</li>
+          <li>Flux Foil Measurements for Validation of Modeling and Simulation Efforts for Direct Energy Conversion Experimental Systems</li>
+          <li>Modernization of Radiation Measurement Methods in Support of the Ongoing Advanced Test Reactor Mission</li>
+          <li>Simulated Gas Calibrations of Eu-152 at the TRIGA reactor at NETL at The University of Texas at Austin</li>
+        </ul>
       </div>
       <div class="topic-card fade-up" style="transition-delay:0.05s">
         <div class="topic-num">02</div>
-        <div class="topic-title">Operations & Maintenance</div>
-        <div class="topic-desc">Significant Operating Experience; Procedures; Equipment failures & replacement programs; Preventive and predictive maintenance strategies; Spare parts obsolescence & supply chain challenges; Outage planning; Maintenance & operations scheduling.</div>
+        <div class="topic-title">New Reactor & Isotope Facility Development</div>
+        <div class="topic-count">8 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>Current Status of the University of Illinois Microreactor Demonstration Project</li>
+          <li>NextGen MURR at the American Conference on Neutron Scattering University-Based Neutron Sources Workshop</li>
+          <li>The Idaho State University Advanced Research and Testing (ART) Reactor Facility: A Collaboration with NuCube Energy</li>
+          <li>The Molten Salt Research Reactor at Abilene Christian University</li>
+          <li>The Vision of NextGen MURR</li>
+          <li>Unity Zero Power Critical Experiment Installation and Criticality in NRAD&#x27;s North Radiography Station</li>
+          <li>An Overview of Eden Radioisotope&#x27;s Medical Isotope Production Complex</li>
+          <li>NextGen MURR Radioisotope Processing Facility Design Approach</li>
+        </ul>
       </div>
-      <div class="topic-card fade-up" style="transition-delay:0.1s">
+      <div class="topic-card fade-up" style="transition-delay:0.10s">
         <div class="topic-num">03</div>
-        <div class="topic-title">Reactor Upgrades & Aging Management</div>
-        <div class="topic-desc">Control system modernization; Structural and civil aging assessments; Cooling system refurbishments; Reactor pool, vessel and reflector inspection programs; Fuel storage capacity upgrades; Long-term asset management plans and capital project planning..</div>
+        <div class="topic-title">Aging Infrastructure, Failure Investigation & Redesign</div>
+        <div class="topic-count">7 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>Failure, Evidence, Redesign: Resolving Retaining-Ring Fractures in the NBSR Refueling Plug</li>
+          <li>From Fuel Failure to Robust Engagement: Investigation, Redesign, and Validation of the NBSR Fuel Element Head</li>
+          <li>Improving MURR Anti-Siphon Control System Reliability</li>
+          <li>Integration of Legacy Materials from the Annular Core Research Reactor into a New Regulating Rod</li>
+          <li>Investigation of a cadmium contamination event during a radiotracer production activity</li>
+          <li>Reducing Confinement Building Leak Rate</li>
+          <li>Update on UUTR Return to Operations</li>
+        </ul>
       </div>
       <div class="topic-card fade-up" style="transition-delay:0.15s">
         <div class="topic-num">04</div>
-        <div class="topic-title">Safety & Security</div>
-        <div class="topic-desc">Control system modernization; Structural and civil aging assessments; Cooling system refurbishments; Reactor pool, vessel and reflector inspection programs; Fuel storage capacity upgrades; Long-term asset management plans and capital project planning.</div>
+        <div class="topic-title">Fuel Cycle: Supply & Qualification</div>
+        <div class="topic-count">7 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>2026 Status Report University Fuel Services Program</li>
+          <li>Supporting the Research Reactor Community Through Integrated Transportation, Engineering, and Project Delivery: Operational Lessons Learned</li>
+          <li>The TRIGA International (TI) production line in Romans, France</li>
+          <li>Use of Zone-Melt Refining to Enable a Uranium-Actinide Closed Fuel Cycle for Research Reactors</li>
+          <li>As-Run neutronic analysis of U-10Mo monolithic fuel plate experiments in the Advanced Test Reactor</li>
+          <li>Criticality Benchmark Evaluation of a HALEU-Fueled AGN-201M Reactor</li>
+          <li>Design and Safety Analysis Codes and Methods for HALEU Conversions and New Build Research Reactors in the U.S. and Beyond</li>
+        </ul>
       </div>
-      <div class="topic-card fade-up" style="transition-delay:0.2s">
+      <div class="topic-card fade-up" style="transition-delay:0.20s">
         <div class="topic-num">05</div>
-        <div class="topic-title">Education, Training & Outreach</div>
-        <div class="topic-desc">Academic course & laboratory support; Reactor-based education programs;  Research experience programs & institutes; Workforce development; Workforce pipelines and student operator programs; Operator training, requalification, and examination; Public engagement, outreach programs & facility tours; K–12 STEM partnerships and community engagement initiatives.</div>
+        <div class="topic-title">Instrumentation & Detector Development</div>
+        <div class="topic-count">6 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>Advancements in Commercially-Configurable Micro-Pocket Fission Detectors</li>
+          <li>High Temperature Fission Chambers Output Signal Characterization</li>
+          <li>Measurement Campaign with the Libera MONACO 3 System at the VR-1 Reactor Using Two Fission Chamber Types</li>
+          <li>NISoC: An Integrated Solid-State Platform for Neutron Detection, Radiography, and Dosimetry</li>
+          <li>Nuclear Instrumentation for Both the Research Reactor and Advanced Reactor Communities</li>
+          <li>Prototype Nuclear Qualification Device Testing for Advanced Neutron Sensor Experiments at AFRRI</li>
+        </ul>
       </div>
       <div class="topic-card fade-up" style="transition-delay:0.25s">
         <div class="topic-num">06</div>
-        <div class="topic-title">New & Advanced Reactors</div>
-        <div class="topic-desc">New design concepts & feasibility studies; University and national laboratory initiatives; Microreactor and SMR research applications; Status updates on reactors under construction or in licensing; Domestic and international collaborations on new facility development.</div>
+        <div class="topic-title">Digital Tools, Automation & Digital Twins</div>
+        <div class="topic-count">6 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>Development and Implementation of a Digital Operations Logbook for the NETL TRIGA Mark II Reactor</li>
+          <li>Recent Experience with Lightweight Digital Tools for Scheduling and Documentation at the NC State PULSTAR Research Reactor</li>
+          <li>AI Tools for Neutron Irradiation: A Coordinated Approach to Accelerating the Irradiation Testing Workflow</li>
+          <li>Keeper: A Framework for Demonstration Autonomous Operations</li>
+          <li>Advancing Digital Twin Development of Research Reactors Through a Shared Platform</li>
+          <li>Live 3D Radiation Mapping</li>
+        </ul>
+      </div>
+      <div class="topic-card fade-up" style="transition-delay:0.30s">
+        <div class="topic-num">07</div>
+        <div class="topic-title">Regulatory, Licensing & QA</div>
+        <div class="topic-count">4 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>HFIR Code of Record project</li>
+          <li>NextGen MURR ANSI/ANS-15.8 Quality Assurance Program Development</li>
+          <li>Authorization for Startup of the Deployable Energy UNITY Reactor through NE-STD-1271 and NE Order 425.1</li>
+          <li>Return of the NCNR to 20 MW Scientific Operation</li>
+        </ul>
       </div>
       <div class="topic-card fade-up" style="transition-delay:0.35s">
-        <div class="topic-num">07</div>
-        <div class="topic-title">Management Considerations</div>
-        <div class="topic-desc">Safety Culture; Strategic planning initiatives and organizational change; Lessons learned; Funding models; Industry, national laboratory, and interagency partnerships; National security and defense-related contributions; Long-term sustainability and business case development; Succession planning and knowledge management.</div>
-      </div>
-      <div class="topic-card fade-up" style="transition-delay:0.4s">
         <div class="topic-num">08</div>
-        <div class="topic-title">Licensing & Regulations</div>
-        <div class="topic-desc">License Amendment Requests (LARs) — experience and lessons learned; Relicensing preparation, strategies, and completed renewals; NRC inspection findings and corrective action program responses; Regulatory basis updates and interactions with NRC staff; 10 CFR Part 50 vs. Part 53, rulemaking status and implications for research and advanced reactor licensing; Technical specification improvements and exemption requests.</div>
+        <div class="topic-title">Nuclear Data & Xenon Spectroscopy</div>
+        <div class="topic-count">4 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>Analysis of Xenon Prompt Gammas from Thermal Neutron Capture at FIPPS</li>
+          <li>Design and Fabrication of a System for High-Pressure Xenon Irradiation</li>
+          <li>Experimental Approach for Characterizing Prompt Gamma Emissions from Xe-135(n,γ) via Optimized In-Core Production</li>
+          <li>Measurement of the Isomeric Yield Ratio of Xenon-135m from Thermal Neutron Capture on Xenon-134</li>
+        </ul>
+      </div>
+      <div class="topic-card fade-up" style="transition-delay:0.40s">
+        <div class="topic-num">09</div>
+        <div class="topic-title">Radiation Effects on Electronics</div>
+        <div class="topic-count">3 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>Examination of a Circuit&#x27;s Slew Rate Degradation During In-situ Irradiation of Circuit Sensitive Transistor</li>
+          <li>Neutron-Induced Single Event Upsets within SRAM Devices</li>
+          <li>UT-Austin NETL Combined Electromagnetic and Neutron Environments Testing Capabilities</li>
+        </ul>
+      </div>
+      <div class="topic-card fade-up" style="transition-delay:0.45s">
+        <div class="topic-num">10</div>
+        <div class="topic-title">Education & Outreach</div>
+        <div class="topic-count">2 PRESENTATIONS</div>
+        <ul class="topic-titles-list">
+          <li>Classical vs. Modern: A Tale of Two Reactors at Idaho State University</li>
+          <li>Research Reactor Outreach Program: A Collaboration between the International Atomic Energy Agency, the University of Texas and Jordan Atomic Energy Commission</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1415,14 +1554,13 @@ footer {
     <h2 class="section-title">Conference Schedule</h2>
     <div class="divider"></div>
     <div class="schedule-notice">
-      📅 Monday, September 21:<br>The outline below reflects planned structure and is subject to change.<br>  
-	  The detailed program will be published after abstract acceptance notifications.<br>
-	  NRC Day date to be confirmed with the NRC.<br><br>
-	  10:00 a.m. TRTR Executive Committee meeting<br>
-      4:00 p.m. Registration open, exhibitor hall<br>
-	  1:00 p.m. ANSI Standards committee meeting<br>
- 	  7:00 p.m. Welcome Reception<br><br> 
-
+      📅 Monday, September 21 — Registration &amp; Committee Meetings:<br>
+      The outline below reflects planned structure and is subject to change.<br>
+      NRC Day date to be confirmed with the NRC.<br><br>
+      12:00 p.m. Registration opens<br>
+      12:30 p.m. TRTR Executive Committee meeting<br>
+      2:00 p.m. ANSI/ANS Standards Committee meeting<br>
+      7:00 p.m. Welcome Social<br><br>
     </div>
 <!-- DAY 1 -->
     <div class="schedule-days">
@@ -1434,46 +1572,35 @@ footer {
             <div class="day-date">September 22, 2026</div>
           </div>
         </div>
-<!-- END DAY 1 HEADER, START SESSIONS -->		
-        <div class="day-sessions">		
-<!-- SESSION REGISTRATION -->
+<!-- END DAY 1 HEADER, START SESSIONS -->
+        <div class="day-sessions">
           <div class="session">
-            <div class="session-time">AM</div>
-            <div><div class="session-name">Registration &amp; Check-in</div><div class="session-detail">Exhibitor hall
-			</div></div>
+            <div><div class="session-name">Opening Remarks</div></div>
           </div>
-<!-- END SESSION REGISTRATION -->
-
-<!-- SESSION OPENING -->
           <div class="session">
-            <div class="session-time">AM</div>
-            <div><div class="session-name">Opening Plenary</div><div class="session-detail">Welcome address, keynote speaker</div></div>
+            <div><div class="session-name">Technical Sessions I</div><div class="session-detail"><strong>Track A:</strong> Dosimetry &amp; Flux Characterization (8 presentations)<br><strong>Track B:</strong> New Reactor &amp; Isotope Facility Development (8 presentations)</div></div>
           </div>
-<!-- END SESSION OPENING -->
-
-<!-- MID SESSION -->
           <div class="session">
-            <div class="session-time">MID</div>
-            <div><div class="session-name">Lunch &amp; Exhibits</div><div class="session-detail"> exhibitor floor</div></div>
+            <div><div class="session-name">Technical Sessions II</div><div class="session-detail"><strong>Track A:</strong> Aging Infrastructure, Failure Investigation &amp; Redesign (7 presentations)<br><strong>Track B:</strong> Fuel Cycle: Supply &amp; Qualification (7 presentations)</div></div>
           </div>
-<!-- END MID SESSION -->
-
-<!-- TECHNCIAL SESSION IA -->
           <div class="session">
-            <div class="session-time">PM</div>
-            <div><div class="session-name">Technical Sessions IA</div><div class="session-detail">Research, Experiments & Utilization</div></div>
+            <div><div class="session-name">TRTR Business Meeting</div><div class="session-detail">Both tracks</div></div>
           </div>
-<!-- END TECHNCIAL SESSION IA -->
-	
-<!-- TECHNCIAL SESSION IB -->
           <div class="session">
-            <div class="session-time">--</div>
-            <div><div class="session-name">Technical Sessions IB</div><div class="session-detail">Licensing &amp; Regulations</div></div>
+            <div><div class="session-name">Technical Sessions III</div><div class="session-detail">Radiation Effects on Electronics (3 presentations)</div></div>
           </div>
-<!-- END TECHNCIAL SESSION IB -->
-
-<!-- SESSION RECEPTION -->
-<!-- END SESSION RECEPTION -->
+          <div class="session">
+            <div><div class="session-name">Technical Sessions IV</div><div class="session-detail">Education &amp; Outreach (2 presentations)</div></div>
+          </div>
+          <div class="session">
+            <div><div class="session-name">Facility M&amp;O Meeting</div></div>
+          </div>
+          <div class="session">
+            <div><div class="session-name">Applications Forum</div><div class="session-detail">MMR/SMR Regulation <em style="font-size:12px; opacity:0.7;">(Tentative)</em></div></div>
+          </div>
+          <div class="session">
+            <div><div class="session-name">Student ANS Meeting</div><div class="session-detail">With Director, NRC Office of Nuclear Reactor Regulation (NRR)</div></div>
+          </div>
         </div>
       </div>
 <!-- END SESSIONS, END DAY 1 -->
@@ -1489,25 +1616,12 @@ footer {
         </div>
 <!-- END HEADER, START CLASS SESSIONS -->
         <div class="day-sessions">
-<!-- SESSION - NRC DAY -->
           <div class="session">
-            <div class="session-time">ALL DAY</div>
             <div><div class="session-name">NRC Day</div><div class="session-detail">Full day with Nuclear Regulatory Commission representatives — date subject to NRC confirmation</div></div>
           </div>
-<!-- MID SESSION -->
           <div class="session">
-            <div class="session-time">MID</div>
-            <div><div class="session-name">Lunch &amp; Exhibits</div><div class="session-detail"> Exhibitor floor open</div></div>
+            <div><div class="session-name">Conference Banquet</div><div class="session-detail"><em>Menu TBD, Venue – Bullock Texas State History Museum</em></div></div>
           </div>
-<!-- END MID SESSION -->
-
-<!-- NRC DAY -->
-<!-- EVENING BANQUET -->
-          <div class="session">
-            <div class="session-time">EVE</div>
-            <div><div class="session-name">Conference Banquet</div><div class="session-detail"> <em>Menu TBD, Venue - Bullock State History Museum</em></div></div>
-          </div>
-<!-- END EVENING BANQUET -->
 <!-- END DAY 2 & CLASS SESSIONS -->
         </div>
       </div>
@@ -1523,38 +1637,18 @@ footer {
         </div>
 <!-- END DAY 3 HEADER, START CLASS SESSIONS -->
         <div class="day-sessions">
-		
-<!-- SESSION IIA -->		
           <div class="session">
-            <div class="session-time">AM</div>
-            <div><div class="session-name">Technical Sessions IIA</div><div class="session-detail">Operations &amp; Maintenance</div></div>
+            <div><div class="session-name">Technical Sessions V</div><div class="session-detail">Instrumentation &amp; Detector Development (6 presentations)</div></div>
           </div>
-<!-- END SESSION IIA -->
-<!-- SESSION IIB -->		
           <div class="session">
-            <div class="session-time">--</div>
-            <div><div class="session-name">Technical Sessions IIB</div><div class="session-detail">New &amp; Advanced Reactors</div></div>
+            <div><div class="session-name">Technical Sessions VI</div><div class="session-detail">Regulatory, Licensing &amp; QA (4 presentations)</div></div>
           </div>
-<!-- END SESSION IIB -->
-
-<!-- MID SESSION -->
           <div class="session">
-            <div class="session-time">MID</div>
-            <div><div class="session-name">Lunch  &amp; Exhibits &amp; Poster Session</div><div class="session-detail"> Exhibitor floor open</div></div>
-          </div>
-<!-- END MID SESSION -->
-<!-- SESSION TOURS -->
-          <div class="session">
-            <div class="session-time">PM</div>
             <div><div class="session-name">Optional Facility Tours</div><div class="session-detail">NETL TRIGA Reactor · Texas Advanced Computing Center (TACC) · Aalo Atomics <em style="font-size:12px; opacity:0.7;">(Aalo TBC)</em></div></div>
           </div>
-<!-- END SESSION TOURS -->
-<!-- DAY 3 EVENING FREE TIME -->
           <div class="session">
-            <div class="session-time">EVE</div>
             <div><div class="session-name">Open Evening</div><div class="session-detail">Explore Austin</div></div>
           </div>
-<!-- END DAY 3 EVENING FREE TIME -->
         </div>
       </div>
 <!-- END DAY 3 & CLASS SESSIONS -->
@@ -1570,50 +1664,265 @@ footer {
         </div>
 <!-- END DAY 4 HEADER & START CLASS SESSIONS -->
         <div class="day-sessions">
-
-<!-- SESSION IIIA -->
           <div class="session">
-            <div class="session-time">AM</div>
-            <div><div class="session-name">Technical Sessions IIIA</div><div class="session-detail">Reactor Upgrades &amp; Aging Management</div></div>
+            <div><div class="session-name">Technical Sessions VII</div><div class="session-detail">Digital Tools, Automation &amp; Digital Twins (6 presentations)</div></div>
           </div>
-<!-- END SESSION IIIA -->
-<!-- SESSION IIIB -->
           <div class="session">
-            <div class="session-time">--</div>
-            <div><div class="session-name">Safety &amp; Security</div></div>
+            <div><div class="session-name">Technical Sessions VIII</div><div class="session-detail">Nuclear Data &amp; Xenon Spectroscopy (4 presentations)</div></div>
           </div>
-<!-- END SESSION IIIB -->
-<!-- LUNCH AND POSTERS -->
           <div class="session">
-            <div class="session-time">MID</div>
-            <div><div class="session-name">Lunch &amp; Exhibits</div><div class="session-detail"> Exhibitor floor open</div></div>
+            <div><div class="session-name">Free Time &amp; Departures</div><div class="session-detail">Conference concludes</div></div>
           </div>
-<!-- END LUNCH AND POSTERS -->
-<!-- SESSION IVA -->
-          <div class="session">
-            <div class="session-time">PM</div>
-            <div><div class="session-name">Technical Sessions IVA</div><div class="session-detail">Education, Training &amp; Outreach</div></div>
-          </div>
-<!-- END SESSION IVB -->
-<!-- SESSION IVB -->
-          <div class="session">
-            <div class="session-time">--</div>
-            <div><div class="session-name">Technical Sessions IVB</div><div class="session-detail">Management Considerations</div></div>
-          </div>
-<!-- END SESSION IVA -->
-<!-- BUSINESS MEETING -->
-          <div class="session">
-            <div class="session-time">PM</div>
-            <div><div class="session-name">TRTR Business Meeting</div><div class="session-detail">Annual TRTR member meeting</div></div>
-          </div>
-<!-- END BUSINESS MEETING -->
         </div>
       </div>
 <!-- END DAY -->
     </div>
+
+    <div style="margin-top:56px;">
+      <span class="section-tag">Talk-Level Detail</span>
+      <h2 class="section-title" style="font-size:26px;">Full Technical Program</h2>
+      <div class="divider" style="margin-bottom:20px;"></div>
+      <p class="prog-intro">Every accepted talk, in order, with start times and speakers — so you can plan which sessions to attend. Tuesday runs two tracks in parallel; Wednesday is NRC Day; Thursday and Friday are single-track.</p>
+
+      <div class="prog-tabs">
+        <button class="prog-tab-btn active" onclick="progShowDay('tue', this)">Tuesday</button>
+        <button class="prog-tab-btn" onclick="progShowDay('wed', this)">Wednesday</button>
+        <button class="prog-tab-btn" onclick="progShowDay('thu', this)">Thursday</button>
+        <button class="prog-tab-btn" onclick="progShowDay('fri', this)">Friday</button>
+      </div>
+
+      <div id="prog-tue" class="prog-panel active">
+        <div class="prog-table-wrap">
+          <div class="prog-legend"><span>Track A</span><span>Track B</span></div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">8:00 AM</div><div class="prog-body"><div class="prog-title">Opening Remarks</div></div></div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">8:30 AM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Dosimetry &amp; Flux Characterization</div><div class="prog-title">A Parametric Physics Evaluation of Zirconium-Based Alloy In-Pile Tubes in the Advanced Test Reactor</div><div class="prog-author">Bryon Curnutt</div></div>
+            <div class="prog-col"><div class="prog-theme-tag">New Reactor &amp; Isotope Facility Development</div><div class="prog-title">Current Status of the University of Illinois Microreactor Demonstration Project</div><div class="prog-author">Leslie Foyto</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">8:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Applications of Reactor Dosimetry Measurements at the Advanced Test Reactor Critical</div><div class="prog-author">Dani G. Ottaway</div></div>
+            <div class="prog-col"><div class="prog-title">NextGen MURR at the American Conference on Neutron Scattering University-Based Neutron Sources Workshop</div><div class="prog-author">Ethan Schroeder</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">9:10 AM</div>
+            <div class="prog-col"><div class="prog-title">Benchmarking the UML Research Reactor Fast Neutron Irradiator Using ASTM E1855 Silicon Displacement Damage Dosimetry</div><div class="prog-author">Thomas Regan</div></div>
+            <div class="prog-col"><div class="prog-title">The Idaho State University Advanced Research and Testing (ART) Reactor Facility: A Collaboration with NuCube Energy</div><div class="prog-author">Daniel LaBrier</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">9:30 AM</div>
+            <div class="prog-col"><div class="prog-title">Experiment Modeling Validation of Advanced Test Reactor Critical Tests</div><div class="prog-author">Nicklaus Schlamp</div></div>
+            <div class="prog-col"><div class="prog-title">The Molten Salt Research Reactor at Abilene Christian University</div><div class="prog-author">Kim L. Pamplin</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">9:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Flux Determination at NETL&#x27;s tPNT Location via STAYSL PNNL&#x27;s Least-Squares Fit Spectral Adjustment Software</div><div class="prog-author">Julian Herrera</div></div>
+            <div class="prog-col"><div class="prog-title">The Vision of NextGen MURR</div><div class="prog-author">Ethan Schroeder</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">10:10 AM</div>
+            <div class="prog-col"><div class="prog-title">Flux Foil Measurements for Validation of Modeling and Simulation Efforts for Direct Energy Conversion Experimental Systems</div><div class="prog-author">Eric Palmer</div></div>
+            <div class="prog-col"><div class="prog-title">Unity Zero Power Critical Experiment Installation and Criticality in NRAD&#x27;s North Radiography Station</div><div class="prog-author">Charles Jones</div></div>
+          </div>
+          <div class="prog-row prog-break"><div class="prog-time">10:30 AM</div><div class="prog-body">Break</div></div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">10:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Modernization of Radiation Measurement Methods in Support of the Ongoing Advanced Test Reactor Mission</div><div class="prog-author">Dani G. Ottaway</div></div>
+            <div class="prog-col"><div class="prog-title">An Overview of Eden Radioisotope&#x27;s Medical Isotope Production Complex</div><div class="prog-author">Edward Parma</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">11:10 AM</div>
+            <div class="prog-col"><div class="prog-title">Simulated Gas Calibrations of Eu-152 at the TRIGA reactor at NETL at The University of Texas at Austin</div><div class="prog-author">Zachary Boor</div></div>
+            <div class="prog-col"><div class="prog-title">NextGen MURR Radioisotope Processing Facility Design Approach</div><div class="prog-author">Ethan Schroeder</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">11:30 AM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Aging Infrastructure, Failure Investigation &amp; Redesign</div><div class="prog-title">Failure, Evidence, Redesign: Resolving Retaining-Ring Fractures in the NBSR Refueling Plug</div><div class="prog-author">David Hix</div></div>
+            <div class="prog-col"><div class="prog-theme-tag">Fuel Cycle: Supply &amp; Qualification</div><div class="prog-title">2026 Status Report University Fuel Services Program</div><div class="prog-author">Douglas K. Morrell</div></div>
+          </div>
+          <div class="prog-row prog-break"><div class="prog-time">11:50 AM</div><div class="prog-body">TRTR Business Meeting <span class="prog-note">(both tracks)</span></div></div>
+          <div class="prog-row prog-break"><div class="prog-time">12:30 PM</div><div class="prog-body">Lunch &amp; Exhibits</div></div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">1:10 PM</div>
+            <div class="prog-col"><div class="prog-title">From Fuel Failure to Robust Engagement: Investigation, Redesign, and Validation of the NBSR Fuel Element Head</div><div class="prog-author">David Hix</div></div>
+            <div class="prog-col"><div class="prog-title">Supporting the Research Reactor Community Through Integrated Transportation, Engineering, and Project Delivery: Operational Lessons Learned</div><div class="prog-author">Roy Boyd</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">1:30 PM</div>
+            <div class="prog-col"><div class="prog-title">Improving MURR Anti-Siphon Control System Reliability</div><div class="prog-author">Peter Norgard</div></div>
+            <div class="prog-col"><div class="prog-title">The TRIGA International (TI) production line in Romans, France</div><div class="prog-author">Ralf Gathmann</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">1:50 PM</div>
+            <div class="prog-col"><div class="prog-title">Integration of Legacy Materials from the Annular Core Research Reactor into a New Regulating Rod</div><div class="prog-author">Samuel G. Durbin</div></div>
+            <div class="prog-col"><div class="prog-title">Use of Zone-Melt Refining to Enable a Uranium-Actinide Closed Fuel Cycle for Research Reactors</div><div class="prog-author">Jackson Keppen</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">2:10 PM</div>
+            <div class="prog-col"><div class="prog-title">Investigation of a cadmium contamination event during a radiotracer production activity</div><div class="prog-author">Jeffrey Geuther and Aaron Wilmot</div></div>
+            <div class="prog-col"><div class="prog-title">As-Run neutronic analysis of U-10Mo monolithic fuel plate experiments in the Advanced Test Reactor</div><div class="prog-author">Paul Gilbreath</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">2:30 PM</div>
+            <div class="prog-col"><div class="prog-title">Reducing Confinement Building Leak Rate</div><div class="prog-author">Robert Newby</div></div>
+            <div class="prog-col"><div class="prog-title">Criticality Benchmark Evaluation of a HALEU-Fueled AGN-201M Reactor</div><div class="prog-author">Mary Lou Dunzik-Gougar</div></div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">2:50 PM</div>
+            <div class="prog-col"><div class="prog-title">Update on UUTR Return to Operations</div><div class="prog-author">Andrew Allison, Dylan Ramirez</div></div>
+            <div class="prog-col"><div class="prog-title">Design and Safety Analysis Codes and Methods for HALEU Conversions and New Build Research Reactors in the U.S. and Beyond</div><div class="prog-author">Erik Wilson</div></div>
+          </div>
+          <div class="prog-row prog-break"><div class="prog-time">3:10 PM</div><div class="prog-body">Break</div></div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">3:30 PM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Radiation Effects on Electronics</div><div class="prog-title">Examination of a Circuit&#x27;s Slew Rate Degradation During In-situ Irradiation of Circuit Sensitive Transistor</div><div class="prog-author">Michael Sheridan</div></div>
+            <div class="prog-col prog-empty">—</div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">3:50 PM</div>
+            <div class="prog-col"><div class="prog-title">Neutron-Induced Single Event Upsets within SRAM Devices</div><div class="prog-author">Michael Santos</div></div>
+            <div class="prog-col prog-empty">—</div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">4:10 PM</div>
+            <div class="prog-col"><div class="prog-title">UT-Austin NETL Combined Electromagnetic and Neutron Environments Testing Capabilities</div><div class="prog-author">Nicholas Crenshaw,2, Michael Sheridan, William Charlton, Josh Young</div></div>
+            <div class="prog-col prog-empty">—</div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">4:30 PM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Education &amp; Outreach</div><div class="prog-title">Classical vs. Modern: A Tale of Two Reactors at Idaho State University</div><div class="prog-author">Daniel LaBrier</div></div>
+            <div class="prog-col prog-empty">—</div>
+          </div>
+          <div class="prog-row prog-dual">
+            <div class="prog-time">4:50 PM</div>
+            <div class="prog-col"><div class="prog-title">Research Reactor Outreach Program: A Collaboration between the International Atomic Energy Agency, the University of Texas and Jordan Atomic Energy Commission</div><div class="prog-author">Sheldon Landsberger</div></div>
+            <div class="prog-col prog-empty">—</div>
+          </div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">5:00 PM</div><div class="prog-body"><div class="prog-title">Facility M&amp;O Meeting</div></div></div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">5:00 PM</div><div class="prog-body"><div class="prog-title">Applications Forum</div><div class="prog-author">MMR/SMR Regulation (Tentative)</div></div></div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">6:00 PM</div><div class="prog-body"><div class="prog-title">Student ANS Meeting</div><div class="prog-author">With Director, NRC Office of Nuclear Reactor Regulation (NRR)</div></div></div>
+        </div>
+      </div>
+
+      <div id="prog-wed" class="prog-panel">
+        <div class="prog-table-wrap">
+          <div class="prog-row prog-fullrow"><div class="prog-time">All Day</div><div class="prog-body"><div class="prog-title">NRC Day</div><div class="prog-author">Full day with Nuclear Regulatory Commission representatives — session-by-session agenda to be published once confirmed with the NRC.</div></div></div>
+          <div class="prog-row prog-break"><div class="prog-time">Midday</div><div class="prog-body">Lunch &amp; Exhibits</div></div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">5:30 PM</div><div class="prog-body"><div class="prog-title">Conference Banquet</div><div class="prog-author">Menu TBD, Venue – Bullock Texas State History Museum</div></div></div>
+        </div>
+      </div>
+
+      <div id="prog-thu" class="prog-panel">
+        <div class="prog-table-wrap">
+          <div class="prog-row prog-single">
+            <div class="prog-time">8:30 AM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Instrumentation &amp; Detector Development</div><div class="prog-title">Advancements in Commercially-Configurable Micro-Pocket Fission Detectors</div><div class="prog-author">Taylor Ochs</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">8:50 AM</div>
+            <div class="prog-col"><div class="prog-title">High Temperature Fission Chambers Output Signal Characterization</div><div class="prog-author">A. Rizzo, N. Jackowska, K. Irazoqui, A. Cook, Q. Gestes, M. Shaw, A. Alloune, C. Payne, J. Thompson</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">9:10 AM</div>
+            <div class="prog-col"><div class="prog-title">Measurement Campaign with the Libera MONACO 3 System at the VR-1 Reactor Using Two Fission Chamber Types</div><div class="prog-author">V. Fišinger, M. Elersič1, M. Cargnelutti, B. Thomas</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">9:30 AM</div>
+            <div class="prog-col"><div class="prog-title">NISoC: An Integrated Solid-State Platform for Neutron Detection, Radiography, and Dosimetry</div><div class="prog-author">Dale Julson</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">9:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Nuclear Instrumentation for Both the Research Reactor and Advanced Reactor Communities</div><div class="prog-author">Ewald Liebhart</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">10:10 AM</div>
+            <div class="prog-col"><div class="prog-title">Prototype Nuclear Qualification Device Testing for Advanced Neutron Sensor Experiments at AFRRI</div><div class="prog-author">Johnathan Grissom</div></div>
+          </div>
+          <div class="prog-row prog-break"><div class="prog-time">10:30 AM</div><div class="prog-body">Break</div></div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">10:50 AM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Regulatory, Licensing &amp; QA</div><div class="prog-title">HFIR Code of Record project</div><div class="prog-author">Carol W. Sizemore</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">11:10 AM</div>
+            <div class="prog-col"><div class="prog-title">NextGen MURR ANSI/ANS-15.8 Quality Assurance Program Development</div><div class="prog-author">Ethan Schroeder</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">11:30 AM</div>
+            <div class="prog-col"><div class="prog-title">Authorization for Startup of the Deployable Energy UNITY Reactor through NE-STD-1271 and NE Order 425.1</div><div class="prog-author">Michael Ruddell</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">11:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Return of the NCNR to 20 MW Scientific Operation</div><div class="prog-author">Thomas Newton</div></div>
+          </div>
+          <div class="prog-row prog-break"><div class="prog-time">12:30 PM</div><div class="prog-body">Lunch &amp; Exhibits</div></div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">1:10 PM</div><div class="prog-body"><div class="prog-title">Optional Facility Tours</div><div class="prog-author">NETL TRIGA Reactor · Texas Advanced Computing Center (TACC) · Aalo Atomics (Aalo TBC)</div></div></div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">Evening</div><div class="prog-body"><div class="prog-title">Open Evening</div><div class="prog-author">Explore Austin</div></div></div>
+        </div>
+      </div>
+
+      <div id="prog-fri" class="prog-panel">
+        <div class="prog-table-wrap">
+          <div class="prog-row prog-single">
+            <div class="prog-time">8:30 AM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Digital Tools, Automation &amp; Digital Twins</div><div class="prog-title">Development and Implementation of a Digital Operations Logbook for the NETL TRIGA Mark II Reactor</div><div class="prog-author">Sam G. Durbin</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">8:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Recent Experience with Lightweight Digital Tools for Scheduling and Documentation at the NC State PULSTAR Research Reactor</div><div class="prog-author">Austin Wells</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">9:10 AM</div>
+            <div class="prog-col"><div class="prog-title">AI Tools for Neutron Irradiation: A Coordinated Approach to Accelerating the Irradiation Testing Workflow</div><div class="prog-author">Brenden Heidrich</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">9:30 AM</div>
+            <div class="prog-col"><div class="prog-title">Keeper: A Framework for Demonstration Autonomous Operations</div><div class="prog-author">Ryan Stewart, Casey Kovesdi, Emerald Ryan, Sonali Roy, Manaswin Oddiraju, Anand Kirshnan, Greg Shannon, William Dawn, Kolton Heaps, Amanda Foley, Linyu Lin, Joseph Oncken, William Wakeman</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">9:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Advancing Digital Twin Development of Research Reactors Through a Shared Platform</div><div class="prog-author">Ryan Stewart, Emerald Ryan, Jieun Lee, Logan Browning, Nicholas P. Luciano, Cole Gentry, Kevin Clarno</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">10:10 AM</div>
+            <div class="prog-col"><div class="prog-title">Live 3D Radiation Mapping</div><div class="prog-author">Saarthak Midha</div></div>
+          </div>
+          <div class="prog-row prog-break"><div class="prog-time">10:30 AM</div><div class="prog-body">Break</div></div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">10:50 AM</div>
+            <div class="prog-col"><div class="prog-theme-tag">Nuclear Data &amp; Xenon Spectroscopy</div><div class="prog-title">Analysis of Xenon Prompt Gammas from Thermal Neutron Capture at FIPPS</div><div class="prog-author">Andrew David Rosen</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">11:10 AM</div>
+            <div class="prog-col"><div class="prog-title">Design and Fabrication of a System for High-Pressure Xenon Irradiation</div><div class="prog-author">Robert Cerna Morales</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">11:30 AM</div>
+            <div class="prog-col"><div class="prog-title">Experimental Approach for Characterizing Prompt Gamma Emissions from Xe-135(n,γ) via Optimized In-Core Production</div><div class="prog-author">Ivy Seidel, Will Flanagan, William Charlton, and Derek Haas</div></div>
+          </div>
+          <div class="prog-row prog-single">
+            <div class="prog-time">11:50 AM</div>
+            <div class="prog-col"><div class="prog-title">Measurement of the Isomeric Yield Ratio of Xenon-135m from Thermal Neutron Capture on Xenon-134</div><div class="prog-author">Grace Martin</div></div>
+          </div>
+          <div class="prog-row prog-break"><div class="prog-time">12:30 PM</div><div class="prog-body">Lunch &amp; Exhibits</div></div>
+          <div class="prog-row prog-fullrow"><div class="prog-time">1:10 PM</div><div class="prog-body"><div class="prog-title">Free Time &amp; Departures</div><div class="prog-author">Conference concludes</div></div></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 <!-- END END --> 
 </section>
+
+<script>
+function progShowDay(day, btn) {
+  document.querySelectorAll('.prog-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('prog-' + day).classList.add('active');
+  document.querySelectorAll('.prog-tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+</script>
 
 <!-- PAPERS / ABSTRACTS -->
 <section id="papers">
@@ -2249,6 +2558,48 @@ footer {
           <h3>Austin FC — Q2 Stadium</h3>
           <p>Austin's Major League Soccer club plays at Q2 Stadium, the first soccer-specific stadium built in Texas. The Verde faithful — known as Las Coronas — create one of the loudest atmospheres in MLS. Catch a home match and join tens of thousands of fans in the standing supporter's section for a true Austin spectacle.</p>
           <div class="soc-tags"><span>MLS · Major League Soccer</span><span>Q2 Stadium · 3 mi from campus</span></div>
+        </div>
+      </div>
+
+      <!-- Congress Ave Bats -->
+      <div class="soc-card fade-up" style="transition-delay:0.24s">
+        <div class="soc-img-wrap">
+<!-- image -->
+          <img src="images/AustinBats.jpg" alt="Congress Avenue Bridge bats at sunset" loading="lazy">
+          <div class="soc-badge">Natural Wonder</div>
+        </div>
+        <div class="soc-body">
+          <h3>Congress Avenue Bridge Bats</h3>
+          <p>Each evening at dusk, up to 1.5 million Mexican free-tailed bats stream out from beneath the Congress Avenue Bridge in the world's largest urban bat colony. Crowds gather along the bridge and the banks of Lady Bird Lake to watch the swirling emergence against the Austin skyline — a uniquely Austin spectacle just minutes from campus.</p>
+          <div class="soc-tags"><span>Nightly at Dusk</span><span>Congress Ave Bridge · 2 mi from campus</span></div>
+        </div>
+      </div>
+
+      <!-- Texas State Capitol -->
+      <div class="soc-card fade-up" style="transition-delay:0.28s">
+        <div class="soc-img-wrap">
+<!-- image -->
+          <img src="images/TXCapital.jpg" alt="Texas State Capitol Building" loading="lazy">
+          <div class="soc-badge">Landmark</div>
+        </div>
+        <div class="soc-body">
+          <h3>Texas State Capitol</h3>
+          <p>Standing taller than the U.S. Capitol, the Texas State Capitol is a stunning example of 19th-century Renaissance Revival architecture built from distinctive pink Texas granite. Free guided and self-guided tours take visitors through the rotunda, House and Senate chambers, and the surrounding grounds — a must-see landmark just north of the UT campus.</p>
+          <div class="soc-tags"><span>Free Tours</span><span>Downtown Austin · 2 mi from campus</span></div>
+        </div>
+      </div>
+
+      <!-- UT Austin Statues -->
+      <div class="soc-card fade-up" style="transition-delay:0.32s">
+        <div class="soc-img-wrap">
+<!-- image -->
+          <img src="images/UTStatues.jpg" alt="UT Austin cowboy and horse statues" loading="lazy">
+          <div class="soc-badge">Campus Culture</div>
+        </div>
+        <div class="soc-body">
+          <h3>UT Austin Statues</h3>
+          <p>The University of Texas campus is home to a collection of bronze statues celebrating Texas history and heritage, from cowboys and horses to notable figures woven throughout the grounds. A stroll across campus between sessions offers a self-guided walking tour of these landmarks alongside the university's iconic Tower.</p>
+          <div class="soc-tags"><span>Self-Guided Walk</span><span>On Campus</span></div>
         </div>
       </div>
 
