@@ -1223,6 +1223,60 @@ footer {
 }
 #vote-modal .modal { max-width: 640px; }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+ integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+
+/* ===== Austin Guide — embedded widget (scoped under .ag-embed) ===== */
+.ag-embed { position:relative; }
+.ag-embed *{ box-sizing:border-box; }
+.ag-quick-notes{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:0 0 28px; }
+.ag-note{ background:rgba(255,255,255,0.04); border:1px solid rgba(191,87,0,0.2); border-radius:6px; padding:14px 16px; font-size:13.5px; color:rgba(255,255,255,0.6); line-height:1.55; }
+.ag-note b{ display:block; margin-bottom:4px; color:white; font-family:'Playfair Display',serif; font-size:14.5px; font-weight:600; }
+.ag-controls{ position:sticky; top:0; z-index:20; background:rgba(26,26,26,0.92); backdrop-filter:blur(8px); padding:12px 0; border-bottom:1px solid rgba(191,87,0,0.18); margin-bottom:22px; }
+.ag-filters{ display:flex; gap:8px; flex-wrap:wrap; }
+.ag-filter{ border:1px solid rgba(191,87,0,0.3); background:rgba(255,255,255,0.03); border-radius:999px; padding:8px 14px; cursor:pointer; font-family:'Roboto Mono',monospace; font-size:11.5px; letter-spacing:0.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); transition:background 0.2s,border-color 0.2s,color 0.2s; }
+.ag-filter:hover{ border-color:rgba(191,87,0,0.6); color:white; }
+.ag-filter.active{ background:var(--burnt-orange); border-color:var(--burnt-orange); color:white; }
+.ag-cards{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; align-items:stretch; }
+.ag-card{ background:rgba(255,255,255,0.04); border:1px solid rgba(191,87,0,0.2); border-radius:6px; overflow:hidden; transition:transform 0.22s,box-shadow 0.22s,border-color 0.22s; display:flex; flex-direction:column; height:100%; }
+.ag-card:hover{ transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.4); border-color:rgba(191,87,0,0.5); }
+.ag-card.ag-hidden{ display:none; }
+.ag-card-img{ height:160px; overflow:hidden; background:#0a0a0a; }
+.ag-card-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.ag-card-body{ padding:16px 18px 18px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.ag-meta{ display:flex; justify-content:space-between; gap:8px; font-family:'Roboto Mono',monospace; font-size:10.5px; letter-spacing:0.5px; text-transform:uppercase; color:var(--gold); }
+.ag-card h3{ font-family:'Playfair Display',serif; font-size:17px; color:white; margin:0; line-height:1.25; }
+.ag-card p{ margin:0; font-size:13.5px; color:rgba(255,255,255,0.55); line-height:1.6; }
+.ag-caveat{ font-size:12.5px !important; color:rgba(255,255,255,0.45) !important; background:rgba(255,255,255,0.03); border-left:2px solid var(--burnt-orange); border-radius:3px; padding:8px 10px; }
+.ag-card-actions{ display:flex; gap:8px; margin-top:auto; padding-top:6px; }
+.ag-card-actions a{ flex:1; text-align:center; text-decoration:none; border:1px solid rgba(191,87,0,0.3); border-radius:4px; padding:8px 7px; font-size:12px; font-weight:600; font-family:'Roboto Mono',monospace; letter-spacing:0.3px; color:rgba(255,255,255,0.75); transition:background 0.2s,border-color 0.2s; }
+.ag-card-actions a:first-child{ background:var(--burnt-orange); color:white; border-color:var(--burnt-orange); }
+.ag-card-actions a:hover{ border-color:var(--gold); }
+.ag-credit{ font-size:10.5px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.ag-credit a{ color:rgba(255,255,255,0.3); }
+.ag-map-card{ background:rgba(255,255,255,0.04); border:1px solid rgba(191,87,0,0.2); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; height:100%; min-height:300px; }
+.ag-map{ flex:1 1 auto; min-height:220px; width:100%; }
+.ag-map-caption{ flex:0 0 auto; padding:10px 14px; font-size:11px; color:rgba(255,255,255,0.4); border-top:1px solid rgba(191,87,0,0.18); font-family:'Roboto Mono',monospace; }
+.ag-embed .leaflet-popup-content-wrapper,
+.ag-embed .leaflet-popup-tip{ background:#1A1A1A; color:rgba(255,255,255,0.85); }
+.ag-embed .leaflet-popup-content{ margin:10px 12px; min-width:210px; }
+.ag-popup-img{ width:100%; height:105px; object-fit:cover; border-radius:4px; margin-bottom:6px; }
+.ag-popup-name{ font-weight:700; font-family:'Playfair Display',serif; font-size:15px; margin-bottom:3px; color:white; }
+.ag-popup-meta{ font-size:11.5px; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+.ag-popup-links{ display:flex; gap:8px; }
+.ag-popup-links a{ font-weight:700; font-size:11.5px; color:var(--gold); text-decoration:none; }
+@media(max-width:960px){
+  .ag-cards{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .ag-quick-notes{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:640px){
+  .ag-cards{ grid-template-columns:1fr; }
+  .ag-quick-notes{ grid-template-columns:1fr; }
+  .ag-map-card{ min-height:340px; }
+}
+
+</style>
 </head>
 <body>
 
@@ -1354,7 +1408,7 @@ footer {
             <div class="stat-desc">U.S. Research Reactors</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">50+</div>
+            <div class="stat-num">60+</div>
             <div class="stat-desc">Expected Attendees</div>
           </div>
           <div class="stat-card">
@@ -1362,7 +1416,7 @@ footer {
             <div class="stat-desc">Days of Technical Sessions</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">55+</div>
+            <div class="stat-num">55</div>
             <div class="stat-desc">Papers &amp; Presentations</div>
           </div>
         </div>
@@ -1568,6 +1622,7 @@ footer {
       12:00 p.m. Registration opens<br>
       12:30 p.m. TRTR Executive Committee meeting<br>
       2:00 p.m. ANSI/ANS Standards Committee meeting<br>
+      5:00 p.m. Applications Forum: Digital Twin Applications for Research Reactors, MMRs, and SMRs<br>
       7:00 p.m. Welcome Social<br><br>
     </div>
 <!-- DAY 1 -->
@@ -2615,6 +2670,332 @@ function progShowDay(day, btn) {
   </div>
 </section>
 
+<!-- SPOUSES / GUESTS / FREE TIME -->
+<section id="austin-guests" style="background:var(--dark); position:relative; overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 30%, rgba(191,87,0,0.14) 0%, transparent 65%);pointer-events:none;"></div>
+  <div class="section-inner" style="position:relative;z-index:2;">
+    <span class="section-tag" style="color:var(--gold)">For Your Companions</span>
+    <h2 class="section-title" style="color:white;">Activities for Spouses, Guests &amp; Free Time</h2>
+    <div class="divider"></div>
+    <p class="section-lead" style="color:rgba(255,255,255,0.55); margin-bottom:36px;">
+      Traveling with a spouse, family, or just have open hours between sessions? Austin's museums, gardens, and Hill Country day trips make for an easy, walkable or short-drive itinerary. Filter by what you're after, or browse the map &mdash; hours, tickets, and closures change, so confirm details on each official site before you go.
+    </p>
+
+<div class="ag-embed">
+  <div class="ag-quick-notes">
+    <div class="ag-note"><b>&#9728;&#65039; September is still warm.</b>Put gardens, Zilker, campus walks and overlooks in the morning or near sunset; use museums midday.</div>
+    <div class="ag-note"><b>&#128197; Monday, Sept. 21.</b>Several UT-area museums are normally closed Monday, so favor the Capitol, LBJ Library, downtown sights or outdoor stops.</div>
+    <div class="ag-note"><b>&#127946; Thursday, Sept. 24.</b>Barton Springs&#x27; current Thursday cleaning closure is 9 a.m.&ndash;7 p.m.; evening guarded swim resumes afterward.</div>
+    <div class="ag-note"><b>&#127963;&#65039; Sunday, Sept. 20 is Austin Museum Day.</b>Free admission at more than 30 participating greater-Austin museums and cultural institutions &mdash; a great option before the conference kicks off.</div>
+    <div class="ag-note"><b>&#127909; Fantastic Fest overlaps the conference.</b>Running September 17&ndash;24, 2026, it&#x27;s one of Austin&#x27;s major film festivals &mdash; horror, sci-fi, fantasy and offbeat cinema &mdash; for a genuinely Austin evening out.</div>
+    <div class="ag-note"><b>&#128690; Dockless e-scooters are everywhere downtown.</b>Download the Bird or Lime app to locate, unlock and pay. Availability and rates vary; park only in designated areas and observe UT pedestrian-zone restrictions.</div>
+  </div>
+  <div class="ag-controls">
+    <div class="ag-filters">
+      <button class="ag-filter active" data-ag-filter="all">All</button>
+      <button class="ag-filter" data-ag-filter="walkable">Walkable</button>
+      <button class="ag-filter" data-ag-filter="indoor">Indoor</button>
+      <button class="ag-filter" data-ag-filter="outdoor">Outdoor</button>
+      <button class="ag-filter" data-ag-filter="museum">Museums</button>
+      <button class="ag-filter" data-ag-filter="ut">UT Campus</button>
+      <button class="ag-filter" data-ag-filter="zilker">Zilker Area</button>
+      <button class="ag-filter" data-ag-filter="halfday">Half-Day Trips</button>
+      <button class="ag-filter" data-ag-filter="family">Family-Friendly</button>
+    </div>
+  </div>
+    <div class="ag-cards">
+      <article class="ag-card" data-ag-tags="walkable outdoor evening" id="ag-bats">
+        <div class="ag-card-img"><img src="images/congress_avenue_bats.webp" alt="Congress Avenue Bridge Bats" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Austin classic</span><span>~0.4 mi</span></div>
+          <h3>Congress Avenue Bridge Bats</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Outside.</b> One of Austin’s signature evening experiences: watch Mexican free-tailed bats emerge over Lady Bird Lake.</p>
+          <p class="ag-caveat">September is still bat season and can be excellent, but emergence timing and visibility are weather-dependent. Go before sunset.</p>
+          <div class="ag-card-actions">
+            <a href="https://tpwd.texas.gov/huntwild/wild/species/bats/bat-watching-sites/congress-avenue-bridge.phtml" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Ann+W+Richards+Congress+Avenue+Bridge+Austin+TX" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Congress_Avenue_Bats.jpg" target="_blank" rel="noopener">Capvideo</a> &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></div>
+        </div>
+      </article>
+      <div class="ag-map-card">
+        <div id="austin-guide-map" class="ag-map" aria-label="Map of Austin attractions"></div>
+        <div class="ag-map-caption">Orange = conference base &middot; Blue = attractions &middot; Tap a dot for details.</div>
+      </div>
+      <article class="ag-card" data-ag-tags="walkable indoor museum history" id="ag-ohenry">
+        <div class="ag-card-img"><img src="images/o_henry_museum.webp" alt="O. Henry Museum" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Downtown history</span><span>~0.3 mi</span></div>
+          <h3>O. Henry Museum</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Mostly inside.</b> Small, free historic house museum devoted to writer William Sydney Porter, better known as O. Henry.</p>
+          <p class="ag-caveat">A compact stop—easy to pair with the Susanna Dickinson Museum next door.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.austintexas.gov/o-henry" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=409+E+5th+St+Austin+TX+78701" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:O_henry_museum_2007.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="walkable indoor museum history" id="ag-dickinson">
+        <div class="ag-card-img"><img src="images/susanna_dickinson_museum.webp" alt="Susanna Dickinson Museum" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Texas history</span><span>~0.3 mi</span></div>
+          <h3>Susanna Dickinson Museum</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Mostly inside.</b> Free downtown museum centered on Susanna Dickinson, survivor and messenger of the Alamo.</p>
+          <p class="ag-caveat">Small museum; combine it with O. Henry Museum and downtown sightseeing.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.austintexas.gov/dickinson" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=411+E+5th+St+Austin+TX+78701" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Susanna_Dickinson_Museum_-_Austin,_Texas_-_DSC09162.jpg" target="_blank" rel="noopener">Daderot</a> &middot; <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="walkable indoor museum art" id="ag-mexicarte">
+        <div class="ag-card-img"><img src="images/mexic_arte.webp" alt="Mexic-Arte Museum" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Art museum</span><span>~0.4 mi</span></div>
+          <h3>Mexic-Arte Museum</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Inside.</b> Mexican, Mexican-American and Latin American art in the heart of downtown.</p>
+          <p class="ag-caveat">Sunday admission is normally free; always verify current exhibit installation/closure notices before going.</p>
+          <div class="ag-card-actions">
+            <a href="https://mexic-artemuseum.org/visit/" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=419+Congress+Ave+Austin+TX+78701" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Mexic_arte_storefront_2012.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="walkable indoor architecture views" id="ag-library">
+        <div class="ag-card-img"><img src="images/austin_central_library.webp" alt="Austin Central Library" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Architecture / views</span><span>~0.8 mi</span></div>
+          <h3>Austin Central Library</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Inside + rooftop.</b> A destination library with dramatic modern architecture, art, reading terraces and a rooftop garden.</p>
+          <p class="ag-caveat">A particularly good hot-afternoon break; save the rooftop for a cooler part of the day.</p>
+          <div class="ag-card-actions">
+            <a href="https://library.austintexas.gov/central-library" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=710+W+Cesar+Chavez+St+Austin+TX+78701" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Austin_Central_Library_-_Shoal_Creek_(54987420998).jpg" target="_blank" rel="noopener">Ajay Suresh</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="walkable indoor outdoor history free" id="ag-capitol">
+        <div class="ag-card-img"><img src="images/texas_capitol.webp" alt="Texas State Capitol + Visitors Center" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Austin essential</span><span>~1.0 mi</span></div>
+          <h3>Texas State Capitol + Visitors Center</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Both.</b> Tour the Capitol, rotunda and grounds; add the historic Capitol Visitors Center on the southeast corner.</p>
+          <p class="ag-caveat">Free guided Capitol tours are offered periodically. Expect security screening.</p>
+          <div class="ag-card-actions">
+            <a href="https://tspb.texas.gov/plan/tours/tours.html" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=1100+Congress+Ave+Austin+TX+78701" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Texas_State_Capitol_front.jpg" target="_blank" rel="noopener">chascar</a> &middot; <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="indoor museum history" id="ag-bullock">
+        <div class="ag-card-img"><img src="images/bullock_museum.webp" alt="Bullock Texas State History Museum" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>History museum</span><span>~1.4 mi</span></div>
+          <h3>Bullock Texas State History Museum</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Inside.</b> Three floors of Texas history plus special exhibitions and an IMAX theater.</p>
+          <p class="ag-caveat">Excellent midday indoor choice; convenient to the Capitol and UT museums.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.thestoryoftexas.com/visit" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=1800+Congress+Ave+Austin+TX+78701" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Texas_state_history_museum.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="indoor museum art ut" id="ag-blanton">
+        <div class="ag-card-img"><img src="images/blanton.webp" alt="Blanton Museum of Art" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Art museum</span><span>~1.5 mi</span></div>
+          <h3>Blanton Museum of Art</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Mostly inside.</b> UT Austin’s major art museum, with a broad collection and the distinctive Ellsworth Kelly building, Austin.</p>
+          <p class="ag-caveat">Closed Mondays under the current schedule; pair with the UT campus walk.</p>
+          <div class="ag-card-actions">
+            <a href="https://blantonmuseum.org/visit/" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=200+E+Martin+Luther+King+Jr+Blvd+Austin+TX+78712" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Lobby_-_Blanton_Museum_of_Art_-_Austin,_Texas_-_DSC08218.jpg" target="_blank" rel="noopener">Daderot</a> &middot; <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="indoor museum ut history free" id="ag-ransom">
+        <div class="ag-card-img"><img src="images/harry_ransom_center.webp" alt="Harry Ransom Center" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Museum / archive</span><span>~1.7 mi</span></div>
+          <h3>Harry Ransom Center</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Inside.</b> Free UT museum and archive with rotating exhibitions in literature, photography, film and cultural history.</p>
+          <p class="ag-caveat">Exhibition galleries are currently closed Mondays; check the current exhibition before visiting.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.hrc.utexas.edu/visit/" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=300+W+21st+St+Austin+TX+78712" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Harry_ransom_center_2012.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="indoor museum science ut family" id="ag-science">
+        <div class="ag-card-img"><img src="images/texas_science_natural_history.webp" alt="Texas Science &amp; Natural History Museum" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Science museum</span><span>~2.0 mi</span></div>
+          <h3>Texas Science &amp; Natural History Museum</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Inside.</b> Dinosaurs, fossils, geology and Texas natural history on the UT campus.</p>
+          <p class="ag-caveat">Closed Mondays under the current schedule; a strong family-friendly indoor option.</p>
+          <div class="ag-card-actions">
+            <a href="https://sciencemuseum.utexas.edu/" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=2400+Trinity+St+Austin+TX+78712" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Texas_memorial_museum_west_elevation.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor ut art free" id="ag-uttour">
+        <div class="ag-card-img"><img src="images/ut_tower.webp" alt="UT Tower, Statues &amp; Landmarks Walk" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Campus / public art</span><span>~1.7 mi</span></div>
+          <h3>UT Tower, Statues &amp; Landmarks Walk</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Outside.</b> Walk the Tower and South Mall, Littlefield Fountain, Battle Oaks, campus sculptures and major statues including MLK Jr. and Barbara Jordan.</p>
+          <p class="ag-caveat">September can still be hot; do the outdoor loop early or late and duck into nearby museums midday.</p>
+          <div class="ag-card-actions">
+            <a href="https://landmarks.utexas.edu/" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=UT+Tower+Austin+TX" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:UT_tower_with_fountain.jpg" target="_blank" rel="noopener">Angr</a> &middot; <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener">Public domain</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="indoor museum history ut" id="ag-lbj">
+        <div class="ag-card-img"><img src="images/lbj_library.webp" alt="LBJ Presidential Library" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Presidential history</span><span>~2.2 mi</span></div>
+          <h3>LBJ Presidential Library</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Inside.</b> A strong overview of Lyndon B. Johnson, civil rights, the Great Society, Vietnam and the 1960s presidency.</p>
+          <p class="ag-caveat">Current hours are daily; Tuesday admission is currently half-price. Check current ticketing before your visit.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.lbjlibrary.org/visit" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=2313+Red+River+St+Austin+TX+78705" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:LBJ_Presidential_LIbrary_-_UT_Austin_(54984753236).jpg" target="_blank" rel="noopener">Ajay Suresh</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor museum art zilker" id="ag-umlauf">
+        <div class="ag-card-img"><img src="images/umlauf.webp" alt="UMLAUF Sculpture Garden + Museum" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Sculpture garden</span><span>~2.3 mi</span></div>
+          <h3>UMLAUF Sculpture Garden + Museum</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Mostly outside.</b> A compact, shaded sculpture garden and museum immediately east of Zilker Park.</p>
+          <p class="ag-caveat">Best in the morning or late afternoon; currently closed Mondays.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.umlaufsculpture.org/visit" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=605+Azie+Morton+Rd+Austin+TX+78704" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Umlauf_garden1_2006.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor garden zilker family" id="ag-zilker">
+        <div class="ag-card-img"><img src="images/zilker.webp" alt="Zilker Botanical Garden" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Garden</span><span>~2.6 mi</span></div>
+          <h3>Zilker Botanical Garden</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Outside.</b> Japanese garden, koi ponds, streams, live oaks, rose garden and the Hartman Prehistoric Garden.</p>
+          <p class="ag-caveat">Late September is not peak spring bloom season, but the Japanese garden, ponds and landscape remain worthwhile. Go early.</p>
+          <div class="ag-card-actions">
+            <a href="https://zilkergarden.org/" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=2220+Barton+Springs+Rd+Austin+TX+78746" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Isamu_Taniguchi_Japanese_Garden_-_Zilker_Botanical_Garden_-_Austin,_Texas_-_DSC09089.jpg" target="_blank" rel="noopener">Daderot</a> &middot; <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor science zilker family free" id="ag-nature">
+        <div class="ag-card-img"><img src="images/austin_nature_science_center.webp" alt="Austin Nature &amp; Science Center" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Nature / family</span><span>~2.8 mi</span></div>
+          <h3>Austin Nature &amp; Science Center</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Both, mostly outside.</b> Hands-on nature exhibits, rescued wildlife, trails and the popular Dino Pit on the western edge of Zilker Park.</p>
+          <p class="ag-caveat">Much of the experience is outdoors; combine with Zilker Botanical Garden in the morning.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.austintexas.gov/parks/locations/austin-nature-and-science-center" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=2389+Stratford+Dr+Austin+TX+78746" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Austin_nature_center_entrance.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor zilker swim" id="ag-barton">
+        <div class="ag-card-img"><img src="images/barton_springs.webp" alt="Barton Springs Pool" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Austin classic</span><span>~2.5 mi</span></div>
+          <h3>Barton Springs Pool</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Outside.</b> Austin’s spring-fed three-acre pool, typically 68–70°F year-round.</p>
+          <p class="ag-caveat">Thursday, Sept. 24: current schedule closes the pool for cleaning 9 a.m.–7 p.m.; guarded swimming resumes 7–10 p.m.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.austintexas.gov/services/visit-barton-springs-pool" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Barton+Springs+Pool+Austin+TX" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Aerial_image_of_Barton_springs_pool_in_Austin,_TX.jpg" target="_blank" rel="noopener">Microbesandmuck27</a> &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor views free" id="ag-bonnell">
+        <div class="ag-card-img"><img src="images/mount_bonnell.webp" alt="Mount Bonnell" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Scenic overlook</span><span>~6 mi</span></div>
+          <h3>Mount Bonnell</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Outside.</b> Short stair climb to a classic overlook of Lake Austin and the Hill Country.</p>
+          <p class="ag-caveat">Best early morning or near sunset. The climb involves stairs and September afternoons may be hot.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.austintexas.gov/parks/programs/historic-austin-parks" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Mount+Bonnell+Austin+TX" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Mount_Bonnell_2008.jpg" target="_blank" rel="noopener">Leaflet</a> &middot; <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener">Public domain</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor garden halfday" id="ag-wildflower">
+        <div class="ag-card-img"><img src="images/wildflower_center.webp" alt="Lady Bird Johnson Wildflower Center" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Native garden</span><span>~12 mi</span></div>
+          <h3>Lady Bird Johnson Wildflower Center</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Mostly outside.</b> UT Austin’s native-plant botanic garden, with designed gardens, arboretum and trails.</p>
+          <p class="ag-caveat">September is not bluebonnet season; visit for native landscapes rather than spring wildflower fields.</p>
+          <div class="ag-card-actions">
+            <a href="https://www.wildflower.org/visit" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=4801+La+Crosse+Ave+Austin+TX+78739" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Lady_Bird_Johnson_Wildflower_Center.jpg" target="_blank" rel="noopener">Margaretwmiller</a> &middot; <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="outdoor park halfday" id="ag-mckinney">
+        <div class="ag-card-img"><img src="images/mckinney_falls.webp" alt="McKinney Falls State Park" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>State park</span><span>~10 mi</span></div>
+          <h3>McKinney Falls State Park</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Outside.</b> Limestone falls, trails, swimming areas and historic sites surprisingly close to downtown Austin.</p>
+          <p class="ag-caveat">Water level and swimming conditions depend on recent rainfall; reservations are wise because the park can reach capacity.</p>
+          <div class="ag-card-actions">
+            <a href="https://tpwd.texas.gov/state-parks/mckinney-falls" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=McKinney+Falls+State+Park+Austin+TX" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:McKinney_Falls_SP_Entrance.jpg" target="_blank" rel="noopener">Larry D. Moore</a> &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+        </div>
+      </article>
+      <article class="ag-card" data-ag-tags="indoor halfday family" id="ag-innerspace">
+        <div class="ag-card-img"><img src="images/inner_space_cavern.webp" alt="Inner Space Cavern – Georgetown" loading="lazy"></div>
+        <div class="ag-card-body">
+          <div class="ag-meta"><span>Cavern / half-day</span><span>~28 mi</span></div>
+          <h3>Inner Space Cavern – Georgetown</h3>
+          <p><b style="color:rgba(255,255,255,0.75);">Underground.</b> Large limestone cavern just north of Austin with guided tours and formations discovered during I-35 construction.</p>
+          <p class="ag-caveat">The cave stays about 72°F but feels warmer because of humidity. Sept. 20–25 hours are on the post-summer schedule.</p>
+          <div class="ag-card-actions">
+            <a href="https://innerspacecavern.com/hours-and-directions/" target="_blank" rel="noopener">Official site</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=4200+S+I-35+Frontage+Rd+Georgetown+TX+78626" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <div class="ag-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Innerspace_cavern0700.jpg" target="_blank" rel="noopener">Rvassar</a> &middot; <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></div>
+        </div>
+      </article>
+    </div>
+</div>
+
+  </div>
+</section>
+
+
+
 <!-- SPONSORS -->
 <section id="sponsors">
   <div class="section-inner">
@@ -2715,18 +3096,6 @@ function progShowDay(day, btn) {
           <img src="images/SPONSOR_LOGO_MU_UnitSig_ResearchReactor_rgb_rev_horiz.png" alt="University of Missouri Research Reactor logo">
         </div>
         <div class="spc-name">MURR</div>
-      </a>
-
-      <!-- Elemental Nuclear / NuCore Isotopes — Uranium -->
-      <a href="https://www.nucore-isotopes.com/" target="_blank" rel="noopener noreferrer" class="spc spc-uranium">
-        <div class="spc-header">
-          <div class="spc-tier">☢ Uranium</div>
-        </div>
-        <div class="spc-logo-wrap spc-logo-wrap--dual">
-          <img src="images/Elemental_Logo.png" alt="Elemental Nuclear logo">
-          <img src="images/NuCore_Logo.png" alt="NuCore Isotopes logo">
-        </div>
-        <div class="spc-name">Elemental Nuclear / NuCore Isotopes</div>
       </a>
 
       <!-- ── GOLD ── -->
@@ -3164,6 +3533,60 @@ function progShowDay(day, btn) {
     <h2 class="section-title">Research Reactor Applications Forum</h2>
     <div class="divider"></div>
 
+    <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--dark);margin-bottom:6px;text-align:center;">Confirmed Forum Sessions</h3>
+    <p style="text-align:center;font-size:14px;color:var(--mid);margin-bottom:32px;">Confirmed Forum sessions appear below and will be included in the printed program. Additional sessions will be added as the program is finalized.</p>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+    ACCEPTED BREAKOUT SESSIONS CONTAINER
+    ─────────────────────────────────────────────────────────────────────────
+    TO ADD AN ACCEPTED SESSION:
+      1. Copy the block between "COPY FROM HERE" and "TO HERE" below.
+      2. Paste it just before the closing </div> of breakout-accepted-container.
+      3. Replace the topic title and <li> objectives with the accepted content.
+      4. Delete the <div class="breakout-placeholder-badge"> line (confirmed sessions
+         do not show the "Example — Pending Acceptance" badge).
+    ─────────────────────────────────────────────────────────────────────────
+    COPY FROM HERE ↓↓↓
+    ─────────────────────────────────────────────────────────────────────────
+    <div class="breakout-unit fade-up">
+      <div class="breakout-unit-topic">Session Topic Title Goes Here</div>
+      <ul class="breakout-unit-objectives">
+        <li>Objective one — what participants will accomplish or decide.</li>
+        <li>Objective two — a second outcome for this session.</li>
+        <li>Objective three — a third outcome (optional).</li>
+        <li>Objective four — a fourth outcome (optional, max 4).</li>
+      </ul>
+    </div>
+    ─────────────────────────────────────────────────────────────────────────
+    TO HERE ↑↑↑
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div class="breakout-accepted-container" id="breakout-accepted">
+
+      <!-- ── PASTE ADDITIONAL ACCEPTED .breakout-unit BLOCKS HERE ── -->
+
+      <div class="breakout-unit fade-up">
+        <div style="font-family:'Roboto Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--burnt-orange);margin-bottom:6px;">Monday, September 21 · 5:00 – 6:00 PM</div>
+        <div class="breakout-unit-topic">Digital Twin Applications for Research Reactors, MMRs, and SMRs</div>
+        <div style="font-size:13px;color:var(--mid);font-weight:600;margin-bottom:12px;">Facilitator: Nick Luciano — <a href="mailto:nicholas.luciano@austin.utexas.edu" style="color:var(--burnt-orange);font-weight:600;">nicholas.luciano@austin.utexas.edu</a></div>
+        <p style="font-size:14px;color:var(--charcoal);line-height:1.7;margin:0 0 14px 0;">
+          A digital twin is a dynamic virtual representation of a physical reactor that combines operating data with models to reflect reactor behavior. Digital twins can help researchers and operators better understand performance, test scenarios, anticipate maintenance needs, and support safer, more efficient operation. These capabilities are increasingly relevant to research reactors as well as emerging small modular reactors (SMRs) and microreactors (MMRs).
+        </p>
+        <p style="font-size:14px;color:var(--charcoal);line-height:1.7;margin:0 0 14px 0;">
+          This meeting will explore launching a consortium where the research reactor community can help one another develop digital twins, share lessons learned, exchange ideas and tools, and identify opportunities for joint projects. The TRTR session will serve as a kickoff presentation and discussion for anyone interested in shaping this collaborative effort.
+        </p>
+      </div>
+
+      <div class="breakout-unit fade-up">
+        <div style="font-family:'Roboto Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--burnt-orange);margin-bottom:6px;">Tuesday, September 22 · 5:00 – 6:00 PM <em style="font-size:12px; opacity:0.7;">(Tentative)</em></div>
+        <div class="breakout-unit-topic">MMR/SMR Regulation</div>
+        <div style="font-size:13px;color:var(--mid);font-weight:600;margin-bottom:12px;">Facilitator: Ryan Marcum — <a href="mailto:marcum@icoperative.com" style="color:var(--burnt-orange);font-weight:600;">marcum@icoperative.com</a></div>
+        <p style="font-size:14px;color:var(--charcoal);line-height:1.7;margin:0;">
+          Part 57's flexible framework can seem ambiguous — but it can also create valuable design and licensing flexibility. This TRTR Forum will connect microreactor developers with research-reactor licensees who have decades of experience building credible, right-sized licensing bases within similarly tailored regulatory frameworks.
+        </p>
+      </div>
+
+    </div><!-- /breakout-accepted-container -->
+
     <!-- ── INTRO ── -->
     <div class="fade-up" style="max-width:780px;margin:0 auto 52px;">
 
@@ -3286,52 +3709,6 @@ function progShowDay(day, btn) {
       </div>
 
     </div><!-- /instructional text -->
-
-    <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--dark);margin-bottom:6px;text-align:center;">Confirmed Forum Sessions</h3>
-    <p style="text-align:center;font-size:14px;color:var(--mid);margin-bottom:32px;">Confirmed Forum sessions appear below and will be included in the printed program. Additional sessions will be added as the program is finalized.</p>
-
-    <!-- ═══════════════════════════════════════════════════════════════════════
-    ACCEPTED BREAKOUT SESSIONS CONTAINER
-    ─────────────────────────────────────────────────────────────────────────
-    TO ADD AN ACCEPTED SESSION:
-      1. Copy the block between "COPY FROM HERE" and "TO HERE" below.
-      2. Paste it just before the closing </div> of breakout-accepted-container.
-      3. Replace the topic title and <li> objectives with the accepted content.
-      4. Delete the <div class="breakout-placeholder-badge"> line (confirmed sessions
-         do not show the "Example — Pending Acceptance" badge).
-    ─────────────────────────────────────────────────────────────────────────
-    COPY FROM HERE ↓↓↓
-    ─────────────────────────────────────────────────────────────────────────
-    <div class="breakout-unit fade-up">
-      <div class="breakout-unit-topic">Session Topic Title Goes Here</div>
-      <ul class="breakout-unit-objectives">
-        <li>Objective one — what participants will accomplish or decide.</li>
-        <li>Objective two — a second outcome for this session.</li>
-        <li>Objective three — a third outcome (optional).</li>
-        <li>Objective four — a fourth outcome (optional, max 4).</li>
-      </ul>
-    </div>
-    ─────────────────────────────────────────────────────────────────────────
-    TO HERE ↑↑↑
-    ═══════════════════════════════════════════════════════════════════════ -->
-    <div class="breakout-accepted-container" id="breakout-accepted">
-
-      <!-- ── PLACEHOLDER UNIT — shows until first accepted session is added ── -->
-      <div class="breakout-unit fade-up">
-        <div class="breakout-placeholder-badge">Example — Pending Acceptance</div>
-        <div class="breakout-unit-topic">Reactor Digital Twins — Architecture, Data Infrastructure &amp; Lessons Learned</div>
-        <ul class="breakout-unit-objectives">
-          <li>Understand the sensor, data streaming, and computing infrastructure required to build a physics-informed reactor digital twin.</li>
-          <li>Assess realistic staffing, licensing, and budget requirements for initiating a similar program at your facility.</li>
-          <li>Review integration challenges with legacy control systems and how they were addressed at UT-NETL.</li>
-          <li>Identify agency and national laboratory partners that can accelerate digital twin development for research reactors.</li>
-        </ul>
-      </div>
-      <!-- ── END PLACEHOLDER UNIT ── -->
-
-      <!-- ── PASTE ADDITIONAL ACCEPTED .breakout-unit BLOCKS HERE ── -->
-
-    </div><!-- /breakout-accepted-container -->
 
     <!-- ── DEADLINE COUNTDOWN + PHASE SWITCHER ── -->
     <div id="bk-countdown-strip" class="bk-deadline-strip fade-up">
@@ -5094,6 +5471,80 @@ function submitVote() {
 
 // ── RUN ON LOAD
 document.addEventListener('DOMContentLoaded', function() { bkInitPhase(); });
+</script>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+ integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+
+(function() {
+  var agPlaces = [{"id": "bats", "name": "Congress Avenue Bridge Bats", "category": "Austin classic", "indoor_outdoor": "Outside", "distance": "~0.4 mi", "distance_num": 0.4, "address": "Ann W. Richards Congress Avenue Bridge, Austin, TX 78701", "lat": 30.2608, "lon": -97.745, "image": "assets/images/congress_avenue_bats.webp", "credit_key": "congress_avenue_bats.jpg", "official_url": "https://tpwd.texas.gov/huntwild/wild/species/bats/bat-watching-sites/congress-avenue-bridge.phtml", "maps_url": "https://www.google.com/maps/search/?api=1&query=Ann+W+Richards+Congress+Avenue+Bridge+Austin+TX", "tags": ["walkable", "outdoor", "evening"], "description": "One of Austin’s signature evening experiences: watch Mexican free-tailed bats emerge over Lady Bird Lake.", "caveat": "September is still bat season and can be excellent, but emergence timing and visibility are weather-dependent. Go before sunset.", "photo": {"author": "Capvideo", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Congress_Avenue_Bats.jpg"}}, {"id": "ohenry", "name": "O. Henry Museum", "category": "Downtown history", "indoor_outdoor": "Mostly inside", "distance": "~0.3 mi", "distance_num": 0.3, "address": "409 E 5th St, Austin, TX 78701", "lat": 30.26578, "lon": -97.73892, "image": "assets/images/o_henry_museum.webp", "credit_key": "o_henry_museum.jpg", "official_url": "https://www.austintexas.gov/o-henry", "maps_url": "https://www.google.com/maps/search/?api=1&query=409+E+5th+St+Austin+TX+78701", "tags": ["walkable", "indoor", "museum", "history"], "description": "Small, free historic house museum devoted to writer William Sydney Porter, better known as O. Henry.", "caveat": "A compact stop—easy to pair with the Susanna Dickinson Museum next door.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:O_henry_museum_2007.jpg"}}, {"id": "dickinson", "name": "Susanna Dickinson Museum", "category": "Texas history", "indoor_outdoor": "Mostly inside", "distance": "~0.3 mi", "distance_num": 0.3, "address": "411 E 5th St, Austin, TX 78701", "lat": 30.26584, "lon": -97.73877, "image": "assets/images/susanna_dickinson_museum.webp", "credit_key": "susanna_dickinson_museum.jpg", "official_url": "https://www.austintexas.gov/dickinson", "maps_url": "https://www.google.com/maps/search/?api=1&query=411+E+5th+St+Austin+TX+78701", "tags": ["walkable", "indoor", "museum", "history"], "description": "Free downtown museum centered on Susanna Dickinson, survivor and messenger of the Alamo.", "caveat": "Small museum; combine it with O. Henry Museum and downtown sightseeing.", "photo": {"author": "Daderot", "license": "CC0 1.0", "license_url": "https://creativecommons.org/publicdomain/zero/1.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Susanna_Dickinson_Museum_-_Austin,_Texas_-_DSC09162.jpg"}}, {"id": "mexicarte", "name": "Mexic-Arte Museum", "category": "Art museum", "indoor_outdoor": "Inside", "distance": "~0.4 mi", "distance_num": 0.4, "address": "419 Congress Ave, Austin, TX 78701", "lat": 30.2666, "lon": -97.74293, "image": "assets/images/mexic_arte.webp", "credit_key": "mexic_arte.jpg", "official_url": "https://mexic-artemuseum.org/visit/", "maps_url": "https://www.google.com/maps/search/?api=1&query=419+Congress+Ave+Austin+TX+78701", "tags": ["walkable", "indoor", "museum", "art"], "description": "Mexican, Mexican-American and Latin American art in the heart of downtown.", "caveat": "Sunday admission is normally free; always verify current exhibit installation/closure notices before going.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Mexic_arte_storefront_2012.jpg"}}, {"id": "library", "name": "Austin Central Library", "category": "Architecture / views", "indoor_outdoor": "Inside + rooftop", "distance": "~0.8 mi", "distance_num": 0.8, "address": "710 W César Chávez St, Austin, TX 78701", "lat": 30.26543, "lon": -97.75142, "image": "assets/images/austin_central_library.webp", "credit_key": "austin_central_library_commons.jpg", "official_url": "https://library.austintexas.gov/central-library", "maps_url": "https://www.google.com/maps/search/?api=1&query=710+W+Cesar+Chavez+St+Austin+TX+78701", "tags": ["walkable", "indoor", "architecture", "views"], "description": "A destination library with dramatic modern architecture, art, reading terraces and a rooftop garden.", "caveat": "A particularly good hot-afternoon break; save the rooftop for a cooler part of the day.", "photo": {"author": "Ajay Suresh", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Austin_Central_Library_-_Shoal_Creek_(54987420998).jpg"}}, {"id": "capitol", "name": "Texas State Capitol + Visitors Center", "category": "Austin essential", "indoor_outdoor": "Both", "distance": "~1.0 mi", "distance_num": 1.0, "address": "1100 Congress Ave, Austin, TX 78701", "lat": 30.27467, "lon": -97.74035, "image": "assets/images/texas_capitol.webp", "credit_key": "texas_capitol.jpg", "official_url": "https://tspb.texas.gov/plan/tours/tours.html", "maps_url": "https://www.google.com/maps/search/?api=1&query=1100+Congress+Ave+Austin+TX+78701", "tags": ["walkable", "indoor", "outdoor", "history", "free"], "description": "Tour the Capitol, rotunda and grounds; add the historic Capitol Visitors Center on the southeast corner.", "caveat": "Free guided Capitol tours are offered periodically. Expect security screening.", "photo": {"author": "chascar", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Texas_State_Capitol_front.jpg"}}, {"id": "bullock", "name": "Bullock Texas State History Museum", "category": "History museum", "indoor_outdoor": "Inside", "distance": "~1.4 mi", "distance_num": 1.4, "address": "1800 Congress Ave, Austin, TX 78701", "lat": 30.28013, "lon": -97.73935, "image": "assets/images/bullock_museum.webp", "credit_key": "bullock_museum.jpg", "official_url": "https://www.thestoryoftexas.com/visit", "maps_url": "https://www.google.com/maps/search/?api=1&query=1800+Congress+Ave+Austin+TX+78701", "tags": ["indoor", "museum", "history"], "description": "Three floors of Texas history plus special exhibitions and an IMAX theater.", "caveat": "Excellent midday indoor choice; convenient to the Capitol and UT museums.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Texas_state_history_museum.jpg"}}, {"id": "blanton", "name": "Blanton Museum of Art", "category": "Art museum", "indoor_outdoor": "Mostly inside", "distance": "~1.5 mi", "distance_num": 1.5, "address": "200 E Martin Luther King Jr Blvd, Austin, TX 78712", "lat": 30.28055, "lon": -97.7377, "image": "assets/images/blanton.webp", "credit_key": "blanton_commons.jpg", "official_url": "https://blantonmuseum.org/visit/", "maps_url": "https://www.google.com/maps/search/?api=1&query=200+E+Martin+Luther+King+Jr+Blvd+Austin+TX+78712", "tags": ["indoor", "museum", "art", "ut"], "description": "UT Austin’s major art museum, with a broad collection and the distinctive Ellsworth Kelly building, Austin.", "caveat": "Closed Mondays under the current schedule; pair with the UT campus walk.", "photo": {"author": "Daderot", "license": "CC0 1.0", "license_url": "https://creativecommons.org/publicdomain/zero/1.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Lobby_-_Blanton_Museum_of_Art_-_Austin,_Texas_-_DSC08218.jpg"}}, {"id": "ransom", "name": "Harry Ransom Center", "category": "Museum / archive", "indoor_outdoor": "Inside", "distance": "~1.7 mi", "distance_num": 1.7, "address": "300 W 21st St, Austin, TX 78712", "lat": 30.28428, "lon": -97.7413, "image": "assets/images/harry_ransom_center.webp", "credit_key": "harry_ransom_center_commons.jpg", "official_url": "https://www.hrc.utexas.edu/visit/", "maps_url": "https://www.google.com/maps/search/?api=1&query=300+W+21st+St+Austin+TX+78712", "tags": ["indoor", "museum", "ut", "history", "free"], "description": "Free UT museum and archive with rotating exhibitions in literature, photography, film and cultural history.", "caveat": "Exhibition galleries are currently closed Mondays; check the current exhibition before visiting.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Harry_ransom_center_2012.jpg"}}, {"id": "science", "name": "Texas Science & Natural History Museum", "category": "Science museum", "indoor_outdoor": "Inside", "distance": "~2.0 mi", "distance_num": 2.0, "address": "2400 Trinity St, Austin, TX 78712", "lat": 30.28678, "lon": -97.73225, "image": "assets/images/texas_science_natural_history.webp", "credit_key": "texas_science_natural_history.jpg", "official_url": "https://sciencemuseum.utexas.edu/", "maps_url": "https://www.google.com/maps/search/?api=1&query=2400+Trinity+St+Austin+TX+78712", "tags": ["indoor", "museum", "science", "ut", "family"], "description": "Dinosaurs, fossils, geology and Texas natural history on the UT campus.", "caveat": "Closed Mondays under the current schedule; a strong family-friendly indoor option.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Texas_memorial_museum_west_elevation.jpg"}}, {"id": "uttour", "name": "UT Tower, Statues & Landmarks Walk", "category": "Campus / public art", "indoor_outdoor": "Outside", "distance": "~1.7 mi", "distance_num": 1.7, "address": "The University of Texas at Austin, Austin, TX 78712", "lat": 30.2862, "lon": -97.73935, "image": "assets/images/ut_tower.webp", "credit_key": "ut_tower.jpg", "official_url": "https://landmarks.utexas.edu/", "maps_url": "https://www.google.com/maps/search/?api=1&query=UT+Tower+Austin+TX", "tags": ["outdoor", "ut", "art", "free"], "description": "Walk the Tower and South Mall, Littlefield Fountain, Battle Oaks, campus sculptures and major statues including MLK Jr. and Barbara Jordan.", "caveat": "September can still be hot; do the outdoor loop early or late and duck into nearby museums midday.", "photo": {"author": "Angr", "license": "Public domain", "license_url": "https://creativecommons.org/publicdomain/mark/1.0/", "source_url": "https://commons.wikimedia.org/wiki/File:UT_tower_with_fountain.jpg"}}, {"id": "lbj", "name": "LBJ Presidential Library", "category": "Presidential history", "indoor_outdoor": "Inside", "distance": "~2.2 mi", "distance_num": 2.2, "address": "2313 Red River St, Austin, TX 78705", "lat": 30.28545, "lon": -97.72932, "image": "assets/images/lbj_library.webp", "credit_key": "lbj_library_commons.jpg", "official_url": "https://www.lbjlibrary.org/visit", "maps_url": "https://www.google.com/maps/search/?api=1&query=2313+Red+River+St+Austin+TX+78705", "tags": ["indoor", "museum", "history", "ut"], "description": "A strong overview of Lyndon B. Johnson, civil rights, the Great Society, Vietnam and the 1960s presidency.", "caveat": "Current hours are daily; Tuesday admission is currently half-price. Check current ticketing before your visit.", "photo": {"author": "Ajay Suresh", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:LBJ_Presidential_LIbrary_-_UT_Austin_(54984753236).jpg"}}, {"id": "umlauf", "name": "UMLAUF Sculpture Garden + Museum", "category": "Sculpture garden", "indoor_outdoor": "Mostly outside", "distance": "~2.3 mi", "distance_num": 2.3, "address": "605 Azie Morton Rd, Austin, TX 78704", "lat": 30.26332, "lon": -97.7637, "image": "assets/images/umlauf.webp", "credit_key": "umlauf.jpg", "official_url": "https://www.umlaufsculpture.org/visit", "maps_url": "https://www.google.com/maps/search/?api=1&query=605+Azie+Morton+Rd+Austin+TX+78704", "tags": ["outdoor", "museum", "art", "zilker"], "description": "A compact, shaded sculpture garden and museum immediately east of Zilker Park.", "caveat": "Best in the morning or late afternoon; currently closed Mondays.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Umlauf_garden1_2006.jpg"}}, {"id": "zilker", "name": "Zilker Botanical Garden", "category": "Garden", "indoor_outdoor": "Outside", "distance": "~2.6 mi", "distance_num": 2.6, "address": "2220 Barton Springs Rd, Austin, TX 78746", "lat": 30.2695, "lon": -97.77215, "image": "assets/images/zilker.webp", "credit_key": "zilker_commons.jpg", "official_url": "https://zilkergarden.org/", "maps_url": "https://www.google.com/maps/search/?api=1&query=2220+Barton+Springs+Rd+Austin+TX+78746", "tags": ["outdoor", "garden", "zilker", "family"], "description": "Japanese garden, koi ponds, streams, live oaks, rose garden and the Hartman Prehistoric Garden.", "caveat": "Late September is not peak spring bloom season, but the Japanese garden, ponds and landscape remain worthwhile. Go early.", "photo": {"author": "Daderot", "license": "CC0 1.0", "license_url": "https://creativecommons.org/publicdomain/zero/1.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Isamu_Taniguchi_Japanese_Garden_-_Zilker_Botanical_Garden_-_Austin,_Texas_-_DSC09089.jpg"}}, {"id": "nature", "name": "Austin Nature & Science Center", "category": "Nature / family", "indoor_outdoor": "Both, mostly outside", "distance": "~2.8 mi", "distance_num": 2.8, "address": "2389 Stratford Dr, Austin, TX 78746", "lat": 30.27215, "lon": -97.7732, "image": "assets/images/austin_nature_science_center.webp", "credit_key": "austin_nature_science_center_commons.jpg", "official_url": "https://www.austintexas.gov/parks/locations/austin-nature-and-science-center", "maps_url": "https://www.google.com/maps/search/?api=1&query=2389+Stratford+Dr+Austin+TX+78746", "tags": ["outdoor", "science", "zilker", "family", "free"], "description": "Hands-on nature exhibits, rescued wildlife, trails and the popular Dino Pit on the western edge of Zilker Park.", "caveat": "Much of the experience is outdoors; combine with Zilker Botanical Garden in the morning.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Austin_nature_center_entrance.jpg"}}, {"id": "barton", "name": "Barton Springs Pool", "category": "Austin classic", "indoor_outdoor": "Outside", "distance": "~2.5 mi", "distance_num": 2.5, "address": "2131 William Barton Dr, Austin, TX 78746", "lat": 30.2637, "lon": -97.77085, "image": "assets/images/barton_springs.webp", "credit_key": "barton_springs_commons.jpg", "official_url": "https://www.austintexas.gov/services/visit-barton-springs-pool", "maps_url": "https://www.google.com/maps/search/?api=1&query=Barton+Springs+Pool+Austin+TX", "tags": ["outdoor", "zilker", "swim"], "description": "Austin’s spring-fed three-acre pool, typically 68–70°F year-round.", "caveat": "Thursday, Sept. 24: current schedule closes the pool for cleaning 9 a.m.–7 p.m.; guarded swimming resumes 7–10 p.m.", "photo": {"author": "Microbesandmuck27", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Barton_springs_pool_in_Austin,_TX.jpg"}}, {"id": "bonnell", "name": "Mount Bonnell", "category": "Scenic overlook", "indoor_outdoor": "Outside", "distance": "~6 mi", "distance_num": 6.0, "address": "3800 Mount Bonnell Rd, Austin, TX 78731", "lat": 30.32165, "lon": -97.77355, "image": "assets/images/mount_bonnell.webp", "credit_key": "mount_bonnell.jpg", "official_url": "https://www.austintexas.gov/parks/programs/historic-austin-parks", "maps_url": "https://www.google.com/maps/search/?api=1&query=Mount+Bonnell+Austin+TX", "tags": ["outdoor", "views", "free"], "description": "Short stair climb to a classic overlook of Lake Austin and the Hill Country.", "caveat": "Best early morning or near sunset. The climb involves stairs and September afternoons may be hot.", "photo": {"author": "Leaflet", "license": "Public domain", "license_url": "https://creativecommons.org/publicdomain/mark/1.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Mount_Bonnell_2008.jpg"}}, {"id": "wildflower", "name": "Lady Bird Johnson Wildflower Center", "category": "Native garden", "indoor_outdoor": "Mostly outside", "distance": "~12 mi", "distance_num": 12.0, "address": "4801 La Crosse Ave, Austin, TX 78739", "lat": 30.18577, "lon": -97.87343, "image": "assets/images/wildflower_center.webp", "credit_key": "wildflower_center.jpg", "official_url": "https://www.wildflower.org/visit", "maps_url": "https://www.google.com/maps/search/?api=1&query=4801+La+Crosse+Ave+Austin+TX+78739", "tags": ["outdoor", "garden", "halfday"], "description": "UT Austin’s native-plant botanic garden, with designed gardens, arboretum and trails.", "caveat": "September is not bluebonnet season; visit for native landscapes rather than spring wildflower fields.", "photo": {"author": "Margaretwmiller", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Lady_Bird_Johnson_Wildflower_Center.jpg"}}, {"id": "mckinney", "name": "McKinney Falls State Park", "category": "State park", "indoor_outdoor": "Outside", "distance": "~10 mi", "distance_num": 10.0, "address": "5808 McKinney Falls Pkwy, Austin, TX 78744", "lat": 30.18075, "lon": -97.72201, "image": "assets/images/mckinney_falls.webp", "credit_key": "mckinney_falls.jpg", "official_url": "https://tpwd.texas.gov/state-parks/mckinney-falls", "maps_url": "https://www.google.com/maps/search/?api=1&query=McKinney+Falls+State+Park+Austin+TX", "tags": ["outdoor", "park", "halfday"], "description": "Limestone falls, trails, swimming areas and historic sites surprisingly close to downtown Austin.", "caveat": "Water level and swimming conditions depend on recent rainfall; reservations are wise because the park can reach capacity.", "photo": {"author": "Larry D. Moore", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/", "source_url": "https://commons.wikimedia.org/wiki/File:McKinney_Falls_SP_Entrance.jpg"}}, {"id": "innerspace", "name": "Inner Space Cavern – Georgetown", "category": "Cavern / half-day", "indoor_outdoor": "Underground", "distance": "~28 mi", "distance_num": 28.0, "address": "4200 S I-35 Frontage Rd, Georgetown, TX 78626", "lat": 30.6077, "lon": -97.6879, "image": "assets/images/inner_space_cavern.webp", "credit_key": "inner_space_cavern.jpg", "official_url": "https://innerspacecavern.com/hours-and-directions/", "maps_url": "https://www.google.com/maps/search/?api=1&query=4200+S+I-35+Frontage+Rd+Georgetown+TX+78626", "tags": ["indoor", "halfday", "family"], "description": "Large limestone cavern just north of Austin with guided tours and formations discovered during I-35 construction.", "caveat": "The cave stays about 72°F but feels warmer because of humidity. Sept. 20–25 hours are on the post-summer schedule.", "photo": {"author": "Rvassar", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0/", "source_url": "https://commons.wikimedia.org/wiki/File:Innerspace_cavern0700.jpg"}}];
+  var agBase = {lat:30.26465, lon:-97.74118};
+
+  var agMap = L.map('austin-guide-map', {scrollWheelZoom:false});
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(agMap);
+
+  var agGroup = L.featureGroup().addTo(agMap);
+  var agHotel = L.circleMarker([agBase.lat, agBase.lon], {
+    radius:9, color:'#7b2500', weight:3, fillColor:'#bf5700', fillOpacity:1
+  }).bindPopup('<b>Conference base</b><br>Austin Marriott Downtown / Convention Center area');
+  agHotel.addTo(agGroup);
+
+  function agPopupHTML(p) {
+    return '<img class="ag-popup-img" src="' + p.image.replace('assets/images/', 'images/') + '" alt="">' +
+      '<div class="ag-popup-name">' + p.name + '</div>' +
+      '<div class="ag-popup-meta">' + p.indoor_outdoor + ' &middot; ' + p.distance + ' from Marriott</div>' +
+      '<div class="ag-popup-links"><a href="' + p.official_url + '" target="_blank" rel="noopener">Official site</a>' +
+      '<a href="' + p.maps_url + '" target="_blank" rel="noopener">Directions</a></div>';
+  }
+
+  var agMarkers = [];
+  agPlaces.forEach(function(p) {
+    var m = L.circleMarker([p.lat, p.lon], {
+      radius:7, color:'#fff', weight:2, fillColor:'#2f5d7c', fillOpacity:1
+    }).bindPopup(agPopupHTML(p));
+    m.agId = p.id;
+    m.addTo(agGroup);
+    agMarkers.push(m);
+  });
+  agMap.fitBounds(agGroup.getBounds().pad(0.08));
+
+  // The map card's height is set by CSS Grid stretch to match its row neighbors,
+  // so re-check Leaflet's internal size after layout/fonts settle and on resize.
+  setTimeout(function() { agMap.invalidateSize(); }, 60);
+  window.addEventListener('load', function() { agMap.invalidateSize(); });
+  window.addEventListener('resize', function() { agMap.invalidateSize(); });
+
+  var agEmbed = document.querySelector('.ag-embed');
+  agEmbed.querySelectorAll('.ag-filter').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      agEmbed.querySelectorAll('.ag-filter').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var tag = btn.dataset.agFilter;
+      agEmbed.querySelectorAll('.ag-card').forEach(function(card) {
+        var tags = card.dataset.agTags.split(' ');
+        card.classList.toggle('ag-hidden', tag !== 'all' && tags.indexOf(tag) === -1);
+      });
+      agMarkers.forEach(function(m) {
+        var p = agPlaces.find(function(x) { return x.id === m.agId; });
+        var show = tag === 'all' || p.tags.indexOf(tag) !== -1;
+        if (show && !agGroup.hasLayer(m)) agGroup.addLayer(m);
+        if (!show && agGroup.hasLayer(m)) agGroup.removeLayer(m);
+      });
+      var visibleLayers = [agHotel].concat(agMarkers.filter(function(m) { return agGroup.hasLayer(m); }));
+      var visible = L.featureGroup(visibleLayers);
+      setTimeout(function() {
+        agMap.invalidateSize();
+        if (visible.getLayers().length) agMap.fitBounds(visible.getBounds().pad(0.08));
+      }, 30);
+    });
+  });
+})();
+
 </script>
 
 </body>
