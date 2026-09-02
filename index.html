@@ -1408,7 +1408,7 @@ footer {
             <div class="stat-desc">U.S. Research Reactors</div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">60+</div>
+            <div class="stat-num">100+</div>
             <div class="stat-desc">Expected Attendees</div>
           </div>
           <div class="stat-card">
@@ -1558,7 +1558,7 @@ footer {
         <ul class="topic-titles-list">
           <li>Development and Implementation of a Digital Operations Logbook for the NETL TRIGA Mark II Reactor</li>
           <li>Recent Experience with Lightweight Digital Tools for Scheduling and Documentation at the NC State PULSTAR Research Reactor</li>
-          <li>AI Tools for Neutron Irradiation: A Coordinated Approach to Accelerating the Irradiation Testing Workflow</li>
+          <li>Natura Resources MSR-1 Goals and Objectives (Late-Breaking)</li>
           <li>Keeper: A Framework for Demonstration Autonomous Operations</li>
           <li>Advancing Digital Twin Development of Research Reactors Through a Shared Platform</li>
           <li>Live 3D Radiation Mapping</li>
@@ -1728,13 +1728,13 @@ footer {
 <!-- END DAY 4 HEADER & START CLASS SESSIONS -->
         <div class="day-sessions">
           <div class="session">
-            <div><div class="session-name">Technical Sessions VII</div><div class="session-detail">Digital Tools, Automation &amp; Digital Twins (6 presentations)</div></div>
+            <div><div class="session-name">Technical Sessions VII</div><div class="session-detail">Digital Tools, Automation &amp; Digital Twins (5 presentations) + Late-Breaking: Natura Resources MSR-1 Goals and Objectives — Jonathan Scherr, PhD</div></div>
           </div>
           <div class="session">
             <div><div class="session-name">Technical Sessions VIII</div><div class="session-detail">Nuclear Data &amp; Xenon Spectroscopy (4 presentations)</div></div>
           </div>
           <div class="session">
-            <div><div class="session-name">Free Time &amp; Departures</div><div class="session-detail">Conference concludes</div></div>
+            <div><div class="session-name">Free Time &amp; Departures</div><div class="session-detail">Conference concludes (day now ends 1:10 PM)</div></div>
           </div>
         </div>
       </div>
@@ -1937,7 +1937,7 @@ footer {
           </div>
           <div class="prog-row prog-single">
             <div class="prog-time">9:10 AM</div>
-            <div class="prog-col"><div class="prog-title">AI Tools for Neutron Irradiation: A Coordinated Approach to Accelerating the Irradiation Testing Workflow</div><div class="prog-author">Brenden Heidrich</div></div>
+            <div class="prog-col"><div class="prog-theme-tag">Late-Breaking Session</div><div class="prog-title">Natura Resources MSR-1 Goals and Objectives</div><div class="prog-author">Jonathan Scherr, PhD</div></div>
           </div>
           <div class="prog-row prog-single">
             <div class="prog-time">9:30 AM</div>
@@ -3256,6 +3256,17 @@ function progShowDay(day, btn) {
         <div class="spc-name">Maxeta</div>
       </a>
 
+      <!-- Oklo — Silver -->
+      <a href="https://oklo.com/" target="_blank" rel="noopener noreferrer" class="spc spc-silver">
+        <div class="spc-header">
+          <div class="spc-tier">◇ Silver</div>
+        </div>
+        <div class="spc-logo-wrap" style="background:white;border-radius:8px;">
+          <img src="images/Oklo_Logo.png" alt="Oklo logo">
+        </div>
+        <div class="spc-name">Oklo</div>
+      </a>
+
     </div>
 
     <!-- MEETING SPONSORSHIP LEVELS -->
@@ -4207,8 +4218,8 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-// ── COUNTDOWN (set target date — Oct 12, 2026)
-const target = new Date('2026-10-12T08:00:00');
+// ── COUNTDOWN (set target date — Sept 22, 2026, Day 1 Opening Remarks)
+const target = new Date('2026-09-22T08:00:00');
 function updateCountdown() {
   const now = new Date();
   let diff = target - now;
