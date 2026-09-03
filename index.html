@@ -321,6 +321,20 @@ section { padding: 88px 28px; }
   padding: 4px 10px; border-radius: 2px; text-transform: uppercase;
 }
 
+.reg-capacity-warning {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: #FDECEA; border: 1px solid #E8B4AC; border-left: 4px solid #B3261E;
+  border-radius: var(--radius); padding: 18px 22px; margin-bottom: 32px;
+}
+.reg-capacity-warning .rcw-icon { font-size: 22px; line-height: 1.3; flex-shrink: 0; }
+.reg-capacity-warning .rcw-text { font-size: 14.5px; line-height: 1.6; color: #6B1E17; }
+.reg-capacity-warning .rcw-text strong { color: #B3261E; }
+.btn-primary[disabled], .btn-primary.reg-closed {
+  background: var(--mid) !important; color: white !important;
+  cursor: not-allowed; opacity: 0.75;
+}
+.btn-primary[disabled]:hover, .btn-primary.reg-closed:hover { background: var(--mid) !important; }
+
 /* ── REGISTRATION FORM MODAL ── */
 .modal-overlay {
   display: none; position: fixed; inset: 0; z-index: 9000;
@@ -4235,10 +4249,40 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
+setInterval(applyRegistrationClosedState, 60000); // catch the 9/6 cutoff for tabs left open
+
+// ── REGISTRATION AUTO-CLOSE (capacity reached — exception-only after this date)
+const REGISTRATION_CLOSE_DATE = new Date('2026-09-06T00:00:00');
+
+function isRegistrationClosed() {
+  return new Date() >= REGISTRATION_CLOSE_DATE;
+}
+
+function applyRegistrationClosedState() {
+  if (!isRegistrationClosed()) return;
+
+  // Disable the three plan "Register" buttons on the pricing cards
+  document.querySelectorAll('.reg-card .btn-primary').forEach(function(btn) {
+    btn.textContent = 'Registration Closed';
+    btn.classList.add('reg-closed');
+    btn.setAttribute('disabled', 'disabled');
+    btn.onclick = function(e) { e.preventDefault(); return false; };
+  });
+
+  // Update the warning banner to reflect that registration has actually closed
+  const banner = document.getElementById('reg-capacity-warning');
+  if (banner) {
+    banner.querySelector('.rcw-text').innerHTML =
+      '<strong>Registration is now closed — we are at conference capacity.</strong> ' +
+      'From this point forward, registrations will only be accepted by exception, for justifiable and extenuating circumstances. ' +
+      'If you have a circumstance you believe warrants an exception, please <a href="#contact" style="color:#B3261E; text-decoration:underline; font-weight:700;">contact us</a> directly — we cannot guarantee a spot.';
+  }
+}
 
 // ── MODAL
 
 function openRegistrationChooser() {
+  if (isRegistrationClosed()) return;
   const modal = document.getElementById('registration-chooser');
   if (modal) {
     modal.classList.add('open');
@@ -4285,6 +4329,7 @@ function launchRegistrationType(type) {
 }
 
 function openModal(type) {
+  if (isRegistrationClosed()) return;
   const labels = {
     professional: 'Professional Registration',
     student: 'Student Registration',
@@ -4302,6 +4347,8 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 document.addEventListener('DOMContentLoaded', function() {
+  applyRegistrationClosedState();
+
   const regModal = document.getElementById('reg-modal');
   if (regModal) regModal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 
@@ -4817,6 +4864,14 @@ function handleContactSubmit(btn) {
     <div class="divider"></div>
     <p class="section-lead" style="margin-bottom:48px;">Registration fees support conference operations and are processed through The University of Texas at Austin.<br>
     <strong>Register and pay securely</strong> — you will be directed to the UT Austin payment portal to complete your registration.</p>
+
+    <div class="reg-capacity-warning" id="reg-capacity-warning">
+      <div class="rcw-icon">⚠️</div>
+      <div class="rcw-text">
+        <strong>We are at conference capacity.</strong> New registrations will be accepted only by exception, for justifiable and extenuating circumstances, reviewed on a case-by-case basis. Please <a href="#contact" style="color:#B3261E; text-decoration:underline; font-weight:700;">contact us</a> before registering to confirm space is available.
+      </div>
+    </div>
+
     <div class="reg-grid">
       <div class="reg-card fade-up visible">
         <div class="reg-card-header">
