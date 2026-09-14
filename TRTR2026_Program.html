@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRTR 2026 &mdash; Technical Program &amp; Abstracts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Source+Sans+3:wght@300;400;600;700&amp;family=Roboto+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --burnt-orange: #BF5700;
+  --ut-orange:    #D6711A;
+  --gold:         #C9A227;
+  --dark:         #1A1A1A;
+  --charcoal:     #2E2E2E;
+  --mid:          #555;
+  --light:        #F7F3EE;
+  --white:        #FFFFFF;
+  --border:       rgba(191,87,0,0.18);
+  --shadow:       0 8px 40px rgba(0,0,0,0.14);
+  --radius:       4px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  font-size: 17px;
+  line-height: 1.65;
+}
+a { color: var(--burnt-orange); }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+/* ── HERO / HEADER ── */
+header.site-header {
+  background: var(--dark);
+  color: var(--white);
+  padding: 44px 0 34px;
+  border-bottom: 4px solid var(--burnt-orange);
+}
+.site-header .eyebrow {
+  font-family: 'Roboto Mono', monospace; font-size: 12px; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 10px;
+}
+.site-header h1 {
+  font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900;
+  line-height: 1.15; margin-bottom: 10px;
+}
+.site-header h1 span { color: var(--ut-orange); }
+.site-header .meta {
+  font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 4px;
+}
+.site-header .blurb {
+  margin-top: 18px; font-size: 14.5px; color: rgba(255,255,255,0.7); max-width: 700px;
+}
+.legend-box {
+  margin-top: 22px; padding: 14px 18px; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius);
+  font-size: 13px; color: rgba(255,255,255,0.75); display: flex; gap: 22px; flex-wrap: wrap;
+}
+.legend-box b { color: var(--white); }
+.legend-swatch { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:6px; vertical-align:1px; }
+.legend-swatch.abstract { background: var(--burnt-orange); }
+.legend-swatch.pending { background: #999; }
+
+/* ── SECTIONS ── */
+main { padding: 44px 0 70px; }
+section { margin-bottom: 54px; }
+.section-tag {
+  font-family: 'Roboto Mono', monospace; font-size: 11px; letter-spacing: 3px;
+  color: var(--burnt-orange); text-transform: uppercase; font-weight: 700;
+}
+.section-title {
+  font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900;
+  margin: 6px 0 16px;
+}
+.divider { height: 2px; width: 54px; background: var(--gold); margin-bottom: 22px; }
+.prog-intro { color: var(--mid); font-size: 14.5px; margin-bottom: 22px; max-width: 720px; }
+
+/* ── MONDAY / NON-TALK SUMMARY ── */
+.admin-list {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; margin-bottom: 34px;
+}
+.admin-list .admin-row {
+  padding: 12px 18px; border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: flex; gap: 16px; align-items: baseline; font-size: 13.5px;
+}
+.admin-list .admin-row:last-child { border-bottom: none; }
+.admin-time {
+  font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--burnt-orange);
+  flex: 0 0 76px;
+}
+.admin-label { font-weight: 600; color: var(--charcoal); }
+.admin-detail { color: var(--mid); font-size: 12.5px; margin-top: 2px; }
+
+/* ── TABS / PROGRAM TABLE (from conference site) ── */
+.prog-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.prog-tab-btn {
+  padding: 10px 20px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: white; font-size: 13px; font-weight: 700; cursor: pointer;
+  font-family: inherit; color: var(--charcoal); transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.prog-tab-btn:hover { border-color: var(--burnt-orange); }
+.prog-tab-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
+.prog-panel { display: none; }
+.prog-panel.active { display: block; }
+.prog-table-wrap {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; background: white;
+}
+.prog-legend {
+  display: flex; gap: 22px; padding: 12px 18px; background: var(--light);
+  border-bottom: 1px solid var(--border); font-size: 11.5px; color: var(--mid);
+  font-family: 'Roboto Mono', monospace; letter-spacing: 0.3px;
+}
+.prog-row { display: flex; gap: 16px; padding: 12px 18px; border-bottom: 1px solid rgba(0,0,0,0.06); align-items: flex-start; }
+.prog-row:last-child { border-bottom: none; }
+.prog-time {
+  font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--burnt-orange);
+  flex: 0 0 76px; padding-top: 2px; letter-spacing: 0.3px;
+}
+.prog-col { flex: 1 1 0; min-width: 0; }
+.prog-empty { color: #ccc; font-size: 13px; }
+.prog-body { flex: 1 1 0; }
+.prog-title { font-size: 13.5px; font-weight: 600; color: var(--charcoal); line-height: 1.42; }
+.prog-author { font-size: 12px; color: var(--mid); margin-top: 3px; }
+.prog-theme-tag {
+  font-family: 'Roboto Mono', monospace; font-size: 10px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--burnt-orange); margin-bottom: 6px; font-weight: 700;
+}
+.prog-break { background: var(--light); }
+.prog-break .prog-body .prog-title { font-size: 13px; font-weight: 700; color: var(--mid); padding-top: 1px; }
+.prog-fullrow { background: rgba(191,87,0,0.045); }
+.prog-note, .prog-note-detail { font-weight: 400; color: var(--mid); font-size: 12px; margin-top: 3px; }
+@media (max-width: 640px) {
+  .prog-row { flex-direction: column; gap: 6px; }
+  .prog-time { flex: none; }
+}
+
+/* ── ACTION LINKS (Abstract / Presentation) ── */
+.action-row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.action-link {
+  display: inline-block; font-family: 'Roboto Mono', monospace; font-size: 10.5px;
+  font-weight: 600; letter-spacing: 0.4px; text-decoration: none;
+  padding: 5px 10px; border-radius: 3px; border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.action-link.abstract {
+  color: var(--burnt-orange); border-color: var(--border); background: rgba(191,87,0,0.06);
+}
+.action-link.abstract:hover { background: var(--burnt-orange); color: white; }
+.action-link.pending {
+  color: #999; border-color: #e2e2e2; background: #f4f4f4; cursor: default;
+  pointer-events: none;
+}
+.action-link.available {
+  color: #1a7a3c; border-color: rgba(26,122,60,0.3); background: rgba(26,122,60,0.08);
+  pointer-events: auto; cursor: pointer;
+}
+.action-link.available:hover { background: #1a7a3c; color: white; }
+.action-link.back { color: var(--mid); border-color: var(--border); background: white; }
+.action-link.back:hover { border-color: var(--burnt-orange); color: var(--burnt-orange); }
+
+/* ── ABSTRACTS ── */
+.abstracts-note {
+  background: white; border-left: 4px solid var(--burnt-orange);
+  padding: 16px 20px; border-radius: var(--radius); margin-bottom: 30px;
+  font-size: 14px; color: var(--mid);
+}
+.abstract-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px 26px; margin-bottom: 18px; scroll-margin-top: 20px;
+}
+.abstract-meta {
+  font-family: 'Roboto Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px;
+  color: var(--burnt-orange); text-transform: uppercase; font-weight: 700; margin-bottom: 10px;
+}
+.abstract-title {
+  font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700;
+  line-height: 1.35; margin-bottom: 8px; color: var(--dark);
+}
+.abstract-author { font-size: 13.5px; color: var(--mid); margin-bottom: 14px; }
+.abstract-bio { font-size: 13px; color: var(--mid); font-style: italic; margin-bottom: 14px; line-height: 1.55; }
+.abstract-author a { color: var(--mid); }
+.abstract-body { font-size: 14.5px; color: var(--charcoal); }
+.abstract-body p { margin-bottom: 12px; }
+.abstract-body ul { margin: 0 0 12px 20px; }
+.abstract-body p.abstract-missing { color: var(--mid); font-style: italic; }
+
+footer {
+  background: var(--dark); color: rgba(255,255,255,0.55); text-align: center;
+  padding: 30px 20px; font-size: 12.5px;
+}
+footer a { color: var(--gold); }
+
+/* ── SPONSORS ── */
+.sponsor-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.sponsor-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 26px;
+}
+.sponsor-card.tier-uranium { border-color: rgba(0,90,40,0.35); border-width: 2px; }
+.sponsor-card.tier-gold { border-color: rgba(201,162,39,0.45); }
+.sponsor-tier {
+  display: inline-block; font-family: 'Roboto Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700;
+  padding: 3px 10px; border-radius: 3px; margin-bottom: 10px;
+}
+.tier-uranium .sponsor-tier { background: rgba(0,90,40,0.1); color: #005A28; }
+.tier-gold .sponsor-tier { background: rgba(201,162,39,0.14); color: #9c7c1a; }
+.tier-silver .sponsor-tier { background: rgba(80,80,80,0.1); color: #555; }
+.sponsor-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.sponsor-contact { font-size: 13px; color: var(--burnt-orange); margin-bottom: 2px; }
+.sponsor-contact a { color: var(--burnt-orange); }
+.sponsor-extra { font-size: 12px; color: var(--mid); font-style: italic; margin-bottom: 10px; }
+.sponsor-blurb { font-size: 14px; color: var(--charcoal); margin-top: 10px; }
+.sponsor-blurb p { margin-bottom: 10px; }
+.sponsor-blurb p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="eyebrow">National Organization of Test, Research &amp; Training Reactors</div>
+    <h1>TRTR <span>2026</span> Annual Conference</h1>
+    <div class="meta">September 21&ndash;25, 2026 &middot; The University of Texas at Austin</div>
+    <div class="meta">Hosted by the Nuclear Engineering Teaching Laboratory (NETL)</div>
+    <div class="blurb">Technical Program &amp; Abstracts &mdash; every accepted talk, in order, with the full submitted abstract and a link to the presentation slides once they are posted.</div>
+    <div class="legend-box">
+      <span><span class="legend-swatch abstract"></span><b>Abstract</b> &mdash; jumps to the full submitted abstract below</span>
+      <span><span class="legend-swatch pending"></span><b>Presentation</b> &mdash; grayed out until slides are posted; turns into a live link automatically once a file is added</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="monday">
+    <span class="section-tag">Monday, September 21</span>
+    <h2 class="section-title" style="font-size:22px;">Registration &amp; Committee Meetings</h2>
+    <div class="divider"></div>
+    <div class="admin-list">
+      <div class="admin-row"><div class="admin-time">12:00 PM</div><div><div class="admin-label">Registration Opens</div></div></div>
+      <div class="admin-row"><div class="admin-time">12:30 PM</div><div><div class="admin-label">TRTR Executive Committee Meeting</div></div></div>
+      <div class="admin-row"><div class="admin-time">2:00 PM</div><div><div class="admin-label">ANSI/ANS Standards Committee Meeting</div></div></div>
+      <div class="admin-row"><div class="admin-time">5:00 PM</div><div><div class="admin-label">Applications Forum</div><div class="admin-detail">Digital Twin Applications for Research Reactors, MMRs, and SMRs — a cross-sector dialogue session connecting reactor facilities, researchers, industry, and agencies.</div></div></div>
+      <div class="admin-row"><div class="admin-time">7:00 PM</div><div><div class="admin-label">Welcome Social</div><div class="admin-detail">Kick off the conference with fellow attendees over food and drinks — an easy, informal way to reconnect with colleagues and meet new faces before the technical sessions begin.</div></div></div>
+    </div>
+  </section>
+
+  <section id="program">
+    <span class="section-tag">Talk-Level Detail</span>
+    <h2 class="section-title">Full Technical Program</h2>
+    <div class="divider"></div>
+    <p class="prog-intro">Every accepted talk, in order, with start times, speakers, abstracts, and (once posted) presentation slides. Tuesday runs two tracks in parallel; Wednesday is NRC Day; Thursday and Friday are single-track.</p>
+
+    <div class="prog-tabs">
+      <button class="prog-tab-btn active" onclick="progShowDay('tue', this)">Tuesday</button>
+<button class="prog-tab-btn" onclick="progShowDay('wed', this)">Wednesday</button>
+<button class="prog-tab-btn" onclick="progShowDay('thu', this)">Thursday</button>
+<button class="prog-tab-btn" onclick="progShowDay('fri', this)">Friday</button>
+    </div>
+
+    <div id="prog-tue" class="prog-panel active">
+<div class="prog-table-wrap">
+<div class="prog-legend"><span>Track A</span><span>Track B</span></div>
+<div class="prog-row prog-fullrow"><div class="prog-time">8:00 AM</div><div class="prog-body"><div class="prog-title">Opening Remarks</div></div></div>
+<div class="prog-row prog-dual"><div class="prog-time">8:30 AM</div>
+<div class="prog-col"><div class="prog-theme-tag">Dosimetry &amp; Flux Characterization</div>
+<div class="prog-title" id="row-tue-0830a-a">A Parametric Physics Evaluation of Zirconium-Based Alloy In-Pile Tubes in the Advanced Test Reactor</div>
+<div class="prog-author">Bryon Curnutt</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0830a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0830a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-theme-tag">New Reactor &amp; Isotope Facility Development</div>
+<div class="prog-title" id="row-tue-0830a-b">Current Status of the University of Illinois Microreactor Demonstration Project</div>
+<div class="prog-author">Leslie Foyto</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0830a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0830a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">8:50 AM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0850a-a">Applications of Reactor Dosimetry Measurements at the Advanced Test Reactor Critical</div>
+<div class="prog-author">Dani G. Ottaway</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0850a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0850a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0850a-b">NextGen MURR at the American Conference on Neutron Scattering University-Based Neutron Sources Workshop</div>
+<div class="prog-author">Ethan Schroeder</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0850a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0850a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">9:10 AM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0910a-a">Benchmarking the UML Research Reactor Fast Neutron Irradiator Using ASTM E1855 Silicon Displacement Damage Dosimetry</div>
+<div class="prog-author">Thomas Regan</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0910a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0910a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0910a-b">The Idaho State University Advanced Research and Testing (ART) Reactor Facility: A Collaboration with NuCube Energy</div>
+<div class="prog-author">Daniel LaBrier</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0910a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0910a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">9:30 AM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0930a-a">Experiment Modeling Validation of Advanced Test Reactor Critical Tests</div>
+<div class="prog-author">Nicklaus Schlamp</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0930a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0930a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0930a-b">The Molten Salt Research Reactor at Abilene Christian University</div>
+<div class="prog-author">Kim L. Pamplin</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0930a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0930a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">9:50 AM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0950a-a">Flux Determination at NETL&#x27;s tPNT Location via STAYSL PNNL&#x27;s Least-Squares Fit Spectral Adjustment Software</div>
+<div class="prog-author">Julian Herrera</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0950a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0950a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0950a-b">The Vision of NextGen MURR</div>
+<div class="prog-author">Ethan Schroeder</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0950a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0950a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">10:10 AM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-1010a-a">Flux Model Verification for Solid-State Nuclear Power</div>
+<div class="prog-author">Eric Palmer</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1010a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-1010a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-1010a-b">Unity Zero Power Critical Experiment Installation and Criticality in NRAD&#x27;s North Radiography Station</div>
+<div class="prog-author">Charles Jones</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1010a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-1010a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-break"><div class="prog-time">10:30 AM</div><div class="prog-body"><div class="prog-title">Break</div></div></div>
+<div class="prog-row prog-dual"><div class="prog-time">10:50 AM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-1050a-a">Modernization of Radiation Measurement Methods in Support of the Ongoing Advanced Test Reactor Mission</div>
+<div class="prog-author">Dani G. Ottaway</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1050a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-1050a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-1050a-b">Eden Precision Science, Human Impact: Technology Overview</div>
+<div class="prog-author">Edward Parma</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1050a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-1050a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">11:10 AM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-1110a-a">Simulated Gas Calibrations of Eu-152 at the TRIGA reactor at NETL at The University of Texas at Austin</div>
+<div class="prog-author">Zachary Boor</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1110a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-1110a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-1110a-b">NextGen MURR Radioisotope Processing Facility Design Approach</div>
+<div class="prog-author">Ethan Schroeder</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1110a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-1110a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">11:30 AM</div>
+<div class="prog-col"><div class="prog-theme-tag">Aging Infrastructure, Failure Investigation &amp; Redesign</div>
+<div class="prog-title" id="row-tue-1130a-a">Failure, Evidence, Redesign: Resolving Retaining-Ring Fractures in the NBSR Refueling Plug</div>
+<div class="prog-author">Rubin &amp; Hix</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1130a-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-1130a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-theme-tag">Fuel Cycle: Supply &amp; Qualification</div>
+<div class="prog-title" id="row-tue-1130a-b">2026 Status Report University Fuel Services Program</div>
+<div class="prog-author">Douglas K. Morrell</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-1130a-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-1130a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-break"><div class="prog-time">11:50 AM</div><div class="prog-body"><div class="prog-title">TRTR Business Meeting (both tracks)</div></div></div>
+<div class="prog-row prog-break"><div class="prog-time">12:30 PM</div><div class="prog-body"><div class="prog-title">Lunch &amp; Exhibits</div></div></div>
+<div class="prog-row prog-dual"><div class="prog-time">1:10 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0110p-a">From Fuel Failure to Robust Engagement: Investigation, Redesign, and Validation of the NBSR Fuel Element Head</div>
+<div class="prog-author">Rubin &amp; Hix</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0110p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0110p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0110p-b">Supporting the Research Reactor Community Through Integrated Transportation, Engineering, and Project Delivery: Operational Lessons Learned</div>
+<div class="prog-author">Eric Woolstenhulme</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0110p-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0110p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">1:30 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0130p-a">Improving MURR Anti-Siphon Control System Reliability</div>
+<div class="prog-author">Peter Norgard</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0130p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0130p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0130p-b">The TRIGA International (TI) production line in Romans, France</div>
+<div class="prog-author">Ralf Gathmann</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0130p-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0130p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">1:50 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0150p-a">Integration of Legacy Materials from the Annular Core Research Reactor into a New Regulating Rod</div>
+<div class="prog-author">Samuel G. Durbin</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0150p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0150p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0150p-b">Use of Zone-Melt Refining to Enable a Uranium-Actinide Closed Fuel Cycle for Research Reactors</div>
+<div class="prog-author">Jackson Keppen</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0150p-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0150p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">2:10 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0210p-a">Investigation of a cadmium contamination event during a radiotracer production activity</div>
+<div class="prog-author">Jeffrey Geuther and Aaron Wilmot</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0210p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0210p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0210p-b">As-Run neutronic analysis of U-10Mo monolithic fuel plate experiments in the Advanced Test Reactor</div>
+<div class="prog-author">Paul Gilbreath</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0210p-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0210p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">2:30 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0230p-a">Reducing Confinement Building Leak Rate</div>
+<div class="prog-author">Robert Newby</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0230p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0230p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0230p-b">Characterization of a HALEU-Fueled AGN-201M Reactor for Benchmark Evaluation</div>
+<div class="prog-author">Daniel LaBrier</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0230p-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0230p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">2:50 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0250p-a">UUTR Tank Repair Efforts</div>
+<div class="prog-author">Andrew Allison, Dylan Ramirez</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0250p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0250p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0250p-b">Design and Safety Analysis Codes and Methods for HALEU Conversions and New Build Research Reactors in the U.S. and Beyond</div>
+<div class="prog-author">Erik Wilson</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0250p-b">Abstract</a><a class="action-link pending" data-pres-slug="tue-0250p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+</div>
+<div class="prog-row prog-break"><div class="prog-time">3:10 PM</div><div class="prog-body"><div class="prog-title">Break</div></div></div>
+<div class="prog-row prog-dual"><div class="prog-time">3:30 PM</div>
+<div class="prog-col"><div class="prog-theme-tag">Radiation Effects on Electronics</div>
+<div class="prog-title" id="row-tue-0330p-a">Examination of a Circuit&#x27;s Slew Rate Degradation During In-situ Irradiation of Circuit Sensitive Transistor</div>
+<div class="prog-author">Michael Sheridan</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0330p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0330p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col prog-empty">&mdash;</div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">3:50 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0350p-a">Neutron-Induced Single Event Upsets within SRAM Devices</div>
+<div class="prog-author">Michael Santos</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0350p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0350p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col prog-empty">&mdash;</div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">4:10 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0410p-a">UT-Austin NETL Combined Electromagnetic and Neutron Environments Testing Capabilities</div>
+<div class="prog-author">Nicholas Crenshaw, Michael Sheridan, William Charlton, Josh Young</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0410p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0410p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col prog-empty">&mdash;</div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">4:30 PM</div>
+<div class="prog-col"><div class="prog-theme-tag">Education &amp; Outreach</div>
+<div class="prog-title" id="row-tue-0430p-a">Classical vs. Modern: A Tale of Two Reactors at Idaho State University</div>
+<div class="prog-author">Daniel LaBrier</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0430p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0430p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col prog-empty">&mdash;</div>
+</div>
+<div class="prog-row prog-dual"><div class="prog-time">4:50 PM</div>
+<div class="prog-col"><div class="prog-title" id="row-tue-0450p-a">Research Reactor Outreach Program: A Collaboration between the International Atomic Energy Agency, the University of Texas and Jordan Atomic Energy Commission</div>
+<div class="prog-author">Sheldon Landsberger</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-tue-0450p-a">Abstract</a><a class="action-link pending" data-pres-slug="tue-0450p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div>
+<div class="prog-col prog-empty">&mdash;</div>
+</div>
+<div class="prog-row prog-fullrow"><div class="prog-time">5:00 PM</div><div class="prog-body"><div class="prog-title">Facility M&amp;O Meeting</div></div></div>
+<div class="prog-row prog-fullrow"><div class="prog-time">6:00 PM</div><div class="prog-body"><div class="prog-title">Student ANS Meeting</div><div class="prog-note-detail">With Director, NRC Office of Nuclear Reactor Regulation (NRR)</div></div></div>
+</div></div>
+<div id="prog-wed" class="prog-panel">
+<div class="prog-table-wrap">
+<div class="prog-row prog-fullrow"><div class="prog-time">All Day</div><div class="prog-body"><div class="prog-title">NRC Day</div><div class="prog-note-detail">Full day with Nuclear Regulatory Commission representatives — session-by-session agenda to be published once confirmed with the NRC.</div></div></div>
+<div class="prog-row prog-break"><div class="prog-time">Midday</div><div class="prog-body"><div class="prog-title">Lunch &amp; Exhibits</div></div></div>
+<div class="prog-row prog-fullrow"><div class="prog-time">5:30 PM</div><div class="prog-body"><div class="prog-title">Conference Banquet</div><div class="prog-note-detail">Menu TBD, Venue – Bullock Texas State History Museum</div></div></div>
+</div></div>
+<div id="prog-thu" class="prog-panel">
+<div class="prog-table-wrap">
+<div class="prog-row prog-single"><div class="prog-time">8:30 AM</div><div class="prog-col"><div class="prog-theme-tag">Instrumentation &amp; Detector Development</div>
+<div class="prog-title" id="row-thu-0830a">Advancements in Commercially-Configurable Micro-Pocket Fission Detectors</div>
+<div class="prog-author">Taylor Ochs</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-0830a">Abstract</a><a class="action-link pending" data-pres-slug="thu-0830a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">8:50 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-0850a">High Temperature Fission Chambers Output Signal Characterization</div>
+<div class="prog-author">A. Rizzo, N. Jackowska, K. Irazoqui, A. Cook, Q. Gestes, M. Shaw, A. Alloune, C. Payne, J. Thompson</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-0850a">Abstract</a><a class="action-link pending" data-pres-slug="thu-0850a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">9:10 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-0910a">Measurement Campaign with the Libera MONACO 3 System at the VR-1 Reactor Using Two Fission Chamber Types</div>
+<div class="prog-author">V. Fišinger, M. Elersič1, M. Cargnelutti, B. Thomas</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-0910a">Abstract</a><a class="action-link pending" data-pres-slug="thu-0910a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">9:30 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-0930a">NISoC: An Integrated Solid-State Platform for Neutron Detection, Radiography, and Dosimetry</div>
+<div class="prog-author">Dale Julson</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-0930a">Abstract</a><a class="action-link pending" data-pres-slug="thu-0930a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">9:50 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-0950a">Nuclear Instrumentation for Both the Research Reactor and Advanced Reactor Communities</div>
+<div class="prog-author">Ewald Liebhart</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-0950a">Abstract</a><a class="action-link pending" data-pres-slug="thu-0950a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">10:10 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-1010a">Prototype Nuclear Qualification Device Testing for Advanced Neutron Sensor Experiments at AFRRI</div>
+<div class="prog-author">Johnathan Grissom</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-1010a">Abstract</a><a class="action-link pending" data-pres-slug="thu-1010a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-break"><div class="prog-time">10:30 AM</div><div class="prog-body"><div class="prog-title">Break</div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">10:50 AM</div><div class="prog-col"><div class="prog-theme-tag">Regulatory, Licensing &amp; QA</div>
+<div class="prog-title" id="row-thu-1050a">HFIR Code of Record project</div>
+<div class="prog-author">Carol W. Sizemore</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-1050a">Abstract</a><a class="action-link pending" data-pres-slug="thu-1050a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">11:10 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-1110a">NextGen MURR ANSI/ANS-15.8 Quality Assurance Program Development</div>
+<div class="prog-author">Ethan Schroeder</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-1110a">Abstract</a><a class="action-link pending" data-pres-slug="thu-1110a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">11:30 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-1130a">Authorization for Startup of the Deployable Energy UNITY Reactor through NE-STD-1271 and NE Order 425.1</div>
+<div class="prog-author">Michael Ruddell</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-1130a">Abstract</a><a class="action-link pending" data-pres-slug="thu-1130a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">11:50 AM</div><div class="prog-col"><div class="prog-title" id="row-thu-1150a">Return of the NCNR to 20 MW Scientific Operation</div>
+<div class="prog-author">Thomas Newton</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-thu-1150a">Abstract</a><a class="action-link pending" data-pres-slug="thu-1150a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-break"><div class="prog-time">12:30 PM</div><div class="prog-body"><div class="prog-title">Lunch &amp; Exhibits</div></div></div>
+<div class="prog-row prog-fullrow"><div class="prog-time">1:10 PM</div><div class="prog-body"><div class="prog-title">Optional Facility Tours</div><div class="prog-note-detail">NETL TRIGA Reactor · Texas Advanced Computing Center (TACC) · Aalo Atomics (Aalo TBC)</div></div></div>
+<div class="prog-row prog-fullrow"><div class="prog-time">5:00 PM</div><div class="prog-body"><div class="prog-title">Applications Forum</div><div class="prog-note-detail">MMR/SMR Regulation (Tentative)</div></div></div>
+<div class="prog-row prog-fullrow"><div class="prog-time">Evening</div><div class="prog-body"><div class="prog-title">Open Evening</div><div class="prog-note-detail">Explore Austin</div></div></div>
+</div></div>
+<div id="prog-fri" class="prog-panel">
+<div class="prog-table-wrap">
+<div class="prog-row prog-single"><div class="prog-time">8:30 AM</div><div class="prog-col"><div class="prog-theme-tag">Digital Tools, Automation &amp; Digital Twins</div>
+<div class="prog-title" id="row-fri-0830a">Development and Implementation of a Digital Operations Logbook for the NETL TRIGA Mark II Reactor</div>
+<div class="prog-author">Sam G. Durbin</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-0830a">Abstract</a><a class="action-link pending" data-pres-slug="fri-0830a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">8:50 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-0850a">Recent Experience with Lightweight Digital Tools for Scheduling and Documentation at the NC State PULSTAR Research Reactor</div>
+<div class="prog-author">Austin Wells</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-0850a">Abstract</a><a class="action-link pending" data-pres-slug="fri-0850a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">9:10 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-0910a">Natura Resources MSR-1 Goals and Objectives <span class="prog-note">(Late-Breaking)</span></div>
+<div class="prog-author">Jonathan Scherr, PhD</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-0910a">Abstract</a><a class="action-link pending" data-pres-slug="fri-0910a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">9:30 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-0930a">Keeper: A Framework for Demonstration Autonomous Operations <span class="prog-note">(Late-Breaking)</span></div>
+<div class="prog-author">Ryan Stewart, Casey Kovesdi, Emerald Ryan, Sonali Roy, Manaswin Oddiraju, Anand Kirshnan, Greg Shannon, William Dawn, Kolton Heaps, Amanda Foley, Linyu Lin, Joseph Oncken, William Wakeman</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-0930a">Abstract</a><a class="action-link pending" data-pres-slug="fri-0930a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">9:50 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-0950a">Advancing Digital Twin Development of Research Reactors Through a Shared Platform <span class="prog-note">(Late-Breaking)</span></div>
+<div class="prog-author">Ryan Stewart, Emerald Ryan, Jieun Lee, Logan Browning, Nicholas P. Luciano, Cole Gentry, Kevin Clarno</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-0950a">Abstract</a><a class="action-link pending" data-pres-slug="fri-0950a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">10:10 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-1010a">Live 3D Radiation Mapping <span class="prog-note">(Late-Breaking)</span></div>
+<div class="prog-author">Saarthak Midha</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-1010a">Abstract</a><a class="action-link pending" data-pres-slug="fri-1010a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-break"><div class="prog-time">10:30 AM</div><div class="prog-body"><div class="prog-title">Break</div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">10:50 AM</div><div class="prog-col"><div class="prog-theme-tag">Nuclear Data &amp; Xenon Spectroscopy</div>
+<div class="prog-title" id="row-fri-1050a">Analysis of Xenon Prompt Gammas from Thermal Neutron Capture</div>
+<div class="prog-author">Andrew David Rosen</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-1050a">Abstract</a><a class="action-link pending" data-pres-slug="fri-1050a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">11:10 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-1110a">Design and Fabrication of a System for High-Pressure Xenon Irradiation</div>
+<div class="prog-author">Robert Cerna Morales</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-1110a">Abstract</a><a class="action-link pending" data-pres-slug="fri-1110a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">11:30 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-1130a">Xenon-135 Production and Prompt Gamma Activation Analysis</div>
+<div class="prog-author">Ivy Seidel, Will Flanagan, William Charlton, and Derek Haas</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-1130a">Abstract</a><a class="action-link pending" data-pres-slug="fri-1130a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">11:50 AM</div><div class="prog-col"><div class="prog-title" id="row-fri-1150a">Measurement of the Isomeric Yield Ratio of Xenon-135m from Thermal Neutron Capture on Xenon-134</div>
+<div class="prog-author">Grace Martin</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-1150a">Abstract</a><a class="action-link pending" data-pres-slug="fri-1150a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-single"><div class="prog-time">12:10 PM</div><div class="prog-col"><div class="prog-theme-tag">Aging Infrastructure, Failure Investigation &amp; Redesign</div>
+<div class="prog-title" id="row-fri-1210p">Update on the Operability of the Reed Research Reactor</div>
+<div class="prog-author">Jerry Newhouse</div>
+<div class="action-row"><a class="action-link abstract" href="#abstract-fri-1210p">Abstract</a><a class="action-link pending" data-pres-slug="fri-1210p" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a></div></div></div>
+<div class="prog-row prog-break"><div class="prog-time">12:30 PM</div><div class="prog-body"><div class="prog-title">Lunch &amp; Exhibits</div></div></div>
+<div class="prog-row prog-fullrow"><div class="prog-time">1:10 PM</div><div class="prog-body"><div class="prog-title">Free Time &amp; Departures</div><div class="prog-note-detail">Conference concludes</div></div></div>
+</div></div>
+
+  </section>
+
+  <section id="abstracts">
+    <span class="section-tag">Full Text</span>
+    <h2 class="section-title">Abstracts</h2>
+    <div class="divider"></div>
+    <div class="abstracts-note">Abstracts are shown as submitted. A few presentations were added after the abstract deadline (marked Late-Breaking) or list a placeholder where the source submission did not include abstract text &mdash; these will be updated as final text comes in.</div>
+    <article class="abstract-card" id="abstract-tue-0830a-a">
+  <div class="abstract-meta">Tuesday, 8:30 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-01</div>
+  <h3 class="abstract-title">A Parametric Physics Evaluation of Zirconium-Based Alloy In-Pile Tubes in the Advanced Test Reactor</h3>
+  <div class="abstract-author">Bryon Curnutt &mdash; Idaho National Laboratory &middot; <a href="mailto:bryon.curnutt@inl.gov">bryon.curnutt@inl.gov</a></div>
+  <div class="abstract-body"><p>The Advanced Test Reactor (ATR) relies on In-Pile Tubes (IPTs) to support a wide range of irradiation experiments. Existing IPT designs utilize stainless steel (SS348) structural components that introduce parasitic neutron absorption and reduce thermal neutron availability for irradiation experiments. This study evaluates the neutronic benefits of replacing stainless steel IPT components with zirconium-based alloys to enhance irradiation performance while maintaining reactor operating characteristics. A series of parametric analyses was performed using the validated full-core three-dimensional MC21 model developed for the ATR Cycle 175A Core Physics Safety Analysis. Two candidate configurations were examined: (1) replacement of the SS348 flow tube with Zircaloy-4, and (2) replacement of the flow tube with Zircaloy-4 and the pressure and envelope tubes with Zr-2.5Nb. Thermal neutron, fast neutron, and photon fluxes were evaluated within a representative IPT location, and impacts on reactor operating parameters were assessed. Results show that replacing only the flow tube with Zircaloy-4 increases incident thermal neutron flux by approximately 10% relative to the current stainless-steel configuration. Replacing the flow tube, pressure tube, and envelope tube with zirconium-based alloys increases thermal neutron flux by approximately 86% within the central irradiation region. In both cases, fast neutron and photon environments remain comparable to baseline conditions, and predicted operating characteristics, including outer shim control cylinder and neck shim behavior, exhibit negligible changes. The analysis demonstrates that zirconium-based SIPT components provide a practical, low-risk approach for substantially increasing thermal neutron availability in ATR in-pile tubes. The fully zirconium-based configuration offers the greatest benefit and could significantly improve experiment performance and irradiation flexibility without requiring corresponding increases in reactor lobe power.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0830a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0830a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0830a-b">
+  <div class="abstract-meta">Tuesday, 8:30 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-01</div>
+  <h3 class="abstract-title">Current Status of the University of Illinois Microreactor Demonstration Project</h3>
+  <div class="abstract-author">Leslie Foyto &mdash; University of Illinois Urbana-Champaign &middot; <a href="mailto:lfoyto@illinois.edu">lfoyto@illinois.edu</a></div>
+  <div class="abstract-body"><p>Nuclear power is experiencing a generational resurgence, creating new opportunities in grid electricity, remote communities, behind-the-meter deployment, microgrids, industrial-process integration, and other applications. The University of Illinois Urbana-Champaign, through its Department of Nuclear, Plasma and Radiological Engineering, plans to deploy Nano Nuclear Energy&#x27;s 45 MWth KRONOS MMR technology as a microreactor demonstration project. The project will create a research facility focused on advancing knowledge, building operational experience, and supporting technology development. On March 31, 2026, the university submitted an application to the U.S. Nuclear Regulatory Commission for a construction permit for the campus research reactor. On May 18, 2026, the NRC informed the university that staff had sufficient information to begin detailed safety and environmental reviews and establish a predictable review schedule. The presentation provides a design overview and an update on application review and the regulatory-audit plan and schedule.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0830a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0830a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0850a-a">
+  <div class="abstract-meta">Tuesday, 8:50 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-02</div>
+  <h3 class="abstract-title">Applications of Reactor Dosimetry Measurements at the Advanced Test Reactor Critical</h3>
+  <div class="abstract-author">Dani G. Ottaway &mdash; Radiation Measurement Laboratory, Idaho National Laboratory &middot; <a href="mailto:Dani.ottaway@inl.gov">Dani.ottaway@inl.gov</a></div>
+  <div class="abstract-body"><p>The Advanced Test Reactor Critical (ATR-C), at the Idaho National Laboratory (INL), is a full -scale replica of the core of the Advanced Test Reactor (ATR) but located in an open pool in lieu of a pressure vessel. While ATR can operate at a nominal thermal power capacity of 250 MW, ATR-C is typically operated at less than 600 watts. ATR-C is most often utilized to evaluate experiment impacts on power distribution prior to insertion into ATR. The Radiation Measurement Laboratory (RML) performs measurements on a minimum of 340 uranium-aluminum fission wires that are distributed within fuel elements in the core during the irradiation to assist in validating modeling and simulation results. As these fission wires decay rapidly, all must be measured within a 12-hour window of the reactor scram. ATR-C is also used for general nuclear research purposes to demonstrate feasibility before investing in an irradiation campaign in ATR. Utilizing guidance provided in several ASTM International standards on neutron dosimetry, material radioactivation has taken place in a series of test positions within the core as well as in instrument thimbles, dry, air-filled positions located just outside the main reactor tank. Gamma spectroscopy measurements of the activated material have yielded results that, when used in conjunction with the methods within the ASTM standards, characterize fast and thermal neutron flux rates in these assorted test positions.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0850a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0850a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0850a-b">
+  <div class="abstract-meta">Tuesday, 8:50 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-02</div>
+  <h3 class="abstract-title">NextGen MURR at the American Conference on Neutron Scattering University-Based Neutron Sources Workshop</h3>
+  <div class="abstract-author">Ethan Schroeder &mdash; University of Missouri &middot; <a href="mailto:e.schroeder@missouri.edu">e.schroeder@missouri.edu</a></div>
+  <div class="abstract-body"><p>Neutron-beam science is a key functional focus of the NextGen MURR design, intended to strengthen domestic capability for materials science, energy efficiency, nondestructive testing, biology, and medicine. The pre-conceptual site layout includes a neutron-guide hall capable of hosting 10 to 15 instruments, a cold source, and two cold and two thermal neutron beam ports. In July 2026, MURR and NextGen MURR representatives attended the American Conference on Neutron Scattering. MURR organized a University-Based Neutron Sources Workshop to foster collaboration and address national neutron- access needs. Participants included universities, national laboratories, international organizations, the U.S. Department of Energy, and the Neutron Scattering Society of America. Priority instruments identified included small-angle neutron scattering, neutron imaging, neutron powder diffraction, and triple-axis spectroscopy. A beam-science expert panel will continue advising the design team.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0850a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0850a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0910a-a">
+  <div class="abstract-meta">Tuesday, 9:10 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-03</div>
+  <h3 class="abstract-title">Benchmarking the UML Research Reactor Fast Neutron Irradiator Using ASTM E1855 Silicon Displacement Damage Dosimetry</h3>
+  <div class="abstract-author">Thomas Regan &mdash; University of Massachusetts Lowell &middot; <a href="mailto:thomas_regan@uml.edu">thomas_regan@uml.edu</a></div>
+  <div class="abstract-body"><p>Accurate characterization of displacement damage produced by fast neutrons is essential for qualifying semiconductor devices for aerospace, defense, fusion, and nuclear-energy environments. ASTM E1855 provides a standardized method for expressing neutron displacement damage in silicon as an equivalent fluence of one-MeV neutrons. This work applies ASTM E1855 to benchmark the University of Massachusetts Lowell Research Reactor Fast Neutron Irradiator. Commercial 2N2222A bipolar-junction transistors were electrically characterized before irradiation, irradiated at Sandia National Laboratories&#x27; Annular Core Research Reactor to approximately 1 x 10^13 n/cm2 one-MeV silicon-equivalent fluence, and characterized after irradiation to establish calibration response. Calibrated devices were then irradiated in the UMLRR Fast Neutron Irradiator to determine its equivalent one-MeV silicon damage rate and compare performance with the ACRR reference field. The benchmark establishes traceability to a nationally recognized reference neutron field and supports consistent semiconductor displacement-damage testing across university reactors and accelerator-based neutron sources.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0910a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0910a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0910a-b">
+  <div class="abstract-meta">Tuesday, 9:10 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-03</div>
+  <h3 class="abstract-title">The Idaho State University Advanced Research and Testing (ART) Reactor Facility: A Collaboration with NuCube Energy</h3>
+  <div class="abstract-author">Daniel LaBrier &middot; <a href="mailto:labrdani@isu.edu">labrdani@isu.edu</a></div>
+  <div class="abstract-body"><p>In March 2026, Idaho State University, in partnership with NuCube Energy Inc., was accepted into the U.S. Department of Energy Reactor Pilot Program and subsequently entered the NRIC Launch Pad USA program. The application represented several firsts: the first university-led application and the first public-private partnership involving a state entity, along with challenges associated with those first occurrences. The presentation discusses development of the relationship, the intended roles and outcomes of each entity, and shared goals for eventual licensure of both a commercial product for national energy production and an institutional resource for research, testing, and training.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0910a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0910a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0930a-a">
+  <div class="abstract-meta">Tuesday, 9:30 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-04</div>
+  <h3 class="abstract-title">Experiment Modeling Validation of Advanced Test Reactor Critical Tests</h3>
+  <div class="abstract-author">Nicklaus Schlamp &mdash; Idaho National Laboratory &middot; <a href="mailto:nicklaus.schlamp@inl.gov">nicklaus.schlamp@inl.gov</a></div>
+  <div class="abstract-body"><p>The Advanced Test Reactor Critical (ATRC) Facility is used to support nuclear instrumentation calibration, support for experiment insertion into the Advanced Test Reactor (ATR), reactivity measurements, void reactivity measurements, and axial profile measurements. New experiments scheduled to be inserted into ATR operating cycles may need to be tested in the ATRC first, either with a mockup or the prime experiment, to accurately capture flux profiles and reactivity worths. This information is necessary for authoring ATR Core Physics Analyses (CPA) and Core Safety Assurance Packages (CSAP). This process requires developing a separate test plan and ATRC operations which can extend the critical path of ATR operations or lead to the experiment being removed from the cycle. Validating the full fidelity Monte Carlo neutronics model against measured ATRC experimental data can reduce the number of experiment measurements required in the ATRC prior to irradiation in the ATR. This would take the requirement of ATRC testing off ATR&#x27;s critical operating path and allow for increased flexibility of the ATRC to be used as a valuable tool, on its own, for low power tests. This validation looks at the neutronics model of the ATRC, previously tested experiments and their models, in all the testing positions that influence the flux and power distribution in ATR physics safety analyses.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0930a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0930a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0930a-b">
+  <div class="abstract-meta">Tuesday, 9:30 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-04</div>
+  <h3 class="abstract-title">The Molten Salt Research Reactor at Abilene Christian University</h3>
+  <div class="abstract-author">Kim L. Pamplin &middot; <a href="mailto:pamplink@acu.edu">pamplink@acu.edu</a></div>
+  <div class="abstract-body"><p>Abilene Christian University&#x27;s Nuclear Energy eXperimental Testing Lab is designing, licensing, and constructing the Molten Salt Research Reactor, a one-megawatt-thermal liquid-fueled molten-salt reactor. The NEXT Lab mission is to provide solutions for energy, water, and medical-isotope needs by advancing molten-salt-reactor technology while educating future nuclear-science and engineering leaders. The reactor is sponsored by Natura Resources and developed with The University of Texas, Texas A&amp;M University, and Georgia Institute of Technology. ACU has established research and development laboratories for molten-salt chemistry, materials testing, and chemical analysis. The U.S. Nuclear Regulatory Commission issued ACU a construction permit authorizing reactor construction within the Dillard Science and Engineering Research Center in Abilene, Texas. The presentation provides an overview of the NEXT Lab mission, the reactor project, the collaborative team, and the status of development and licensing.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0930a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0930a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0950a-a">
+  <div class="abstract-meta">Tuesday, 9:50 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-05</div>
+  <h3 class="abstract-title">Flux Determination at NETL&#x27;s tPNT Location via STAYSL PNNL&#x27;s Least-Squares Fit Spectral Adjustment Software</h3>
+  <div class="abstract-author">Julian Herrera &mdash; University of Dallas &middot; <a href="mailto:jrherrera@udallas.edu">jrherrera@udallas.edu</a></div>
+  <div class="abstract-body"><p>Flux determination is important both for experimental measurements and for assessing reactor condition. At the TRIGA Mark II reactor at NETL, the thermal pneumatic neutron irradiation station is expected to have a predominantly thermal spectrum. Three dosimetry wires were irradiated with a Xe-134 sample as flux monitors for measurement of the isomeric yield ratio of Xe-134(n,gamma)Xe-135. Flux values were determined through spectral adjustment using STAYSL PNNL to adjust a previously generated SAND-II spectrum by a least-squares approach. The method reconciles measured wire activation with a spectrum based on prior wire activations. The measured thermal flux was 2.69 x 10^12 n/cm2-s, the epithermal flux was 6.97 x 10^11 n/cm2-s, and the fast flux was 7.76 x 10^11 n/cm2-s, with associated uncertainties.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0950a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0950a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0950a-b">
+  <div class="abstract-meta">Tuesday, 9:50 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-05</div>
+  <h3 class="abstract-title">The Vision of NextGen MURR</h3>
+  <div class="abstract-author">Ethan Schroeder &mdash; University of Missouri &middot; <a href="mailto:e.schroeder@missouri.edu">e.schroeder@missouri.edu</a></div>
+  <div class="abstract-body"><p>The University of Missouri is undertaking a transformational initiative to design, license, and construct a next-generation, higher-power research reactor known as NextGen MURR. The pre-conceptual design is envisioned to operate at 20 MW thermal or greater, double the power of MURR, using an open tank-in-pool configuration and high-density U3Si2 low- enriched uranium fuel enriched to 19.75%. The design demonstrates world-class perturbed thermal-neutron flux greater than 5.0 x 10^14 n/cm2-s, supporting production of critical medical and industrial radioisotopes. The site layout envisions an integrated nuclear ecosystem supporting isotope processing, neutron-beam science, radiopharmaceutical research, materials research, and workforce development at Discovery Ridge Research Park in Columbia, Missouri. The project will leverage university, industry, design-team, and owner&#x27;s-representative expertise to establish a world- class center for nuclear excellence capable of adapting to state and national nuclear-science and technology needs.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0950a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0950a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1010a-a">
+  <div class="abstract-meta">Tuesday, 10:10 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-06</div>
+  <h3 class="abstract-title">Flux Model Verification for Solid-State Nuclear Power</h3>
+  <div class="abstract-author">Eric Palmer &mdash; The University of Texas at Austin &middot; <a href="mailto:ep29424@my.utexas.edu">ep29424@my.utexas.edu</a></div>
+  <div class="abstract-body"><p>Experiments developing a direct-energy-conversion system are being planned using the TRIGA Mark II research reactor at The University of Texas at Austin Nuclear Engineering Teaching Laboratory. A test device will be placed in Beam Port 1 adjacent to the core to provide neutron and gamma-ray doses that enable operation. Accurate knowledge of the radiation source affecting the device is crucial to assessing performance. This work characterized neutron flux as a function of energy and position in the Beam Port 1 core-adjacent position through experimental activation-foil measurements and spectrum unfolding with the STAYSL code package, together with computational characterization using Monte Carlo simulation of the physical experiment. The neutron-flux results were compared with sample activation in the beam port to inform experimental performance and radiological safety..</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1010a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1010a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1010a-b">
+  <div class="abstract-meta">Tuesday, 10:10 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-06</div>
+  <h3 class="abstract-title">Unity Zero Power Critical Experiment Installation and Criticality in NRAD&#x27;s North Radiography Station</h3>
+  <div class="abstract-author">Charles Jones &mdash; Idaho National Laboratory &middot; <a href="mailto:charles.jones@inl.gov">charles.jones@inl.gov</a></div>
+  <div class="abstract-body"><p>Deployable Energy&#x27;s Unity Zero Power Critical Experiment was the third advanced-reactor demonstration to achieve criticality during the year in the Neutron Radiography Reactor facility. Integrating an external critical-experiment platform into an operating research-reactor facility provided operations and maintenance insights. The project required outage planning, a safety-analysis-report update, and electrical, mechanical, and instrumentation- and-control modifications to accommodate the Unity assembly. Procedure development integrated Unity operational requirements with established NRAD processes, while operator training combined classroom instruction, system walkthroughs, and simulated approach-to-critical activities. Initial criticality was achieved June 30 at 11:55 p.m. The reactor demonstrated stable and predictable behavior, confirming modeling of a well-characterized fuel type. The project provides lessons in equipment integration, procedure writing, training, and maintenance planning for facilities considering similar demonstrations.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1010a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1010a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1050a-a">
+  <div class="abstract-meta">Tuesday, 10:50 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-02</div>
+  <h3 class="abstract-title">Modernization of Radiation Measurement Methods in Support of the Ongoing Advanced Test Reactor Mission</h3>
+  <div class="abstract-author">Dani G. Ottaway &mdash; Idaho National Laboratory &middot; <a href="mailto:dani.ottaway@inl.gov">dani.ottaway@inl.gov</a></div>
+  <div class="abstract-body"><p>The Advanced Test Reactor (ATR), at Idaho National Laboratory, is a highly versatile research reactor utilized for a wide variety of nuclear research applications. Its unique clover-leaf core design and adjustable outer shim control cylinders allow for the neutron flux to be controlled within each of the nine flux traps thereby facilitating simultaneous experiment irradiations with different exposure requirements. Due to the heterogenous neutron flux profile within the ATR core, dosimetry irradiation and subsequent measurement is essential to validate experiment exposure during an irradiation cycle. The Radiation Measurement Laboratory (RML) performs these measurements, and many more, in support of the ATR mission. Until recently, several of these measurement processes remained unchanged since their initial development. Failures of custom made, legacy hardware and software complications at RML illustrated the pressing need for modernization of equipment and methodology. Efforts are underway to align measurement practices with current industry standards, replace legacy Fortran analysis software, and upgrade or replace custom-built equipment with off-the-shelf commercial hardware all to improve program resiliency and measurement quality.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1050a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1050a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1050a-b">
+  <div class="abstract-meta">Tuesday, 10:50 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-07</div>
+  <h3 class="abstract-title">Eden Precision Science, Human Impact: Technology Overview</h3>
+  <div class="abstract-author">Edward Parma &mdash; Eden Radioisotopes &middot; <a href="mailto:eparma@edenrad.com">eparma@edenrad.com</a></div>
+  <div class="abstract-body"><p>Eden Radioisotopes is a startup company based in Albuquerque, New Mexico. Eden&#x27;s plan is to build an integrated reactor and hot cell facility in southeastern New Mexico dedicated to the commercial production of medical radioisotopes for the US. The Eden reactor is a 2-MW pool-type reactor called the All-Target Reactor, licensed from Sandia National Laboratories (SNL). The All-Target Reactor uses low-enriched uranium (LEU) fuel targets in the core to produce fission molybdenum-99 (Mo-99) and other medical radioisotopes. All of the targets are processed to make Mo-99. There are no driver fuel elements in the core, and hence there is no spent fuel produced by operating the reactor. The reactor also has several irradiation locations used for the production of activation medical radioisotopes such as Lutetium-177 (Lu-177) and others. In June 2026, the Nuclear Regulatory Commission (NRC) docketed the Eden Preliminary Safety Analysis Report (PSAR) and began the formal review process of the Construction Permit Application (CPA). When the construction permit is issued, Eden will begin construction of the integrated reactor and hot cell facility. Eden plans to be operational by 2030. When in full production, Eden will be able to produce 100% of the US demand for Mo-99 and the world demand, if needed. Eden will also be capable of producing a significant quantity of Lu-177 and other activation isotopes to meet the world demand. This paper will focus on the design features of the integrated reactor and hot cell facility, called the Eden Medical Isotope Facility (EMIF) and the All-Target Reactor.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1050a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1050a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1110a-a">
+  <div class="abstract-meta">Tuesday, 11:10 AM &middot; Track A &middot; Dosimetry &amp; Flux Characterization &middot; Session 1-08</div>
+  <h3 class="abstract-title">Simulated Gas Calibrations of Eu-152 at the TRIGA reactor at NETL at The University of Texas at Austin</h3>
+  <div class="abstract-author">Zachary Boor &mdash; University of Dallas &middot; <a href="mailto:zboor@udallas.edu">zboor@udallas.edu</a></div>
+  <div class="abstract-body"><p>A simulated gas source was created for efficiency calibration at the TRIGA reactor at The University of Texas at Austin Nuclear Engineering Teaching Laboratory. The facility irradiates gases whose distributed geometry differs from a conventional button-source geometry. Natural europium was placed in a canister with beads to create a gas-like distribution and irradiated to produce europium-152. Standard energy lines from 122 keV to 1408 keV were used to calculate efficiency values. A relative efficiency value was calculated for the xenon-135m 526.6-keV line and xenon-135 249.8-keV line; the relative efficiency was 0.5933 +/- 0.0003.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1110a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1110a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1110a-b">
+  <div class="abstract-meta">Tuesday, 11:10 AM &middot; Track B &middot; New Reactor &amp; Isotope Facility Development &middot; Session 2-08</div>
+  <h3 class="abstract-title">NextGen MURR Radioisotope Processing Facility Design Approach</h3>
+  <div class="abstract-author">Ethan Schroeder &mdash; University of Missouri &middot; <a href="mailto:e.schroeder@missouri.edu">e.schroeder@missouri.edu</a></div>
+  <div class="abstract-body"><p>The University of Missouri is undertaking a transformational initiative to design, license, and construct a next-generation, higher-power research reactor known as NextGen MURR. The pre-conceptual reactor is envisioned to operate at 20 MW thermal or greater using an open tank-in-pool configuration and high-density U3Si2 low-enriched uranium fuel enriched to 19.75%. The design demonstrates perturbed thermal-neutron flux greater than 5.0 x 10^14 n/cm2-s, supporting production of medical and industrial radioisotopes. Integration with a co-located Radioisotope Processing Facility will support efficient handling and processing of irradiated targets. The modular and scalable RPF and support utilities allow expansion as demand increases. The site layout also includes infrastructure for neutron research, radiopharmaceutical research, materials research, workforce development, and support facilities. The project team intends NextGen MURR to become an asset of national strategic significance.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1110a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1110a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1130a-a">
+  <div class="abstract-meta">Tuesday, 11:30 AM &middot; Track A &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-01</div>
+  <h3 class="abstract-title">Failure, Evidence, Redesign: Resolving Retaining-Ring Fractures in the NBSR Refueling Plug</h3>
+  <div class="abstract-author">Rubin &amp; Hix &mdash; National Institute of Standards and Technology &middot; <a href="mailto:david.hix@nist.gov">david.hix@nist.gov</a></div>
+  <div class="abstract-body"><p>Recurrent fractures of precipitation-hardened stainless-steel retaining rings were identified in the National Bureau of Standards Reactor refueling plug. Although the rings carried minimal static load relative to rated capacity, repeated failures indicated an active degradation mechanism rather than simple overload or isolated defects. The investigation combined inspection findings, finite-element stress analysis, mechanical load testing, galvanic-corrosion assessment, material characterization, hardness testing, and accelerated chloride-exposure experiments. The evidence supports stress-corrosion cracking as the most probable mechanism, driven by sustained tensile stress, a susceptible substituted alloy, suspected chloride deposits, and galvanic degradation within the bearing assembly. Mechanical testing produced localized plastic deformation without fracture, while accelerated chloride testing fractured as-installed stressed rings. The corrective redesign converted the bearing assembly from a groove-retained, corrosion- sensitive configuration into a mechanically retained Nitronic 60 bearing system, eliminating the conditions that enabled the failures.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1130a-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1130a-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-1130a-b">
+  <div class="abstract-meta">Tuesday, 11:30 AM &middot; Track B &middot; Fuel Cycle: Supply &amp; Qualification &middot; Session 4-01</div>
+  <h3 class="abstract-title">2026 Status Report University Fuel Services Program</h3>
+  <div class="abstract-author">Douglas K. Morrell &mdash; Idaho National Laboratory &middot; <a href="mailto:douglas.morrell@inl.gov">douglas.morrell@inl.gov</a></div>
+  <div class="abstract-body"><p>This presentation will discuss the purpose and scope of the Department of Energy - University Fuel Services (UFS) Program. Personnel involved in the program will be introduced and contact information will be provided for team members. Information will be provided to conference attendees regarding the status of the core activities of the program. These activities include fresh fuel element fabrication and irradiated nuclear fuel shipment returns to the DOE. Current and future issues pertinent to the UFS program will also be presented. The UFS program maintains fuels support contracts and provides nuclear reactor fuel at no or low cost to 24 U.S. universities operating a total of 25 reactor facilities. These facilities include:</p>
+<ul><li>Twelve Training Research Isotope General Atomics (TRIGA) facilities</li><li>Eight plate-fueled facilities</li><li>Three Aerojet-General Nucleonics (AGN) facilities</li><li>One Pulstar-fueled facility</li><li>One critical facility</li></ul>
+<p>The title for the fuel remains with the United States government, and, when the universities are finished with the fuel, the fuel is returned to the United States government for long-term storage. Mission of the University Fuel Services Program: The UFS Program is funded by the U.S. Department of Energy, Office of Nuclear Energy, and is managed by Idaho National Laboratory (INL) in Idaho Falls, Idaho. The program goals are:</p>
+<ul><li>Keep all U.S. operating university reactor programs supplied with nuclear fuel.</li><li>Provide assistance for movement of irradiated nuclear fuel from U.S. universities after the DOE receipt facility</li></ul>
+<p>authorizes the fuel receipt.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-1130a-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-1130a-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0110p-a">
+  <div class="abstract-meta">Tuesday, 1:10 PM &middot; Track A &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-02</div>
+  <h3 class="abstract-title">From Fuel Failure to Robust Engagement: Investigation, Redesign, and Validation of the NBSR Fuel Element Head</h3>
+  <div class="abstract-author">Rubin &amp; Hix &mdash; National Institute of Standards and Technology &middot; <a href="mailto:david.hix@nist.gov">david.hix@nist.gov</a></div>
+  <div class="abstract-body"><p>The 2021 NBSR fuel failure involved a fuel element that was not securely latched, resulting in displacement, inadequate cooling, and fuel damage. Procedural improvements and visual-verification methods were introduced after the event. Further engineering review identified an opportunity to improve the mechanical robustness of the Fuel Element Head. The new Fuel Element Head, FEH V2, preserves existing fuel-element geometry, reactor interfaces, handling tools, and operating sequence. Its primary feature is a mounting-block hard stop that limits unintended back-rotation caused by spring relaxation and maintains secure engagement. The stop shifts the wear interface from the reactor structure to a controlled, replaceable component and reduces dependence on the condition of the Upper Grid Plate groove. The redesign followed a systems-engineering process including requirements, interface control, failure-mode analysis, concept evaluation, engineering analysis, detailed design, fabrication, and validation testing. Structural, thermal, hydraulic, seismic, vibration, materials, and interface evaluations confirmed adequate margins. Comparative testing showed secure engagement under all evaluated normal and off-normal handling conditions.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0110p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0110p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0110p-b">
+  <div class="abstract-meta">Tuesday, 1:10 PM &middot; Track B &middot; Fuel Cycle: Supply &amp; Qualification &middot; Session 4-02</div>
+  <h3 class="abstract-title">Supporting the Research Reactor Community Through Integrated Transportation, Engineering, and Project Delivery: Operational Lessons Learned</h3>
+  <div class="abstract-author">Eric Woolstenhulme &mdash; STS Nuclear &middot; <a href="mailto:ecw@stsnuclear.com">ecw@stsnuclear.com</a></div>
+  <div class="abstract-body"><p>Abstract text was not provided in the recovered submission export.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0110p-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0110p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0130p-a">
+  <div class="abstract-meta">Tuesday, 1:30 PM &middot; Track A &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-03</div>
+  <h3 class="abstract-title">Improving MURR Anti-Siphon Control System Reliability</h3>
+  <div class="abstract-author">Peter Norgard &mdash; University of Missouri &middot; <a href="mailto:norgardp@missouri.edu">norgardp@missouri.edu</a></div>
+  <div class="abstract-body"><p>The University of Missouri Research Reactor anti-siphon system uses compressed air that can be delivered to the primary coolant system through two redundant valves. A coupled drywell detects water within the compressed-air volume and initiates a rod run-in if water exceeds a technical-specification limit. The displacement level sensor used since 1974 has exhibited behavior that calls its reliability into question. A laser time-of-flight level sensor is being evaluated as a replacement. The sensor emits a pulse-modulated coherent light beam, starts a timer, and measures return time from the target surface. The approximately 4.9-meter target distance and 6.35-centimeter-diameter drywell require precise alignment to avoid sidewall reflections. An alignment tool inspired by a commercial tribrach was designed, and testing is planned using a mock drywell and the actual sensor.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0130p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0130p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0130p-b">
+  <div class="abstract-meta">Tuesday, 1:30 PM &middot; Track B &middot; Fuel Cycle: Supply &amp; Qualification &middot; Session 4-03</div>
+  <h3 class="abstract-title">The TRIGA International (TI) production line in Romans, France</h3>
+  <div class="abstract-author">Ralf Gathmann &mdash; Framatome &middot; <a href="mailto:ralf.gathmann@framatome.com">ralf.gathmann@framatome.com</a></div>
+  <div class="abstract-body"><p>Framatome and General Atomics established a joint venture in 1995 to produce TRIGA fuel for the United States and international markets. The production facility is located at the Framatome CERCA Category I plant in Romans-sur-Isere, France. Initial work focused on conversion of TRIGA reactors from highly enriched to low-enriched uranium. In 2013, with assistance from the U.S. Department of Energy, the facility was renovated to current standards with capacity to produce several hundred TRIGA fuel assemblies for U.S. universities. Since then, multiple U-Zr-H fuel versions have been produced and delivered. In 2026, production of the MARVEL first-core load began, with delivery planned in the same year. Under current planning assumptions, the facility will be fully loaded through 2028, with additional university-fuel options under discussion.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0130p-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0130p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0150p-a">
+  <div class="abstract-meta">Tuesday, 1:50 PM &middot; Track A &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-04</div>
+  <h3 class="abstract-title">Integration of Legacy Materials from the Annular Core Research Reactor into a New Regulating Rod</h3>
+  <div class="abstract-author">Samuel G. Durbin &mdash; Sandia National Laboratories &middot; <a href="mailto:sdurbin@sandia.gov">sdurbin@sandia.gov</a></div>
+  <div class="abstract-body"><p>Objective: Demonstrate a practical method for incorporating legacy materials from the Annular Core Research Reactor into a newly manufactured regulating rod. A fabrication campaign recovered legacy reactor materials and integrated them with newly fabricated components. The effort required development and qualification of handling, closure welding, gas sampling, inspection, and acceptance methods compatible with existing geometry and materials. Component designs and fabrication steps were refined to improve manufacturability, weldability, and confidence in final assembly quality while preserving required form, fit, and function. The campaign produced a newly assembled rod containing recovered legacy materials and established a practical fabrication and inspection basis. The work demonstrated the importance of coordination among engineering, welding, nondestructive examination, metrology, and reactor operations. The resulting process basis and lessons support future fabrication development, examination planning, and irradiated-hardware refurbishment.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0150p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0150p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0150p-b">
+  <div class="abstract-meta">Tuesday, 1:50 PM &middot; Track B &middot; Fuel Cycle: Supply &amp; Qualification &middot; Session 4-04</div>
+  <h3 class="abstract-title">Use of Zone-Melt Refining to Enable a Uranium-Actinide Closed Fuel Cycle for Research Reactors</h3>
+  <div class="abstract-author">Jackson Keppen &mdash; NuScale Power &middot; <a href="mailto:jkeppen@nuscalepower.com">jkeppen@nuscalepower.com</a></div>
+  <div class="abstract-body"><p>Objective: Explore a uranium-actinide fuel cycle for research reactors that uses zone-melt refining for cost savings, waste reduction, and nonproliferation benefits. Zone-melt refining is a nonchemical bulk-separation method that can selectively concentrate uranium, plutonium, and minor actinides from used fuel without concentrating plutonium alone. The process removes most fission products from the uranium-plutonium alloy and may substantially reduce the material volume requiring chemical reprocessing. With metallic fuels, it may eliminate chemical refining from parts of the recycling scheme. Analytical models suggest fuel-cost reductions as high as 70% and high-level-waste-volume reductions as high as 88% compared with once-through cycles. Much of the remaining waste could return to radioactivity comparable to uranium ore after about 330 years rather than more than 10,000 years. NuScale Power plans to pursue zone-melt-refining development and is interested in university partnerships for an on-campus or near-campus pilot facility associated with a microreactor deployment.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0150p-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0150p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0210p-a">
+  <div class="abstract-meta">Tuesday, 2:10 PM &middot; Track A &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-05</div>
+  <h3 class="abstract-title">Investigation of a cadmium contamination event during a radiotracer production activity</h3>
+  <div class="abstract-author">Jeffrey Geuther and Aaron Wilmot &mdash; The Pennsylvania State University &middot; <a href="mailto:jag671@psu.edu">jag671@psu.edu</a></div>
+  <div class="abstract-body"><p>On February 3, 2026, the PSU Radiation Science and Engineering Center produced a 1 Ci Na-24 radiotracer in the form of activated sodium carbonate (Na2O3) contained in an aluminum alloy Swagelok vial. This tracer was removed from the dry tube and shipped to the customer in a Type A container. The shipping container was returned to the university on February 5th, 2026, and was discovered to be contaminated with significant quantities of Cd-115, which was not an isotope expected from the irradiation based upon the material irradiated or past experience with the procedure. The delivery vehicle and driver were recalled to the facility for a radiation survey and no contamination was identified inside the vehicle or on the driver. This event was reported to the NRC and is documented in Event Report 58155. Follow-up investigations involved testing to determine the source of the cadmium, including test irradiations and smears of the vials and dry tubes used in sodium production, NAA of smears of the tools and work surfaces used to prepare the samples, identification of issues with handling of radioactive materials and contamination control, anomalies in the transportation of the cask, and the use of x-ray fluorescence testing to interrogate the components of the Swagelok capsules. This presentation will provide a detailed summary of the event, including contributing factors, lessons learned, corrective actions, and the testing which was performed to identify the source of the cadmium contamination.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0210p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0210p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0210p-b">
+  <div class="abstract-meta">Tuesday, 2:10 PM &middot; Track B &middot; Fuel Cycle: Supply &amp; Qualification &middot; Session 4-05</div>
+  <h3 class="abstract-title">As-Run neutronic analysis of U-10Mo monolithic fuel plate experiments in the Advanced Test Reactor</h3>
+  <div class="abstract-author">Paul Gilbreath &mdash; Idaho National Laboratory &middot; <a href="mailto:paul.gilbreath@inl.gov">paul.gilbreath@inl.gov</a></div>
+  <div class="abstract-body"><p>A series of mini-plate experiments has been irradiated in the Advanced Test Reactor at Idaho National Laboratory to support qualification of 19.75% enriched U-10Mo monolithic fuel for research-reactor applications. The experiments were irradiated in the I positions, B positions, and South Flux Trap to provide conditions representative of multiple fuel- plate geometries. Pre-irradiation projection analyses established safety and programmatic targets for fission density, power density, and burnup. This summary focuses on the as-run neutronic analysis following eight ATR cycles, providing validated end-of-irradiation conditions for each fueled mini-plate in support of post-irradiation examination. The analysis uses the same three-dimensional MCNP full-core ATR model used in projection analysis, updated to reflect actual operating histories. Each plate is modeled with a fuel-region mesh to resolve local burnup and fission density. MCNP-generated fluxes and replacement cross sections are used in SCALE depletion calculations, with burn steps aligned to actual cycle length, measured lobe powers, and reactor-control positions. As-run results are presented for all irradiation and power conditions. Plate-specific power density, fission density, U-235 burnup, percent FIMA, and neutron flux are reported and compared with pre-irradiation projections. The analysis shows the extent to which programmatic targets were met and provides the validated basis for interpreting post-irradiation examination measurements and supporting ongoing U-10Mo fuel qualification.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0210p-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0210p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0230p-a">
+  <div class="abstract-meta">Tuesday, 2:30 PM &middot; Track A &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-06</div>
+  <h3 class="abstract-title">Reducing Confinement Building Leak Rate</h3>
+  <div class="abstract-author">Robert Newby &mdash; National Institute of Standards and Technology &middot; <a href="mailto:robert.newby@nist.gov">robert.newby@nist.gov</a></div>
+  <div class="abstract-body"><p>The NIST Center for Neutron Research confinement building houses the NBSR reactor and serves as a fission-product boundary to protect the public from radiological releases during an emergency. Over almost 60 years of service, the confinement-building leak rate increased. In 2025, the NCNR chose to refurbish ventilation-system automatic closure valves that seal the confinement building upon a major scram because the valves were identified as contributors to the increased leak rate. From start to finish, the project took approximately eight months. The objectives, challenges, and results of the project will be discussed along with future projects aimed at further reducing building leak rate.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0230p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0230p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0230p-b">
+  <div class="abstract-meta">Tuesday, 2:30 PM &middot; Track B &middot; Fuel Cycle: Supply &amp; Qualification &middot; Session 4-06</div>
+  <h3 class="abstract-title">Characterization of a HALEU-Fueled AGN-201M Reactor for Benchmark Evaluation</h3>
+  <div class="abstract-author">Daniel LaBrier &mdash; Idaho State University &middot; <a href="mailto:labrdani@isu.edu">labrdani@isu.edu</a></div>
+  <div class="abstract-body"><p>⚠ Mary Lou Dunzik-Gougar is not attending; Daniel LaBrier (Idaho State University) is presenting this talk in her place. High-assay low-enriched uranium (HALEU) fuels are critical to many advanced reactor designs; however, benchmark-quality data for systems fueled in the 10–20% enrichment range are relatively scarce. The Aerojet General Nucleonics Model 201-M (AGN-201M) reactor at Idaho State University is a unique HALEU-fueled training reactor (licensed for operations up to 5 W thermal power) that provides an opportunity to address this data gap. The AGN-201M’s core uses uranium dioxide fuel enriched to approximately 19.75% U-235 in a polyethylene matrix, forming a very low-power critical assembly suitable for hands-on education and research. The AGN reactor contains multiple access ports that are typically used for irradiating and characterizing material. The low power and optimal hydrogen-to-heavy element (H/X) moderation make this reactor highly sensitive to non-fissile material insertions into the experimental ports, thereby allowing reactivity measurements. A benchmark of the reactor is important for validating neutron transport and criticality simulation codes against a well-characterized thermal, graphite-reflected HALEU system, thereby increasing confidence in the modeling of next-generation reactors. The goal of this project is to develop an International Criticality Safety Benchmark Evaluation Project (ICSBEP) evaluation for the AGN-201M reactor. In Phase 1 of the project the reactor and shielding materials were disassembled for the first time in its 50+ year tenure at Idaho State. Reactor components were characterized in terms of dimensions, mass, and chemical composition. In addition, the fuel was radiographed to determine UO2 distribution within the polyethylene and was analyzed for isotopic composition. The detailed results were fed into a reactor model. Phase 2 of the project included a series of experiments with different critical configurations, including order of fuel disk placement in the core and positions of the fueled control rods. Results are being analyzed for inclusion in the benchmark report.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0230p-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0230p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0250p-a">
+  <div class="abstract-meta">Tuesday, 2:50 PM &middot; Track A &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-07</div>
+  <h3 class="abstract-title">UUTR Tank Repair Efforts</h3>
+  <div class="abstract-author">Andrew Allison, Dylan Ramirez &mdash; Andrew.allison@utah.edu, dylan.ramirez899@gmail.com &middot; <a href="mailto:Andrew.allison@utah.edu">Andrew.allison@utah.edu</a></div>
+  <div class="abstract-body"><p>This presentation will focus on updates on the University of Utah TRIGA nuclear reactor since TRTR 2025. These updates include the reassembly of the TRIGA reactor core following recoating the reactor tank, installation of a corrosion protection system to prevent further corrosion of the reactor tank, and approach to criticality with a new reactor core model. The presenter will also discuss observed water chemistry issues occurring during reactor operations and discussion amongst the community of suspected cause for the chemistry issue.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0250p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0250p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0250p-b">
+  <div class="abstract-meta">Tuesday, 2:50 PM &middot; Track B &middot; Fuel Cycle: Supply &amp; Qualification &middot; Session 4-07</div>
+  <h3 class="abstract-title">Design and Safety Analysis Codes and Methods for HALEU Conversions and New Build Research Reactors in the U.S. and Beyond</h3>
+  <div class="abstract-author">Erik Wilson &mdash; Argonne National Laboratory &middot; <a href="mailto:erikwilson@anl.gov">erikwilson@anl.gov</a></div>
+  <div class="abstract-body"><p>High-assay low-enriched uranium fuel conversions and new HALEU research-reactor designs require analysis methods that accurately capture neutronic, depletion, and thermal-hydraulic behavior. A code suite developed for research and test reactors supports plate- and rod-type fuel geometries across a wide range of powers, burnups, and flow conditions. The framework includes whole-core analysis for fuel management and burnup, coupling ADDER depletion and complex multi-cycle fuel management with MCNP neutron transport. Steady-state thermal hydraulics and hot-channel uncertainty methods use PLTEMP/ANL, including stripe-to-stripe mixing and up to three-dimensional heat conduction. STAT7 supports Monte Carlo uncertainty propagation, and PARET/ANL models core-level transients by coupling point kinetics with thermal-hydraulic feedback. The software framework has been developed and validated under NQA-1 requirements. Together, the methods provide an efficient basis for evaluating reactor performance, dentifying limiting conditions, and quantifying safety margins for HALEU conversions and new-build research-reactor applications.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0250p-b">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0250p-b" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0330p-a">
+  <div class="abstract-meta">Tuesday, 3:30 PM &middot; Track A &middot; Radiation Effects on Electronics &middot; Session 9-01</div>
+  <h3 class="abstract-title">Examination of a Circuit&#x27;s Slew Rate Degradation During In-situ Irradiation of Circuit Sensitive Transistor</h3>
+  <div class="abstract-author">Michael Sheridan &mdash; The University of Texas at Austin &middot; <a href="mailto:msheridan3@utexas.edu">msheridan3@utexas.edu</a></div>
+  <div class="abstract-body"><p>The objective of this work is to examine slew-rate degradation in a circuit while key transistors are irradiated individually and measured in situ. An earlier test campaign found that the LM741 slew rate degraded with neutron fluence at the Nuclear Engineering Teaching Laboratory Beam Port 1-5 facility. Computer simulations showed that two PNP transistors in the input stage, Q3 and Q4, had the largest effect on slew-rate degradation. A discrete LM741 circuit was assembled, and the key PNP transistors were placed in sockets on a perforated board. The transistor socket was connected through 30-foot PS/2 cables to an identical board with empty transistor sockets. The first board and transistor were placed in the reactor while the second board and circuit remained outside the reactor. The long cabling and multiple socket connections significantly degraded both positive and negative slew rates. The positive slew rate was too degraded for useful analysis. The negative slew rate degraded when Q4 was irradiated and when Q3 and Q4 were irradiated together, but did not show significant degradation when Q3 was irradiated alone. The in- situ method demonstrated that Q4 irradiation affected negative slew rate. Future modifications should optimize cable length, impedance, and shielding to improve positive slew-rate measurements while keeping the external circuit outside the high-flux area. Sandia National Laboratories is managed and operated by NTESS under DOE NNSA contract DE-NA0003525.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0330p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0330p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0350p-a">
+  <div class="abstract-meta">Tuesday, 3:50 PM &middot; Track A &middot; Radiation Effects on Electronics &middot; Session 9-02</div>
+  <h3 class="abstract-title">Neutron-Induced Single Event Upsets within SRAM Devices</h3>
+  <div class="abstract-author">Michael Santos &mdash; University of Dallas &middot; <a href="mailto:msantos@udallas.edu">msantos@udallas.edu</a></div>
+  <div class="abstract-body"><p>SRAM devices are susceptible to memory errors caused by neutron radiation. Neutrons can interact with atomic nuclei in semiconductor material, generating localized charge that alters the stored state of an SRAM memory cell. Interactions with silicon can produce recoil atoms, while thermal-neutron capture by boron-10 can produce lithium and helium ions. This project seeks to quantify neutron effects on SRAM devices using a system designed to monitor memory errors in real time at the TRIGA reactor at The University of Texas at Austin Nuclear Engineering Teaching Laboratory. The device writes all-ones, all-zeros, and alternating checkerboard patterns to the SRAM chip while reactor power is increased incrementally, recording neutron-induced memory errors. The device dimensions were selected to fit within the six-inch- diameter radiation chamber.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0350p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0350p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0410p-a">
+  <div class="abstract-meta">Tuesday, 4:10 PM &middot; Track A &middot; Radiation Effects on Electronics &middot; Session 9-03</div>
+  <h3 class="abstract-title">UT-Austin NETL Combined Electromagnetic and Neutron Environments Testing Capabilities</h3>
+  <div class="abstract-author">Nicholas Crenshaw, Michael Sheridan, William Charlton, Josh Young &mdash; 1 The University of Texas at Austin; 2 Sandia National Laboratories &middot; <a href="mailto:nicholas.crenshaw@utexas.edu">nicholas.crenshaw@utexas.edu</a></div>
+  <div class="abstract-body"><p>The Nuclear Engineering Teaching Laboratory at the University of Texas at Austin has developed the capability to test analog electronics under combined neutron and RF stress via direct pin injection. Tests can be performed actively (device biased in-situ with RF injection in the reactor cavity) or passively (RF injection on previously neutron irradiated parts). This capability is being used to better understand how neutron displacement damage (nDD) modifies the response to radio frequency (RF) insult of analog microelectronics. The research literature is sparse regarding the topic of RF or electromagnetic (EM) effects on electronics exposed to ionizing radiation. In many extreme environments, such as satellites near radiation belts or nuclear reactors fielded in space or military missions, noisy EM environments are present. Ionizing radiation exposures over the mission lifetime may alter the response of sensitive electronics to EM/RF induced noise and coupling. Testing has been performed on bipolar junction transistors (BJTs) by neutron irradiating the devices to fluence levels of 5×10¹², 1×10¹³, and 3×10¹³ n/cm² 1 MeV(Si) and then later injecting RF to explore susceptibilities. The BJTs were wired in common-emitter mode, and RF was injected into the base with a bias tee. RF sweeps were performed from 10 MHz through 10 GHz and -40 - 20 dBm (2.2 mV - 2.2 V rms). Gummel measurements (base current, collector current and gain) were performed at every sweep interval. The BJTs showed significant gain compression under RF injection and exhibited enhanced gain compression for RF injection into neutron irradiated devices. This work is being performed in collaboration with Sandia National Laboratories (SNL). Future work will test diodes in a similar manner and model these effects in SNLs device simulation code, Charon.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0410p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0410p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0430p-a">
+  <div class="abstract-meta">Tuesday, 4:30 PM &middot; Track A &middot; Education &amp; Outreach &middot; Session 10-01</div>
+  <h3 class="abstract-title">Classical vs. Modern: A Tale of Two Reactors at Idaho State University</h3>
+  <div class="abstract-author">Daniel LaBrier &middot; <a href="mailto:labrdani@isu.edu">labrdani@isu.edu</a></div>
+  <div class="abstract-body"><p>Since 1965, Idaho State University has operated an Aerojet-General Nucleonics AGN-201 reactor, a five-watt thermal reactor used for academic and industrial research, experiments, and operator training. The reactor allows students to operate a nuclear reactor on campus and complete a rigorous training course leading to a U.S. Nuclear Regulatory Commission reactor-operator license. In early 2026, Idaho State University and NuCube Energy were accepted into the U.S. Department of Energy Reactor Pilot Program to site, develop, and operate an advanced reactor on campus. The Idaho State University Advanced Research and Testing Reactor Facility will build on NuCube&#x27;s NuSun technology. The four-megawatt thermal reactor uses TRISO particle-fuel compacts, heat pipes for thermal management, and few moving parts. The presentation discusses the path toward building an advanced reactor on a state-funded university campus, the public-private partnership, lessons from authorization, and the proposed pathway to NRC licensure under 10 CFR 50.21.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0430p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0430p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-tue-0450p-a">
+  <div class="abstract-meta">Tuesday, 4:50 PM &middot; Track A &middot; Education &amp; Outreach &middot; Session 10-02</div>
+  <h3 class="abstract-title">Research Reactor Outreach Program: A Collaboration between the International Atomic Energy Agency, the University of Texas and Jordan Atomic Energy Commission</h3>
+  <div class="abstract-author">Sheldon Landsberger &mdash; The University of Texas at Austin &middot; <a href="mailto:s.landsberger@mail.utexas.edu">s.landsberger@mail.utexas.edu</a></div>
+  <div class="abstract-body"><p>There are more than 220 research reactors worldwide, with several more being constructed. A series of comprehensive PowerPoint presentations was prepared so stakeholders could use them in their own countries for research-reactor outreach programs. All presentations were developed using standard IAEA templates and placed on The University of Texas computer cloud. At the end of the project, the presentations will be uploaded to dedicated IAEA e-learning courses. The presentations developed include: History of Nuclear Science and Impact of Nobel Prize Winners; Outreach Program for Research Reactors; Strategic Outreach Plan for Nuclear Research Reactors: Products and Services Focus; Strategic Outreach Plan for Nuclear Research Reactors: Research and Development; Research Reactor Publications; European Research Reactor Conference and the National Organization of Test, Research and Training Reactors; Neutron Radiography; Medical Isotopes; Neutron Activation Analysis; and Basic Training in Support of Nuclear Energy.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-tue-0450p-a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="tue-0450p-a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-0830a">
+  <div class="abstract-meta">Thursday, 8:30 AM &middot; Instrumentation &amp; Detector Development &middot; Session 5-01</div>
+  <h3 class="abstract-title">Advancements in Commercially-Configurable Micro-Pocket Fission Detectors</h3>
+  <div class="abstract-author">Taylor Ochs &mdash; Radiation Detection Technologies &middot; <a href="mailto:ochs@radectech.com">ochs@radectech.com</a></div>
+  <div class="abstract-body"><p>The demand for precise, localized, real-time in-core neutron-flux monitoring continues to grow. Micro-Pocket Fission Detectors are miniaturized gas-filled ionization chambers with tailorable fissile coatings capable of withstanding high- temperature, high-radiation reactor environments. This work presents design optimization, testing results, and commercialization outlook for commercially configurable MPFDs. Manufacturing updates have moved the detector from laboratory prototypes toward commercial manufacturing by resolving fabrication and reliability challenges. Prototype single- and multi-chamber alpha-MPFDs using internal Am-241 sources were constructed. Baseline pulse-height spectra measured in 2023 are compared with 2026 retest data to assess long-term hermetic-seal viability, possible mineral-insulated cable outgassing, and fill-gas degradation. The presentation also discusses scalable batch manufacturing and planned deployments in university and national- laboratory test reactors. High-fidelity distributed flux mapping without significant perturbation may make the technology a cost-effective tool for irradiation experiments and next-generation reactor validation.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-0830a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-0830a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-0850a">
+  <div class="abstract-meta">Thursday, 8:50 AM &middot; Instrumentation &amp; Detector Development &middot; Session 5-02</div>
+  <h3 class="abstract-title">High Temperature Fission Chambers Output Signal Characterization</h3>
+  <div class="abstract-author">A. Rizzo, N. Jackowska, K. Irazoqui, A. Cook, Q. Gestes, M. Shaw, A. Alloune, C. Payne, J. Thompson &mdash; Croydon (United Kingdom) &middot; <a href="mailto:a.rizzo@exosens.com">a.rizzo@exosens.com</a></div>
+  <div class="abstract-body"><p>The deployment of advanced nuclear systems, including Small Modular Reactors (SMRs) and Advanced Modular Reactors (AMRs), requires instrumentation capable of operating reliably under increasingly demanding thermal and irradiation conditions. In this context, high-temperature fission chambers have emerged as promising neutron flux detectors for both in-core and ex-core applications. Their qualification under representative operational environments is therefore a critical step towards ensuring accurate neutron monitoring, reactor protection, and long-term system performance. This study presents an extensive characterization of high-temperature fission chambers, with particular emphasis on their behaviour at ambient temperature and under elevated temperature conditions, both under neutron irradiation. The experimental campaign was designed to assess key performance indicators, including neutron sensitivity, pulse shape and amplitude (impulse response), leakage current. Measurements were first conducted at room temperature to establish reference performance metrics and to verify intrinsic detector properties such as baseline leakage current, intrinsic noise, and nominal sensitivity. Subsequently, the chambers were subjected to high-temperature environments representative of advanced reactor operating conditions (ex-core and in-core configurations). Under irradiation, the evolution of detector response was continuously monitored as a function of temperature. The results demonstrate that the high-temperature fission chambers maintain stable sensitivity and acceptable leakage current levels up to the investigated temperature limits. Although a moderate increase in leakage current was observed with temperature, the signal-to-noise ratio remained compatible with reliable neutron flux monitoring. Pulse characteristics showed limited distortion, confirming the robustness of the detection principle under combined thermal and irradiation stress. Overall, the findings support the feasibility of deploying high-temperature fission chambers as key neutron instrumentation for SMR and AMR applications, contributing to enhanced operational safety and monitoring capabilities in next-generation nuclear reactors.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-0850a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-0850a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-0910a">
+  <div class="abstract-meta">Thursday, 9:10 AM &middot; Instrumentation &amp; Detector Development &middot; Session 5-03</div>
+  <h3 class="abstract-title">Measurement Campaign with the Libera MONACO 3 System at the VR-1 Reactor Using Two Fission Chamber Types</h3>
+  <div class="abstract-author">V. Fišinger, M. Elersič1, M. Cargnelutti, B. Thomas &mdash; B. Thomas, FNSPE CTU in Prague, V Holesovickach 2 Prague 8, Czech Republic I-Tech &middot; <a href="mailto:val.fisinger@i-tech.si">val.fisinger@i-tech.si</a></div>
+  <div class="abstract-body"><p>Measurements were carried out at the VR-1 research reactor of the Czech Technical University in Prague (CTU) to evaluate the operation of the Libera MONACO 3 neutron instrumentation system with two different detector types: an RJ1300 fission chamber equipped with a separate bias cable and a KNK-15 compensated fission chamber. The experimental campaign included threshold optimization, linearity measurements over a wide reactor power range, and reactor power-ramp experiments covering pulse, Campbell, and current operating modes. The measurements were performed to assess the response of the Libera MONACO 3 system under different reactor operating conditions and to compare the behavior of the two detector types when coupled to the same instrumentation platform. Particular attention was given to the transition between operating modes, detector response linearity, and the dynamic response during reactor power changes. The paper presents the experimental setup, measurement methodology, and comparative results obtained with both detector types. The measured detector responses in pulse, Campbell, and current modes are discussed, together with their applicability to reactor power monitoring across the investigated operating range.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-0910a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-0910a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-0930a">
+  <div class="abstract-meta">Thursday, 9:30 AM &middot; Instrumentation &amp; Detector Development &middot; Session 5-04</div>
+  <h3 class="abstract-title">NISoC: An Integrated Solid-State Platform for Neutron Detection, Radiography, and Dosimetry</h3>
+  <div class="abstract-author">Dale Julson &mdash; Cerium Labs &middot; <a href="mailto:dale.julson@ceriumlabs.com">dale.julson@ceriumlabs.com</a></div>
+  <div class="abstract-body"><p>The Neutron Intercepting System-on-a-Chip is a solid-state neutron-sensing platform under development for neutron detection, radiography, and dosimetry. Unlike gas-filled proportional counters or scintillation systems, NISoC integrates boron-10 neutron-conversion materials with CMOS-compatible semiconductor electronics in a compact architecture intended for high-volume manufacturing and reduced size, weight, power, and cost. Fabricated and packaged prototype devices were evaluated under thermal-neutron irradiation at The University of Texas at Austin Nuclear Engineering Teaching Laboratory. Dosimetric measurements showed repeatable response across about five orders of magnitude in thermal-neutron fluence, with a power-law dependence suitable for quantitative exposure assessment. Thermal-neutron radiography demonstrated spatial resolution below five micrometers. The architecture supports on-chip readout, low-power operation, nonvolatile retention of interaction information, and conventional electronic packaging. These results demonstrate feasibility as an integrated semiconductor platform for neutron instrumentation.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-0930a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-0930a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-0950a">
+  <div class="abstract-meta">Thursday, 9:50 AM &middot; Instrumentation &amp; Detector Development &middot; Session 5-05</div>
+  <h3 class="abstract-title">Nuclear Instrumentation for Both the Research Reactor and Advanced Reactor Communities</h3>
+  <div class="abstract-author">Ewald Liebhart &mdash; Mirion Technologies &middot; <a href="mailto:eliebhart@mirion.com">eliebhart@mirion.com</a></div>
+  <div class="abstract-body"><p>The U.S. Department of Energy Reactor Pilot Program has catalyzed advanced-reactor development. Mirion Technologies and Paragon Energy Solutions supplied much of the nuclear instrumentation for successful demonstration startups, providing a perspective on instrumentation challenges facing next-generation reactor designs. Many advanced-reactor companies rely on research reactors for material, fuel, and component testing. This presentation shows how high-quality instrumentation can support research reactors modernizing neutron-flux monitoring systems and advanced-reactor developers whose testing depends on those facilities. Upgrade pathways include neutron-flux detectors such as wide-range fission chambers and proportional counters, digital signal-processing platforms such as Mirion proTK and the DWK 260 unit, and Paragon&#x27;s analog CoreVision neutron-flux monitoring system. Example measurement results from recent criticality campaigns will also be presented.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-0950a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-0950a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-1010a">
+  <div class="abstract-meta">Thursday, 10:10 AM &middot; Instrumentation &amp; Detector Development &middot; Session 5-06</div>
+  <h3 class="abstract-title">Prototype Nuclear Qualification Device Testing for Advanced Neutron Sensor Experiments at AFRRI</h3>
+  <div class="abstract-author">Johnathan Grissom &mdash; Idaho National Laboratory &middot; <a href="mailto:johnathan.grissom@inl.gov">johnathan.grissom@inl.gov</a></div>
+  <div class="abstract-body"><p>This work tests the prototype Nuclear Qualification Device developed by Idaho National Laboratory as a repeatable platform for evaluating advanced neutron sensors and quantifying uncertainty under varying thermal and radiation conditions. The prototype is a rigid, low-reactivity-worth experiment rig equipped with cable heaters designed to heat the target region to 400 C, multiple ports for neutron sensors and dosimetry packages, and thermocouple locations for heater control and temperature monitoring. Experiments were performed in both exposure rooms at the Armed Forces Radiobiology Research Institute under varying powers and temperatures. Testing included dosimetry packages and prototype self-powered neutron detectors in a thermal spectrum and a cadmium-filtered spectrum. The device maintained desired temperatures and provided live thermocouple and detector data without electronic failure. Dosimetry data characterized the neutron spectrum in each room, and detector data are being used to analyze neutron-energy-dependent response functions of different emitter materials. The first experiment demonstrates the value of the device for advanced sensor testing and supports future iterations intended to operate at temperatures up to 700 C.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-1010a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-1010a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-1050a">
+  <div class="abstract-meta">Thursday, 10:50 AM &middot; Regulatory, Licensing &amp; QA &middot; Session 7-01</div>
+  <h3 class="abstract-title">HFIR Code of Record project</h3>
+  <div class="abstract-author">Carol W. Sizemore &mdash; Oak Ridge National Laboratory &middot; <a href="mailto:sizemorecw@ornl.gov">sizemorecw@ornl.gov</a></div>
+  <div class="abstract-body"><p>The objective of the High Flux Isotope Reactor Code of Record project is to assemble a documented, authoritative set of codes, standards, requirements, and design bases governing HFIR design, operation, maintenance, and safety basis. The Code of Record is intended to be a functional list that establishes the technical basis for inclusion, identifies applicable code years, and links requirements to safety-related equipment in the HFIR Master Equipment List. Oak Ridge National Laboratory&#x27;s Research Reactors Division is developing the Code of Record through structured review of authorization-basis documents, design and procurement records, modification history, regulatory requirements, and subject-matter-expert input. This paper provides an overview of planned scope, methods, and results to date.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-1050a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-1050a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-1110a">
+  <div class="abstract-meta">Thursday, 11:10 AM &middot; Regulatory, Licensing &amp; QA &middot; Session 7-02</div>
+  <h3 class="abstract-title">NextGen MURR ANSI/ANS-15.8 Quality Assurance Program Development</h3>
+  <div class="abstract-author">Ethan Schroeder &mdash; University of Missouri &middot; <a href="mailto:e.schroeder@missouri.edu">e.schroeder@missouri.edu</a></div>
+  <div class="abstract-body"><p>The University of Missouri is developing a quality-assurance program for NextGen MURR, a proposed next-generation research reactor envisioned to operate at 20 MW thermal or greater using an open tank-in-pool configuration and high-density U3Si2 low-enriched uranium fuel. The initiative will pursue Class 104(c) licensing as a research reactor under 10 CFR 50.21 and use guidance from Regulatory Guide 2.5 and ANSI/ANS-15.8 to develop a QA program meeting 10 CFR 50.34 requirements. Members of the design and licensing team have existing QA processes, while the university&#x27;s program will be implemented through multiple deployments. The initial deployment includes the Quality Assurance Program Description and procedures needed for the design and licensing phase. The completed program will draw on the expertise of the university, the design and licensing team, and the owner&#x27;s representative and will be consistent with 10 CFR Part 50.34, NUREG-1537, and ANSI/ANS-15.8.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-1110a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-1110a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-1130a">
+  <div class="abstract-meta">Thursday, 11:30 AM &middot; Regulatory, Licensing &amp; QA &middot; Session 7-03</div>
+  <h3 class="abstract-title">Authorization for Startup of the Deployable Energy UNITY Reactor through NE-STD-1271 and NE Order 425.1</h3>
+  <div class="abstract-author">Michael Ruddell &mdash; Idaho National Laboratory &middot; <a href="mailto:michael.ruddell@inl.gov">michael.ruddell@inl.gov</a></div>
+  <div class="abstract-body"><p>The startup-approval process for the Deployable Energy UNITY reactor was governed by DOE-STD-1271-2025 and NE Order 425.1, which define a structured, risk-aligned framework for design integration, safety analysis, and readiness verification. DOE-STD-1271 establishes early negotiation of requirements through a Nuclear Safety Design Agreement, followed by preliminary and final documented safety analyses integrating design maturation with hazard evaluation. NE Order 425.1 provides the readiness-review process for Hazard Category 1 and 2 facilities, requiring verification of system operability, safety-management-program implementation, and safety-basis adequacy before startup authorization. This framework aligns with emerging risk-informed, performance-based licensing concepts for microreactors and other low-consequence designs. UNITY&#x27;s DOE authorization, grounded in negotiated requirements, integrated safety analysis, and formal readiness verification, prepared the reactor for initial operation and may provide foundational inputs for later NRC licensing.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-1130a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-1130a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-thu-1150a">
+  <div class="abstract-meta">Thursday, 11:50 AM &middot; Regulatory, Licensing &amp; QA &middot; Session 7-04</div>
+  <h3 class="abstract-title">Return of the NCNR to 20 MW Scientific Operation</h3>
+  <div class="abstract-author">Thomas Newton &mdash; National Institute of Standards and Technology &middot; <a href="mailto:thomas.newton@nist.gov">thomas.newton@nist.gov</a></div>
+  <div class="abstract-body"><p>Following a fuel-failure event in February 2021, the NIST Center for Neutron Research initiated and completed major actions including NRC regulatory activities, restart permission, three license amendments, satisfaction of a Confirmatory Order, multiple reactor-cleanup campaigns to remove loose fissionable material, refurbishment of the 15-ton reactor refueling plug, improvements to the reactor helium sweep system to reduce effluents, initiation of a Corrective Action Program and safety-culture monitoring and improvement program, and redevelopment of training and procedure-use programs. This presentation outlines completion of those actions, culminating in reactor restart to 20 MW operation in May 2026.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-thu-1150a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="thu-1150a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-0830a">
+  <div class="abstract-meta">Friday, 8:30 AM &middot; Digital Tools, Automation &amp; Digital Twins &middot; Session 6-01</div>
+  <h3 class="abstract-title">Development and Implementation of a Digital Operations Logbook for the NETL TRIGA Mark II Reactor</h3>
+  <div class="abstract-author">Sam G. Durbin &mdash; The University of Texas at Austin &middot; <a href="mailto:slq222@my.utexas.edu">slq222@my.utexas.edu</a></div>
+  <div class="abstract-body"><p>Nuclear reactor facilities are required to maintain detailed operational logbooks to document reactor safety checks, status, operator actions, and abnormal events. Traditionally, these records are maintained using paper-based systems, which are bulky, difficult to manage and reference, and prone to illegible handwriting. To address these limitations, we developed and tested a digital logbook at the NETL TRIGA Mark II Reactor facility. The system provides the same capabilities as the physical logbooks, as well as efficiency enhancements made possible by a digital platform. The digital log contains a centralized platform for recording startup and shutdown checks, experimental facility insertions, scrams, and operational activities while maintaining secure user authentication. It was designed to integrate with existing reactor workflows, minimizing disruption to established operating procedures while improving access to records and consistency. If paper copies are needed, the system automatically formats the digital log to replicate the physical version as a PDF. Compared with commercial electronic logbook solutions, which can require implementation costs starting at ten thousand dollars with thousands in yearly upkeep fees, this system was developed using existing institutional resources and can be implemented at no additional cost. The resulting solution eliminates software licensing fees while enabling automation of certain mandatory reporting that burdens reactor operators. This project demonstrates that a cost-effective, facility-specific digital logbook can provide the advantages of a commercial system without a significant financial investment. The approach offers a practical pathway for reactor facilities seeking to modernize operational recordkeeping, improve regulatory readiness, and use digital infrastructure to support long-term operational efficiency.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-0830a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-0830a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-0850a">
+  <div class="abstract-meta">Friday, 8:50 AM &middot; Digital Tools, Automation &amp; Digital Twins &middot; Session 6-02</div>
+  <h3 class="abstract-title">Recent Experience with Lightweight Digital Tools for Scheduling and Documentation at the NC State PULSTAR Research Reactor</h3>
+  <div class="abstract-author">Austin Wells &mdash; North Carolina State University &middot; <a href="mailto:ajwells2@ncsu.edu">ajwells2@ncsu.edu</a></div>
+  <div class="abstract-body"><p>Intent to submit; abstract text was not provided in the recovered submission export.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-0850a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-0850a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-0910a">
+  <div class="abstract-meta">Friday, 9:10 AM &middot; Digital Tools, Automation &amp; Digital Twins</div>
+  <h3 class="abstract-title">Natura Resources MSR-1 Goals and Objectives <span class="prog-note">(Late-Breaking)</span></h3>
+  <div class="abstract-author">Jonathan Scherr, PhD</div>
+  <div class="abstract-bio">Dr. Jonathan Scherr is the Director of Nuclear Systems at Natura Resources, overseeing nuclear system design, safety, and performance. With extensive expertise in reactor physics and thermal hydraulics, Dr. Scherr plays a pivotal role in advancing the MSR-1 and MSR-100. Dr. Scherr holds a BS, MS, and PhD in Nuclear Engineering from Texas A&amp;M University.</div>
+  <div class="abstract-body"><p>Natura Resources is deploying the MSR-1 to demonstrate our liquid fueled molten salt reactor technology at Abilene Christian University. The MSR-1 is the only liquid fueled molten salt reactor permitted by the US NRC for construction. As such, many of its design features have been publicly disclosed and need not be reiterated. The overall research goals of the project are worth disclosing in detail.</p><p>The MSR-1 enables the collection of data crucial to design, operation, and licensing of Natura’s commercial MSR-100. The MSR-100 generates 100 MWe of clean, carbon-free energy. Natura is pursuing MSR-100 deployments at the RELLIS campus at Texas A&amp;M University and in the Permian Basin, the latter deployment targeting produced water. The MSR-100 and the MSR-1 share many design features; modular design, walk-away safety, fuel salt composition, materials and construction. These features enable data collected from the MSR-1 to be directly applied to the MSR-100.</p><p>The most important unresolved question associated with liquid fueled molten salt reactors is the gaseous source term released during a rupture of the primary fuel salt bearing container. Experimental work associated with the MSRE demonstrates that the fission products aside from Xe and Kr are not present to a large degree within the gas phase. This observation is supported by analytical predictions. The MSR-1 will be equipped with instrumentation sufficient to measure the composition of the gas head space during operation. The MSR-1 also incorporates an online fuel salt sampler and coupons. This equipment enables accurate measurement of fission product behavior throughout the reactor. The MSR-1 will demonstrate redox potential control and monitoring, both in-situ and via sampling. These processes will inform the fuel salt management program associated with the MSR-100.</p><p>The MSR-1 is more than a chemistry tool, it will also test mechanical components. The MSR-1 utilizes mechanical fuel salt valves and pumps. The MSR-1 also includes an off-gas system and fuel purification system. The performance history of this equipment will inform the MSR-100.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-0910a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-0910a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-0930a">
+  <div class="abstract-meta">Friday, 9:30 AM &middot; Digital Tools, Automation &amp; Digital Twins &middot; Session 6-04</div>
+  <h3 class="abstract-title">Keeper: A Framework for Demonstration Autonomous Operations <span class="prog-note">(Late-Breaking)</span></h3>
+  <div class="abstract-author">Ryan Stewart, Casey Kovesdi, Emerald Ryan, Sonali Roy, Manaswin Oddiraju, Anand Kirshnan, Greg Shannon, William Dawn, Kolton Heaps, Amanda Foley, Linyu Lin, Joseph Oncken, William Wakeman &mdash; Idaho National Laboratory &middot; <a href="mailto:ryan.stewart@inl.gov">ryan.stewart@inl.gov</a></div>
+  <div class="abstract-body"><p>This work presents the develop of a digital twin framework (denoted as Keeper) for demonstrating autonomous operations the Idaho National Laboratories Neutron Radiography (NRAD) reactor. Keeper is built to incorporate diagnostics, prognostics, and control within a digital twin framework to provide a system-level awareness of NRAD capable of facilitating autonomous operations. The goal of this work is twofold; develop and demonstrate autonomous operations on a reactor from startup, normal operations, off-normal operations, and shutdown along with the ability to document the process for achieving Department of Energy regulatory compliance. For achieving autonomous operations, a combination of physics- and machine learning-based algorithms provide a baseline for comparing the expected state of the reactor and predicting the future state of the reactor. Once the current and future state of the reactor are established, a combination of traditional control (i.e. proportional-derivative controllers), model predictive control, and reinforcement learning algorithms are used to determine how controls rods should move to achieve a set overarching reactor operator determined goals (reactor power, minimize control rod movements, etc.). To allow signals into the NRAD core, documentation of Keeper and its implementation was capturing via a Concept of Operations and Test Plan. These documents, along with a series of shorter documents were used to show compliance with DOE-STD-1271-2025 which dictates how autonomous operations at DOE-licensed facilities can be performed.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-0930a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-0930a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-0950a">
+  <div class="abstract-meta">Friday, 9:50 AM &middot; Digital Tools, Automation &amp; Digital Twins &middot; Session 6-05</div>
+  <h3 class="abstract-title">Advancing Digital Twin Development of Research Reactors Through a Shared Platform <span class="prog-note">(Late-Breaking)</span></h3>
+  <div class="abstract-author">Ryan Stewart, Emerald Ryan, Jieun Lee, Logan Browning, Nicholas P. Luciano, Cole Gentry, Kevin Clarno &mdash; Idaho National Laboratory &middot; <a href="mailto:ryan.stewart@inl.gov">ryan.stewart@inl.gov</a></div>
+  <div class="abstract-body"><p>This effort seeks to leverage current work being performed for digital twins at research reactors across the university and national laboratory system. Multiple universities and laboratories have developed frameworks, algorithms and approaches for digital twins independently leading to a wealth of knowledge which tends to only be shared in a disparate nature. This often leads to multiple entities running into similar roadblocks that others may have already accomplished. To accelerate the development of digital twins across research reactors, we are seeking to develop a working group which can collaborate, build off each other’s successes, and overcome larger obstacles than we could individually. Research reactors represent a uniquely valuable, and largely untapped, proving ground for digital twin technology providing a lower-consequence, higher-access environments than industry power reactors, making them an ideal test bed for iterating on digital twin methods before they mature toward deployment in commercial systems.</p><p>The proposed consortium would provide a shared platform for this maturation. Rather than duplicating infrastructure at each site, member institutions could contribute to and draw from common resources, including:</p><ul><li>Shared benchmarks and test cases — a common set of operational scenarios, transients, and datasets against which different digital twin approaches can be validated and compared.</li><li>Open frameworks and tooling — reusable software components for data ingestion, model reduction, state estimation, and visualization.</li><li>A community repository of lessons learned — documenting successes and failed approaches/dead ends to avoid repeating mistakes.</li><li>Cross-institutional verification and validation practices — working toward shared standards for what constitutes a validated digital twin in the research reactor context.</li><li>Workforce development — giving students and early-career researchers exposure to multiple reactor types, instrumentation schemes, and digital twin architectures.</li><li>Shared understanding of value statements — Digital twins are being used to improve software accuracy, qualify software for applications, improve operational and experimental efficiency, and enhance education; this will help identify and realize more value for each institution.</li></ul><p>By coordinating rather than duplicating efforts, the consortium aims to compress the timeline for digital twin development at academic and research institutions allowing for more meaningful collaboration and research into digital twin capabilities.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-0950a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-0950a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-1010a">
+  <div class="abstract-meta">Friday, 10:10 AM &middot; Digital Tools, Automation &amp; Digital Twins &middot; Session 6-06</div>
+  <h3 class="abstract-title">Live 3D Radiation Mapping <span class="prog-note">(Late-Breaking)</span></h3>
+  <div class="abstract-author">Saarthak Midha &mdash; McMaster University &middot; <a href="mailto:midhas1@mcmaster.ca">midhas1@mcmaster.ca</a></div>
+  <div class="abstract-body"><p>The radiation does rate mapping system, RAD-MAP, was developed as a student capstone project along with support from the McMaster Nuclear Reactor (MNR) to survey areas around the reactor core in preparation for a new beam port project. The system accurately measures and maps the position of the submersible and the measured dose rate on to a live 3D virtual map that can be clearly read by an operator. RAD-MAP consists of two underwater cameras that as fastened to support structures, a submersible remote operated vehicle (ROV) with a traceable marker and mounted dose rate probe, an AprilTag reference marker the for the visual triangulation system, and a python script that tracks the ROV position, records dose rate measurements, and executes data mapping. During a survey, an operator controls the ROV within the reactor pool while position and dose rate data are automatically recorded, mapped, and displayed in live time. This system provides a visual representation of potential radiation hazards present in the proposed work are, supporting and improving survey planning and the development of a safer work environment.</p></div>
+    <a class="action-link pending" data-pres-slug="fri-1010a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-1050a">
+  <div class="abstract-meta">Friday, 10:50 AM &middot; Nuclear Data &amp; Xenon Spectroscopy &middot; Session 8-01</div>
+  <h3 class="abstract-title">Analysis of Xenon Prompt Gammas from Thermal Neutron Capture</h3>
+  <div class="abstract-author">Andrew David Rosen &mdash; The University of Texas at Austin &middot; <a href="mailto:adr4278@my.utexas.edu">adr4278@my.utexas.edu</a></div>
+  <div class="abstract-body"><p>Isotopically enriched xenon was irradiated at FIPPS in high-purity quartz ampules and high-pressure aluminum-alloy spheres to determine prompt gamma rays from thermal-neutron capture involving xenon-125, xenon-127, xenon-131, and xenon-135. From constructed gamma-gamma coincidences, the energy levels of the resulting nuclei were determined along with spin, parity, and lifetime of the states. The isomeric yield ratio between the metastable state and ground state of each xenon isotope was also calculated.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-1050a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-1050a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-1110a">
+  <div class="abstract-meta">Friday, 11:10 AM &middot; Nuclear Data &amp; Xenon Spectroscopy &middot; Session 8-02</div>
+  <h3 class="abstract-title">Design and Fabrication of a System for High-Pressure Xenon Irradiation</h3>
+  <div class="abstract-author">Robert Cerna Morales &mdash; The University of Texas at Austin &middot; <a href="mailto:rcm3324@eid.utexas.edu">rcm3324@eid.utexas.edu</a></div>
+  <div class="abstract-body"><p>Xenon isotopes are of great interest in nuclear studies for neutron cross-section and prompt gamma-ray measurements. Specifically, Xe-134 and Xe-135 help improve understanding of the fission process in nuclear reactors and other defense applications. The International Atomic Energy Agency does not yet have prompt-gamma data for these isotopes fully catalogued. Exposing the isotopes to neutron irradiation can help obtain the needed data. At standard pressures, irradiation results in low count rates because of the low density and interaction rates of gas samples. Cooling xenon to a liquid or solid state requires complex equipment and introduces additional experimental constraints. To mitigate these problems, metallic spheres are used to hold xenon at high pressure during irradiation. Transferring xenon from a storage cylinder to a sphere with sufficient strength and a low neutron-absorption cross section requires a dedicated system capable of handling and monitoring high pressures, vacuums, and low temperatures for cryogenic applications. Swagelok and Southwest Research Institute were contacted for the design of the transfer manifold and metallic spheres. SwRI designed and supplied aluminum-alloy spheres rated to hold 100 bar while allowing activation of the xenon with a low activation rate in the sphere alloy. Swagelok supplied a gas-transfer manifold with minimal connections to reduce leakage risk and multiple ports that allow transfer of multiple gases. Coordination among the Nuclear Engineering Teaching Laboratory, Swagelok, and SwRI produced a solution for prompt gamma activation analysis of Xe-134 and Xe-135. The system supports current measurements and provides a pathway for future teams to produce and irradiate isotopes in high-pressure gaseous form.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-1110a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-1110a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-1130a">
+  <div class="abstract-meta">Friday, 11:30 AM &middot; Nuclear Data &amp; Xenon Spectroscopy &middot; Session 8-03</div>
+  <h3 class="abstract-title">Xenon-135 Production and Prompt Gamma Activation Analysis</h3>
+  <div class="abstract-author">Ivy Seidel, Will Flanagan, William Charlton, and Derek Haas &mdash; Walker Department of Mechanical Engineering, The University of Texas at Austin, Austin, Texas &middot; <a href="mailto:rachael.seidel@austin.utexas.edu">rachael.seidel@austin.utexas.edu</a></div>
+  <div class="abstract-body"><p>Despite its importance to reactor operation, the prompt gamma emissions from the Xe-135(n,γ)Xe-136 reaction have not been experimentally confirmed. With the highest known thermal neutron capture cross section (~2.6 Mb), Xe-135 is a major neutron poison in fission reactors. An experiment is planned at the University of Texas at Austin’s TRIGA research reactor to characterize prompt gamma emissions and investigate the existence of previously unconfirmed energy levels in Xe-136. The PGAA facility at UT Austin consists of a 1.5E6 n/cm²/s thermal neutron beam aimed at the sample area with two high- purity germanium detectors pointed at the sample area to count the produced prompt gammas. Using these two detectors allows for the comparison of the collected spectra in coincidence. Xe-135 will be produced from the Xe-134(n,γ)Xe-135 reaction inside the TRIGA reactor core. Following irradiation, the sample will be transferred into a spherical counting vessel and moved to the PGAA facility for measurement. To balance the competing effects of Xe-135 production and radioactive decay, the sample will be cycled between in-core irradiation and ex-core measurement, enabling repeated buildup and data collection. An optimization study coupling a Python workflow with ORIGEN in SCALE was used to determine irradiation and counting intervals that maximize Xe-135(n,γ) event rates within the PGAA system. The optimized schedule alternates between production in the reactor and measurement at the PGAA facility, maintaining sufficient Xe-135 inventory while limiting activity in the detector area. The final procedure is estimated to produce a total of 1,250 successful prompt gamma counts as a result of Xe-135 neutron absorption. This work combines nuclear modeling and experimental techniques to optimize the production and measurement of the short-lived isotope Xe-135. This enables precise identification of prompt gamma emissions from the Xe-135(n,γ) reaction and addresses a gap in experimentally validated nuclear data. Keywords: Isotope Production, Fundamental Nuclear Data, Prompt Gamma Activation Analysis, Experimental Design, Xenon-135</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-1130a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-1130a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-1150a">
+  <div class="abstract-meta">Friday, 11:50 AM &middot; Nuclear Data &amp; Xenon Spectroscopy &middot; Session 8-04</div>
+  <h3 class="abstract-title">Measurement of the Isomeric Yield Ratio of Xenon-135m from Thermal Neutron Capture on Xenon-134</h3>
+  <div class="abstract-author">Grace Martin &mdash; University of Dallas &middot; <a href="mailto:gamartin@udallas.edu">gamartin@udallas.edu</a></div>
+  <div class="abstract-body"><p>The isomeric yield ratio of Xe-134 (n,gamma) Xe-135 - the fraction of captures producing the metastable Xe-135m state - was measured at the TRIGA reactor at The University of Texas at Austin Nuclear Engineering Teaching Laboratory. Xenon- 135, the dominant neutron poison in nuclear reactors, is produced through multiple pathways whose accurate analysis is required by nuclear-inventory codes. Enriched Xe-134 gas was irradiated in a thermal flux, and the time-evolving 526.6-keV Xe-135m and 249.8-keV Xe-135g gamma-ray count rates were fitted with analytical solutions to the Bateman equations using chi-square minimization with nuisance parameters.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-1150a">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-1150a" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+<article class="abstract-card" id="abstract-fri-1210p">
+  <div class="abstract-meta">Friday, 12:10 PM &middot; Aging Infrastructure, Failure Investigation &amp; Redesign &middot; Session 3-08</div>
+  <h3 class="abstract-title">Update on the Operability of the Reed Research Reactor</h3>
+  <div class="abstract-author">Jerry Newhouse &mdash; Reed College &middot; <a href="mailto:jnewhouse@reed.edu">jnewhouse@reed.edu</a></div>
+  <div class="abstract-body"><p>The console of the Reed Research Reactor sustained significant water damage to two of its three nuclear-instrumentation channels and rod-position indicators in spring 2025. This presentation describes work to repair the damage, methods used to maintain student engagement during the outage, lessons learned, and the current status of the reactor.</p></div>
+  <div class="action-row">
+    <a class="action-link back" href="#row-fri-1210p">&uarr; Back to schedule</a>
+    <a class="action-link pending" data-pres-slug="fri-1210p" aria-disabled="true" title="Slides will be posted after the conference">Presentation &mdash; Pending</a>
+  </div>
+</article>
+
+  </section>
+
+
+  <section id="sponsors">
+    <span class="section-tag">With Thanks</span>
+    <h2 class="section-title">Sponsor Recognition</h2>
+    <div class="divider"></div>
+    <p class="prog-intro">TRTR 2026 is made possible by the generous support of the following organizations.</p>
+    <div class="sponsor-grid">
+<article class="sponsor-card tier-uranium">
+  <div class="sponsor-tier">Uranium+ Sponsor</div>
+  <h3 class="sponsor-name">MURR — University of Missouri Research Reactor</h3>
+  <div class="sponsor-contact">Russel Gibson · gibsonrw@missouri.edu</div>
+  
+  <div class="sponsor-blurb"><p>For 60 years, the University of Missouri Research Reactor (MURR®) has safely delivered reliable neutron science and lifesaving medical isotopes to the United States and the world. As the highest-power university research reactor in the U.S., MURR operates at 10 megawatts and serves as a critical national resource for researchers, scientists, engineers, students and industry partners.</p><p>As demand for nuclear research, products, and partnerships increases, MURR is expanding its current facility with multiple building additions while looking to the future with NextGen MURR, a new reactor envisioned to be the hub of an integrated nuclear ecosystem in Columbia, Missouri. Building on six decades of safe operational excellence and innovation, the new reactor is being designed to advance neutron beam science; multiply training, research and educational opportunities; and ensure stable supplies of medical isotopes saving and improving lives for generations to come.</p><p>With MURR and NextGen MURR, the University of Missouri is committed to raising expectations for research reactor performance, achieving excellence, and serving as the benchmark for research reactors at a global level.</p></div>
+</article>
+<article class="sponsor-card tier-gold">
+  <div class="sponsor-tier">Gold Sponsor</div>
+  <h3 class="sponsor-name">Secured Transportation Services, LLC</h3>
+  <div class="sponsor-contact">Jacob Phillips · jrp@stsnuclear.com · +1 (770) 533-0223  |  Gabby Ragan · gsr@stsnuclear.com</div>
+  <div class="sponsor-extra">An Onium Company</div>
+  <div class="sponsor-blurb"><p>Secured Transportation Services (STS) is a trusted leader in nuclear transportation, logistics, engineering, security, and program support, with more than two decades of experience serving the U.S. Department of Energy, national laboratories, the Department of State, IAEA, research reactors, and commercial nuclear organizations. STS has executed projects in more than 40 countries — including DOE&#x27;s Foreign and Domestic Research Reactor programs, spent nuclear fuel packaging and transportation, hot-cell operations, and the secure movement of strategic nuclear materials — and holds approvals for more than 90% of active NRC spent-fuel routes in the United States. Now a wholly owned subsidiary of NANO Nuclear Energy Inc., STS pairs its proven operating experience with NANO&#x27;s focus on small modular and advanced reactors, extending its support to HALEU, advanced packaging, and the infrastructure needed for the next generation of reactors.</p></div>
+</article>
+<article class="sponsor-card tier-gold">
+  <div class="sponsor-tier">Gold Sponsor</div>
+  <h3 class="sponsor-name">Exosens</h3>
+  <div class="sponsor-contact">Nicole Poirier · n.poirier@exosens.com  |  S. Williams · s.williams@exosens.com</div>
+  
+  <div class="sponsor-blurb"><p>Exosens is a global leader in nuclear instrumentation and radiation detection, delivering advanced technologies for the world&#x27;s most demanding safety-critical environments. Built on decades of expertise, Exosens provides precision-engineered solutions that support the safe, reliable operation of nuclear facilities throughout their lifecycle. Its technologies are trusted in more than 200 reactors worldwide and are designed to meet the evolving needs of conventional nuclear power, small and advanced modular reactors, fusion research, and other high-performance applications. With vertically integrated manufacturing, rigorous quality standards, and a commitment to innovation, Exosens partners with customers to help advance the future of nuclear energy. From neutron and gamma detectors to GM tubes and MI cable extensions, its solutions are trusted for in-core and ex-core instrumentation, area and environmental monitoring, and fuel management — certified to quality standards including NQA-1, ISO 9001, ISO 19443, CSA N299, RCC-E, and ASME.</p></div>
+</article>
+<article class="sponsor-card tier-gold">
+  <div class="sponsor-tier">Gold Sponsor</div>
+  <h3 class="sponsor-name">Advetage Solutions</h3>
+  <div class="sponsor-contact">Justin Kung · Justin@advetage.com</div>
+  <div class="sponsor-extra">A Disabled Veteran Owned Small Business · 111 Penn St, Suite 202, El Segundo, CA 90245 · (424) 292-8432 x1000 · advetage.com</div>
+  <div class="sponsor-blurb"><p>Advetage Solutions delivers specialized health physics services and innovative radiation detection, monitoring, and software solutions for research reactors and nuclear facilities. Combining technical consulting with advanced instrumentation, custom software, and experienced health physics professionals, Advetage helps facilities strengthen radiation protection programs, enhance regulatory compliance, and improve operational efficiency. From staffing and dosimetry services to centralized real-time monitoring, remote access, and historical data management, it delivers practical, end-to-end solutions tailored to each facility&#x27;s operational needs. As the holder of a U.S. NRC Materials License, Advetage also provides support for radioactive material handling, waste management, and shipping, delivering comprehensive solutions to the research reactor community.</p></div>
+</article>
+<article class="sponsor-card tier-gold">
+  <div class="sponsor-tier">Gold Sponsor</div>
+  <h3 class="sponsor-name">Curtiss-Wright</h3>
+  <div class="sponsor-contact">G. Cambeis · gcambeis@curtisswright.com  |  R. Smith · RSmith2@curtisswright.com</div>
+  
+  <div class="sponsor-blurb"><p>Curtiss-Wright&#x27;s Brea facility provides a comprehensive portfolio of products and services supporting the global commercial nuclear power industry. With decades of nuclear experience dating back to 1967 and the development of the first nuclear-qualified hydraulic large bore snubber, Curtiss-Wright continues to deliver innovative, reliable solutions for nuclear power plants, NSSS suppliers, A&amp;Es, and the U.S. Department of Energy. As an engineering, manufacturing, distribution, and service provider, Curtiss-Wright delivers integrated solutions addressing the unique requirements of the nuclear power industry, including advanced valves, actuators, instrumentation, snubbers, diagnostic and test equipment, qualification and dedication services, outage support services, equipment repair, and field service.</p></div>
+</article>
+<article class="sponsor-card tier-gold">
+  <div class="sponsor-tier">Gold Sponsor</div>
+  <h3 class="sponsor-name">Mirion Technologies</h3>
+  <div class="sponsor-contact">E. Despault · edespault@mirion.com  |  C. Freeman · cfreeman@mirion.com</div>
+  
+  <div class="sponsor-blurb"><p>Mirion Technologies partners with industry leaders to advance radiation safety and empower the next wave of critical innovation. From detection and measurement to monitoring and analysis, Mirion empowers innovators across industries — in leading-edge R&amp;D labs, critical nuclear facilities, and on the front lines — with radiation safety technologies that operate with the highest levels of precision. Mirion partners with customers to build solutions that deliver complete confidence in safe operations and harness the transformative power of safe radiation to move the world forward. Learn more at mirion.com.</p></div>
+</article>
+<article class="sponsor-card tier-gold">
+  <div class="sponsor-tier">Gold Sponsor</div>
+  <h3 class="sponsor-name">Control Panels USA</h3>
+  <div class="sponsor-contact">B. Wetherholt · bwetherholt@controlpanelsusa.net  |  T. Lerma · tlerma@controlpanelsusa.net</div>
+  
+  <div class="sponsor-blurb"><p>Control Panels USA provides custom industrial control panels, relay rack assemblies, and automation solutions for utilities, contractors, OEM contract manufacturing, cooperatives, and end users. Based in Georgetown, Texas, CP USA is a UL508A, UL698A, and UL698B manufacturer known for quality workmanship, responsive service, and dependable project support — from single-panel builds to full substation relay rack projects, delivering cost-effective solutions built for efficient installation, reliable performance, and long-term customer value.</p></div>
+</article>
+<article class="sponsor-card tier-gold">
+  <div class="sponsor-tier">Gold Sponsor</div>
+  <h3 class="sponsor-name">Framatome</h3>
+  <div class="sponsor-contact">Michele Curlee · michele.curlee@framatome.com</div>
+  <div class="sponsor-extra">framatome.com · X: @framatome_ · LinkedIn: linkedin.com/company/Framatome</div>
+  <div class="sponsor-blurb"><p>Framatome is an international leader in nuclear energy recognized for its innovative, digital, and value-added solutions for the global nuclear fleet. With worldwide expertise and a proven track record for reliability and performance, the company designs, services, and installs components, fuel, and instrumentation and control systems for nuclear power plants. Its more than 22,000 employees work every day to help Framatome&#x27;s customers supply ever cleaner, safer, and more economical low-carbon energy.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">Radiation Detection Technologies, Inc.</h3>
+  <div class="sponsor-contact">Taylor Ochs · ochs@radectco.com  |  Matthew McColgan · matthew.mccolgan@radetco.com</div>
+  
+  <div class="sponsor-blurb"><p>Radiation Detection Technologies, Inc. specializes in the design, fabrication, and commercialization of state-of-the-art radiation detectors, specialty semiconductors, and high-power diodes. Bridging the gap between cutting-edge research and commercial deployment, RDT delivers high-performance solutions tailored for the most demanding radiation environments and specialized applications. RDT is introducing its Micro-Pocket Fission Detectors (MPFDs) for in-core neutron detection applications, providing real-time neutron flux monitoring within an ultra-compact footprint. Its MPFDs allow for high-fidelity spatial flux mapping and transient monitoring without disrupting critical experimental volumes or local neutron flux density. Whether a facility is upgrading legacy infrastructure, mapping specific core configurations, or preparing for advanced microreactor demonstrations, RDT&#x27;s detector technologies provide the critical, real-time data to enable performance verification and maximize experimental throughput.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">Instrumentation Technologies</h3>
+  <div class="sponsor-contact">Vega Abrahamsberg · vega.abrahamsberg@i-tech.si  |  General Inquiries · sales@i-tech.si</div>
+  
+  <div class="sponsor-blurb"><p>Instrumentation Technologies is a high-technology company specializing in high-speed signal acquisition instruments and software-defined radio (SDR) systems for demanding scientific and industrial applications. Its portfolio includes proven off-the-shelf products such as neutron flux measurement instruments, precision current measurement systems, and multichannel digitizers. Built on validated hardware and firmware platforms, these solutions can be rapidly adapted to project-specific requirements, significantly reducing development time and technical risk. The company&#x27;s experience spans space and particle accelerator projects, as well as nuclear applications, including research reactors, SMRs, and fusion.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">Maxeta Technologies</h3>
+  <div class="sponsor-contact">James Visker · jvisker@maxetatech.com</div>
+  <div class="sponsor-extra">maxetatech.com</div>
+  <div class="sponsor-blurb"><p>Maxeta Technologies develops business automation software for the nuclear energy industry. RadSurv, its electronic survey (eSurvey) software, streamlines the process of completing, storing, and retrieving radiological surveys. Other offerings include nTAP for facilitating self-assessments, eWalkdown for performing pre-work walkdowns, and TForce for managing training requests. Maxeta also offers custom enterprise software development services guided by its industry experience to ensure focused, user-friendly software that increases process efficiency.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">Oklo, Inc.</h3>
+  <div class="sponsor-contact">Danielle Zigon · dani.zigon@oklo.com</div>
+  
+  <div class="sponsor-blurb"><p>Oklo is developing advanced nuclear power, fuel, and isotope technologies. Its Groves Isotope Test Reactor in Lockhart, Texas, was one of the fastest-built privately funded reactors in the United States, reaching first criticality less than a year after groundbreaking. Groves demonstrates a faster model for deploying nuclear facilities while building valuable operating experience and strengthening the test reactor community, Texas&#x27; nuclear workforce, and the domestic nuclear supply chain.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">Cerium Laboratories, LLC</h3>
+  <div class="sponsor-contact">Dale Julson · dale.julson@ceriumlabs.com</div>
+  
+  <div class="sponsor-blurb"><p>Cerium Laboratories, LLC is a world-class analytical laboratory based in Austin, Texas, with more than 20 years of experience in materials characterization and an extensive network of relationships throughout the semiconductor supply chain. Cerium is developing next-generation radiation technologies for neutron radiography, neutron detection, and neutron dosimetry, and welcomes opportunities to collaborate with reactor facilities, researchers, and industry partners to test, validate, and further develop these technologies for real-world applications.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">LabLogic Systems, Inc.</h3>
+  <div class="sponsor-contact">Robert Woodcock · rwoodcock@lablogic.com</div>
+  
+  <div class="sponsor-blurb"><p>LabLogic Inc. is a leading provider of instruments and software for measurement and analysis of radioisotopes used in pharmaceutical, academic, nuclear medicine, and research laboratories. Its systems include radiochromatography detectors and software for HPLC and TLC, liquid scintillation and gamma counters, radiation monitors, and microplate readers.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">Plantation Productions, Inc.</h3>
+  <div class="sponsor-contact">Mandy Hyde · mandyhyde@me.com  |  Randall Hyde · randyhyde@me.com</div>
+  
+  <div class="sponsor-blurb"><p>Plantation Productions, Inc. specializes in software and hardware upgrades for General Atomics TRIGA® reactor consoles, as well as custom data acquisition systems designed for reactor monitoring, instrumentation, and data analysis.</p></div>
+</article>
+<article class="sponsor-card tier-silver">
+  <div class="sponsor-tier">Silver Sponsor</div>
+  <h3 class="sponsor-name">I&amp;C Operative</h3>
+  <div class="sponsor-contact">Ryan Marcum · marcum@icoperative.com</div>
+  
+  <div class="sponsor-blurb"><p>I&amp;C Operative offers lean, defensible instrumentation and controls (I&amp;C) services appropriate for Class 104 facilities. We won&#x27;t NQA-1 your RPS.</p></div>
+</article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  TRTR 2026 &middot; The University of Texas at Austin &middot; Nuclear Engineering Teaching Laboratory<br>
+  Presentation slides are added after the conference &mdash; this page checks automatically and needs no further editing once files are in place.
+</footer>
+
+<script>
+function progShowDay(day, btn) {
+  document.querySelectorAll('.prog-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('prog-' + day).classList.add('active');
+  document.querySelectorAll('.prog-tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+// Auto-upgrade "Presentation — Pending" links once a matching PDF exists in /presentations/.
+// Works once this page is served over http(s); browsers block fetch() on file:// pages,
+// so this check silently does nothing when the file is opened locally — that's expected.
+(function () {
+  var links = document.querySelectorAll('[data-pres-slug]');
+  links.forEach(function (el) {
+    var slug = el.getAttribute('data-pres-slug');
+    var url = 'presentations/' + slug + '.pdf';
+    fetch(url, { method: 'HEAD' }).then(function (res) {
+      if (res && res.ok) {
+        el.href = url;
+        el.target = '_blank';
+        el.rel = 'noopener';
+        el.classList.remove('pending');
+        el.classList.add('available');
+        el.removeAttribute('aria-disabled');
+        el.removeAttribute('title');
+        el.textContent = 'Presentation \u2197';
+      }
+    }).catch(function () { /* file not present yet, or opened locally — leave as Pending */ });
+  });
+})();
+</script>
+
+</body>
+</html>
